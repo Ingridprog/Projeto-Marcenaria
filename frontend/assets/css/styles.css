@@ -59,3 +59,58 @@
 .md-table{
     width: 100%;
 }
+
+/* ORÇAMENTOS */
+
+#cadastro-orcamento{
+    width: 100%;
+    height: auto;
+    min-height: 500px;
+    border: solid 1px #ccc;
+    border-radius: 4px;
+    box-shadow: 3px 3px 3px #36363665;
+}
+#dados-cliente,
+#observacoes,
+#dados-pedidos{
+    width: 100%;
+    height: auto;
+    min-height: 400px;
+}
+#observacoes{
+    min-height: 200px;
+}
+.linha-dados-cliente{
+    width: 100%;
+    height: auto;
+    min-height: 30px;
+    font-size:25px;
+    text-transform: uppercase;
+}
+.no-resize{
+    height: 180px !important;
+    resize: none;
+}
+.sub-title{
+    font-size:18px;
+}
+.small-column{
+    width: 140px !important;
+}
+footer{
+    width: 100%;
+    height: auto;
+    min-height: 50px;
+    background-color: #343a40;
+}
+footer h5{
+    padding: 0px;
+    margin: 0px;
+    font-size:18px;
+}
+
+.bottom-position{
+    position: absolute !important;
+    bottom: 0px !important;
+}
+

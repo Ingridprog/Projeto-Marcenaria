@@ -4,18 +4,18 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>EXB</title>
-        <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-        <link rel="stylesheet" href="assets/css/styles.css">
+        <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../assets/css/styles.css">
     </head>
     <body>
         <nav class="width-100p mb-5 navbar pd-zero navbar-expand-lg navbar-dark bg-primary">
             <div class="container d-flex justify-content-end">
                 <div class="ativar-nav-item nav-item text-white d-flex justify-content-center align-items-center">
-                    <span class="font-weight-bold">Home</span>
+                    <a href="lista.php" class="text-white font-weight-bold">Home</a>
                 </div>
 
                 <div class="nav-item text-white d-flex justify-content-center align-items-center">
-                    <span class="font-weight-bold">Orçamento</span>
+                    <a href="orcamento.php" class="text-white font-weight-bold">Orçamento</a>
                 </div>
             </div>
         </nav>
@@ -94,6 +94,8 @@
             </div>
             
         </div>
-        
+        <footer class="fixed-bottom d-flex justify-content-center align-items-center">
+            <h5 class="text-white">2020 - EXB Marcenaria</h5>
+        </footer>   
     </body>
 </html>
