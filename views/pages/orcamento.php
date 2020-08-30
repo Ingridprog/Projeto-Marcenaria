@@ -54,64 +54,64 @@
                             <div class="row mb-2">
                                 <div class="col">
                                     <label for="">Nome completo</label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" name="nome_completo">
                                 </div>
                                 <div class="col">
                                     <label for="">CPF</label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" name="cpf">
                                 </div>
                                 <div class="col">
                                     <label for="">Email</label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" name="email">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col">
                                     <label for="">CEP</label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" name="cep">
                                 </div>
                                 <div class="col">
                                     <label for="">Logradouro</label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" name="logradouro">
                                 </div>
                                 <div class="col">
                                     <label for="">Bairro</label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" name="bairro">
                                 </div>
                             </div>
 
                             <div class="row">
                                 <div class="col-2">
                                     <label for="">Número</label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" name="numero">
                                 </div>
                                 <div class="col-3">
                                     <label for="">Cidade</label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" name="cidade">
                                 </div>
                                 <div class="col-2">
                                     <div class="form-group">
-                                        <label for="exampleFormControlSelect1">Estado</label>
+                                        <label for="">Estado</label>
                                         <select class="form-control" id="exampleFormControlSelect1">
-                                        <option selected disabled>Estado</option>
+                                        <option selected disabled name="estado">Estado</option>
                                         <option>SP</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-5">
                                     <label for="">Complemento</label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" name="complemento">
                                 </div>
                             </div>
 
                             <div class="row">
                                 <div class="col-4">
                                     <label for="">Telefone</label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" name="telefone">
                                 </div>
                                 <div class="col-4">
                                     <label for="">Celular</label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" name="celular">
                                 </div>
                             </div>
                         </div>
@@ -121,7 +121,7 @@
                                 Observações
                             </div>
                             <div class="form-group">
-                                <textarea class="form-control no-resize"></textarea>
+                                <textarea class="form-control no-resize" name="observacoes"></textarea>
                             </div>
                         </div>
 
@@ -133,15 +133,15 @@
                                 <!-- CADASTRAR ITENS NO PEDIDO -->
                                 <div class="col-6">
                                     <label for="">Descrição do item</label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" name="descricao_item">
                                 </div>
                                 <div class="col-2">
                                     <label for="">Quantidade</label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" name="quantidade">
                                 </div>
                                 <div class="col-2">
                                     <label for="">Preço</label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" name="preco">
                                 </div>
                                 <div class="col-2 d-flex align-items-end">
                                     <input value="adicionar" type="submit" class="form-control btn btn-info">
@@ -184,18 +184,18 @@
                                 <!-- CADASTRAR ITENS NO PEDIDO -->
                                 <div class="col-2">
                                     <label for="">Valor Serviço</label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" name="valor_servico">
                                 </div>
                                 <div class="col-2">
                                     <label for="">Valor Desconto</label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" name="valor_desconto">
                                 </div>
                                 <div class="col-4">
                                     <label for="">Valor material</label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" name="valor_material">
                                 </div>
                                 <div class="col-4 d-flex align-items-end">
-                                    <input class="form-control" type="text" readonly placeholder="Valor total">
+                                    <input class="form-control" type="text" readonly placeholder="Valor total" name="valor_total">
                                 </div>
                             </div>
                             <div class="row d-flex justify-content-center">

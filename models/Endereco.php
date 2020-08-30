@@ -9,7 +9,9 @@ class Endereco
      private $cidade;
      private $estado;
      private $numero;
-     private $complemento;
+     private $complemento = "";
+     private $idPessoaFisica;
+     private $idPessoaJuridica;
 
      public function getId()
      {
@@ -89,6 +91,16 @@ class Endereco
      public function setComplemento($complemento)
      {
           $this->complemento = $complemento;
+     }
+
+     public function getIdPessoaFisica()
+     {
+          return $this->idCliente;
+     }
+
+     public function setIdPessoaFisica($idCliente)
+     {
+          $this->idCliente = $idCliente;
      }
 }
 
