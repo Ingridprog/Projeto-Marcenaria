@@ -3,11 +3,27 @@
 class DadosExb
 {
 
+     private $cnpj;
      private $nomeFantasia;
      private $razaoSocial;
-     private $idEndereco;
-     private $cnpj;
+     private $cep;
+     private $logradouro;
+     private $bairro;
+     private $cidade;
+     private $estado;
+     private $numero;
+     private $complemento = "";
 
+     public function setCnpj($cnpj)
+     {
+          $this->cnpj = $cnpj;
+     }
+
+     public function getCep()
+     {
+          return $this->cep;
+     }
+     
      public function getNomeFantasia()
      {
           return $this->nomeFantasia;
@@ -28,25 +44,76 @@ class DadosExb
           $this->razaoSocial = $razaoSocial;
      }
 
-     public function getIdEndereco()
-     {
-          return $this->idEndereco;
-     }
-
-     public function setIdEndereco($idEndereco)
-     {
-          $this->idEndereco = $idEndereco;
-     }
-
      public function getCnpj()
      {
           return $this->cnpj;
      }
 
-     public function setCnpj($cnpj)
+     public function setCep($cep)
      {
-          $this->cnpj = $cnpj;
+          $this->cep = $cep;
      }
+
+     public function getLogradouro()
+     {
+          return $this->logradouro;
+     }
+
+     public function setLogradouro($logradouro)
+     {
+          $this->logradouro = $logradouro;
+     }
+
+     public function getBairro()
+     {
+          return $this->bairro;
+     }
+
+     public function setBairro($bairro)
+     {
+          $this->bairro = $bairro;
+     }
+
+     public function getCidade()
+     {
+          return $this->cidade;
+     }
+
+     public function setCidade($cidade)
+     {
+          $this->cidade = $cidade;
+     }
+
+     public function getEstado()
+     {
+          return $this->estado;
+     }
+
+     public function setEstado($estado)
+     {
+          $this->estado = $estado;
+     }
+
+     public function getNumero()
+     {
+          return $this->numero;
+     }
+
+     public function setNumero($numero)
+     {
+          $this->numero = $numero;
+     }
+
+     public function getComplemento()
+     {
+          return $this->complemento;
+     }
+
+     public function setComplemento($complemento)
+     {
+          $this->complemento = $complemento;
+     }
+
 }
 
 ?>

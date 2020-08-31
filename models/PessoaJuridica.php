@@ -9,8 +9,6 @@ class PessoaJuridica
      private $telefone;
      private $celular;
      private $cnpj;
-     private $idEndereco;
-     private $idPedido;
 
      public function getId()
      {

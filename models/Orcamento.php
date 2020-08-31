@@ -5,18 +5,19 @@ class Orcamento
      private $id;
      private $hora;
      private $data;
-     private $valorServico;
-     private $valorMaterial;
-     private $valorDesconto;
-     private $valorTotal;
-     private $cnpjEmpresa;
-     private $dataEntrega;
      private $observacoes;
-     private $idFormaPagamento;
      private $descricaoItem;
      private $quantidade;
-     private $situacao = 0;
      private $preco;
+     private $valorMaterial;
+     private $valorServico;
+     private $valorDesconto;
+     private $valorTotal;
+     private $cnpj;
+     private $dataEntrega;
+     private $situacao = 0;
+     private $idPessoaFisica;
+     private $idPessoaJuridica;
 
      public function getId()
      {
@@ -48,14 +49,43 @@ class Orcamento
           $this->data = $data;
      }
 
-     public function getValorServico()
+     public function getObservacoes()
      {
-          return $this->valorServico;
+          return $this->observacoes;
      }
 
-     public function setValorServico($valorServico)
+     public function setObservacoes($observacoes)
      {
-          $this->valorServico = $valorServico;
+          $this->observacoes = $observacoes;
+     }
+
+     public function getDescricaoItem()
+     {
+          return $this->descricaoItem;
+     }
+
+     public function setDescricaoItem($descricaoItem)
+     {
+          $this->descricaoItem = $descricaoItem;
+     }
+     public function getQuantidade()
+     {
+          return $this->quantidade;
+     }
+
+     public function setQuantidade($quantidade)
+     {
+          $this->quantidade = $quantidade;
+     }
+
+     public function getPreco()
+     {
+          return $this->preco;
+     }
+
+     public function setPreco($preco)
+     {
+          $this->preco = $preco;
      }
 
      public function getValorMaterial()
@@ -66,6 +96,16 @@ class Orcamento
      public function setValorMaterial($valorMaterial)
      {
           $this->valorMaterial = $valorMaterial;
+     }
+
+     public function getValorServico()
+     {
+          return $this->valorServico;
+     }
+
+     public function setValorServico($valorServico)
+     {
+          $this->valorServico = $valorServico;
      }
 
      public function getValorDesconto()
@@ -88,14 +128,14 @@ class Orcamento
           $this->valorTotal = $valorTotal;
      }
 
-     public function getCnpjEmpresa()
+     public function getCnpj()
      {
-          return $this->cnpjEmpresa;
+          return $this->cnpj;
      }
 
-     public function setCnpjEmpresa($cnpjEmpresa)
+     public function setCnpj($cnpj)
      {
-          $this->cnpjEmpresa = $cnpjEmpresa;
+          $this->cnpj = $cnpj;
      }
  
      public function getDataEntrega()
@@ -108,47 +148,6 @@ class Orcamento
           $this->dataEntrega = $dataEntrega;
      }
     
-     public function getObservacoes()
-     {
-          return $this->observacoes;
-     }
-
-     public function setObservacoes($observacoes)
-     {
-          $this->observacoes = $observacoes;
-     }
-
-     public function getIdFormaPagamento()
-     {
-          return $this->idFormaPagamento;
-     }
-
-     public function setIdFormaPagamento($idFormaPagamento)
-     {
-          $this->idFormaPagamento = $idFormaPagamento;
-
-     }
-
-     public function getDescricaoItem()
-     {
-          return $this->descricaoItem;
-     }
-
-     public function setDescricaoItem($descricaoItem)
-     {
-          $this->descricaoItem = $descricaoItem;
-     }
-
-     public function getQuantidade()
-     {
-          return $this->quantidade;
-     }
-
-     public function setQuantidade($quantidade)
-     {
-          $this->quantidade = $quantidade;
-     }
-
      public function getSituacao()
      {
           return $this->situacao;
@@ -159,15 +158,26 @@ class Orcamento
           $this->situacao = $situacao;
      }
 
-     public function getPreco()
+     public function getIdPessoaFisica()
      {
-          return $this->preco;
+          return $this->idPessoaFisica;
      }
 
-     public function setPreco($preco)
+     public function setIdPessoaFisica($idPessoaFisica)
      {
-          $this->preco = $preco;
+          $this->idPessoaFisica = $idPessoaFisica;
      }
+
+     public function getIdPessoaJuridica()
+     {
+          return $this->idPessoaJuridica;
+     }
+
+     public function setIdPessoaJuridica($idPessoaJuridica)
+     {
+          $this->idPessoaJuridica = $idPessoaJuridica;
+     }
+
 }
 
 ?>

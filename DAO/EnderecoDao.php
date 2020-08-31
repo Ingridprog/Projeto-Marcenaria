@@ -83,18 +83,18 @@ class EnderecoDao implements DaoMysql
                $dados = $sql->fetchAll(PDO::FETCH_ASSOC);
                foreach($dados as $end){
                     $endereco = new Endereco();
-                    $endereco->setId($dados['id']);
-                    $endereco->setCep($dados['cep']);
-                    $endereco->setLogradouro($dados['logradouro']);
-                    $endereco->setBairro($dados['bairro']);
-                    $endereco->setCidade($dados['cidade']);
-                    $endereco->setEstado($dados['estado']);
-                    $endereco->setNumero($dados['numero']);
-                    $endereco->setComplemento($dados['complemento']);
-                    $endereco->setIdPessoaFisica($dados['id_pessoa_fisica']);
-                    $endereco->setIdPessoaJuridica($dados['id_pessoa_juridica']);
+                    $endereco->setId($end['id']);
+                    $endereco->setCep($end['cep']);
+                    $endereco->setLogradouro($end['logradouro']);
+                    $endereco->setBairro($end['bairro']);
+                    $endereco->setCidade($end['cidade']);
+                    $endereco->setEstado($end['estado']);
+                    $endereco->setNumero($end['numero']);
+                    $endereco->setComplemento($end['complemento']);
+                    $endereco->setIdPessoaFisica($end['id_pessoa_fisica']);
+                    $endereco->setIdPessoaJuridica($end['id_pessoa_juridica']);
 
-                    $enderecos[] = $end;
+                    $enderecos[] = $endereco;
                }
 
                return $enderecos;

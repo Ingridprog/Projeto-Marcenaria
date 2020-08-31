@@ -1,9 +1,9 @@
 <?php
 
 require_once('interfaces/DaoMysql.php');
-require_once('models/PessoaFisica.php');
+require_once('models/PessoaJuridica.php');
 
-class PesssoaFisicaDao implements DaoMysql
+class PesssoaJuridicaDao implements DaoMysql
 {
      private $pdo;
 
@@ -12,21 +12,23 @@ class PesssoaFisicaDao implements DaoMysql
           $this->pdo = $pdo;
      }
      
-     public function add($pessoaFisica)
+     public function add($pessoaJuridica)
      {
-          $sql = $this->pdo->prepare("INSERT INTO tbl_pessoa_fisica 
-               (nome, telefone, celular, email, cpf) VALUES (:nome, :telefone, :celular, :email, :cpf)");
+          $sql = $this->pdo->prepare("INSERT INTO tbl_pessoa_juridica 
+               (razao_social, nome_fantasia, cnpj, telefone, celular, email) 
+               VALUES (:razao_social, :nome_fantasia, :cnpj, :telefone, :celular, :email, :cpf)");
           
-          $sql->bindValue(":nome", $pessoaFisica->getNome());
-          $sql->bindValue(":telefone", $pessoaFisica->getTelefone());
-          $sql->bindValue(":celular", $pessoaFisica->getCelular());
-          $sql->bindValue(":email", $pessoaFisica->getEmail());
-          $sql->bindValue(":cpf", $pessoaFisica->getCpf());
+          $sql->bindValue(":razao_social", $pessoaJuridica->getRazaoSocial());
+          $sql->bindValue(":nome_fantasia", $pessoaJuridica->getNomeFantasia());
+          $sql->bindValue(":cnpj", $pessoaJuridica->getCnpj());
+          $sql->bindValue(":telefone", $pessoaJuridica->getTelefone());
+          $sql->bindValue(":celular", $pessoaJuridica->getCelular());
+          $sql->bindValue(":email", $pessoaJuridica->getEmail());
           $sql->execute();
 
           if($sql->rowCount() > 0){
-               $pessoaFisica->setId($this->pdo->lastInsertId());
-               return $pessoaFisica;
+               $pessoaJuridica->setId($this->pdo->lastInsertId());
+               return $pessoaJuridica;
           }else{
                return FALSE;
           }
@@ -34,22 +36,23 @@ class PesssoaFisicaDao implements DaoMysql
 
      public function findById($id)
      {
-          $sql = $this->pdo->prepare("SELECT * FROM tbl_pessoa_fisica WHERE id=:id");
+          $sql = $this->pdo->prepare("SELECT * FROM tbl_pessoa_juridica WHERE id=:id");
           $sql->bindValue(":id", $id);
           $sql->execute();
 
           if($sql->rowCount() > 0)
           {
                $dados = $sql->fetch(PDO::FETCH_ASSOC);
-               $pessoaFisica = new PessoaFisica();
-               $pessoaFisica->setId($dados['id']);
-               $pessoaFisica->setNome($dados['nome']);
-               $pessoaFisica->setTelefone($dados['telefone']);
-               $pessoaFisica->setCelular($dados['celular']);
-               $pessoaFisica->setCpf($dados['cpf']);
-               $pessoaFisica->setEmail($dados['email']);
+               $pessoaJuridica = new PessoaJuridica();
+               $pessoaJuridica->setId($dados['id']);
+               $pessoaJuridica->setRazaoSocial($dados['razao_social']);
+               $pessoaJuridica->setNomeFantasia($dados['nome_fantasia']);
+               $pessoaJuridica->setCnpj($dados['cnpj']);
+               $pessoaJuridica->setTelefone($dados['telefone']);
+               $pessoaJuridica->setCelular($dados['celular']);
+               $pessoaJuridica->setEmail($dados['email']);
 
-               return $pessoaFisica;
+               return $pessoaJuridica;
 
           }else{
                return FALSE;
@@ -60,19 +63,20 @@ class PesssoaFisicaDao implements DaoMysql
      {
           $clientes = [];
 
-          $sql = $this->pdo->query("SELECT * FROM tbl_pessoa_fisica");
+          $sql = $this->pdo->query("SELECT * FROM tbl_pessoa_juridica");
 
           if($sql->rowCount() > 0)
           {    
                $dados = $sql->fetchAll(PDO::FETCH_ASSOC);
                foreach($dados as $cliente){
-                    $pessoaFisica = new PessoaFisica();
-                    $pessoaFisica->setId($cliente['id']);
-                    $pessoaFisica->setNome($cliente['nome']);
-                    $pessoaFisica->setTelefone($cliente['telefone']);
-                    $pessoaFisica->setCelular($cliente['celular']);
-                    $pessoaFisica->setEmail($cliente['email']);
-                    $pessoaFisica->setCpf($cliente['cpf']);
+                    $pessoaJuridica = new PessoaJuridica();
+                    $pessoaJuridica->setId($cliente['id']);
+                    $pessoaJuridica->setRazaoSocial($cliente['razao_social']);
+                    $pessoaJuridica->setNomeFantasia($cliente['nome_fantasia']);
+                    $pessoaJuridica->setCnpj($cliente['cnpj']);
+                    $pessoaJuridica->setTelefone($cliente['telefone']);
+                    $pessoaJuridica->setCelular($cliente['celular']);
+                    $pessoaJuridica->setEmail($cliente['email']);
 
                     $clientes[] = $cliente;
                }
@@ -81,19 +85,23 @@ class PesssoaFisicaDao implements DaoMysql
           }
      }
 
-     public function update($pessoaFisica)
+     public function update($pessoaJuridica)
      {
-          $sql = $this->pdo->prepare("UPDATE tbl_pessoa_fisica 
-               SET nome=:nome, telefone=:telefone, celular=:celular, email=:email, cpf=:cpf WHERE id=:id");
-          $sql->bindValue(":id", $pessoaFisica->getId());
-          $sql->bindValue(":nome", $pessoaFisica->getNome());
-          $sql->bindValue(":telefone", $pessoaFisica->getTelefone());
-          $sql->bindValue(":celular", $pessoaFisica->getCelular());
-          $sql->bindValue(":email", $pessoaFisica->getEmail());
-          $sql->bindValue(":cpf", $pessoaFisica->getCpf());
+          $sql = $this->pdo->prepare("UPDATE tbl_pessoa_juridica 
+               SET razao_social=:razao_social, nome_fantasia=:nome_fantasia, cnpj:cnpj, 
+               telefone=:telefone, celular=:celular, email=:email WHERE id=:id");
+
+          $sql->bindValue(":id", $pessoaJuridica->getId());
+          $sql->bindValue(":razao_social", $pessoaJuridica->getRazaoSocial());
+          $sql->bindValue(":nome_fantasia", $pessoaJuridica->getNomeFantasia());
+          $sql->bindValue(":cnpj", $pessoaJuridica->getCnpj());
+          $sql->bindValue(":telefone", $pessoaJuridica->getTelefone());
+          $sql->bindValue(":celular", $pessoaJuridica->getCelular());
+          $sql->bindValue(":email", $pessoaJuridica->getEmail());
+          $sql->execute();
 
           if($sql->rowCount() > 0){
-               return $pessoaFisica;
+               return $pessoaJuridica;
           }else{
                return FALSE;
           }
@@ -101,7 +109,7 @@ class PesssoaFisicaDao implements DaoMysql
 
      public function delete($id)
      {
-          $sql = $this->pdo->prepare("DELETE FROM tbl_pessoa_fisica WHERE id=:id");
+          $sql = $this->pdo->prepare("DELETE FROM tbl_pessoa_juridica WHERE id=:id");
           $sql->bindValue(":id", $id);
           $sql->execute();
 
