@@ -1,14 +1,14 @@
 <?php
 
-require_once('interfaces/DaoMysql.php');
-require_once('DAO/EnderecoDao.php');
+require_once('../interfaces/DaoMysql.php');
+require_once('../models/Endereco.php');
 
 class EnderecoDao implements DaoMysql
 {
      private $pdo;
      private $tipo;
 
-     public function __construct(PDO $pdo, String $tipo)
+     public function __construct(PDO $pdo, $tipo)
      {
           $this->pdo = $pdo;
           $this->tipo = trim(strtolower($tipo));
@@ -16,17 +16,16 @@ class EnderecoDao implements DaoMysql
      
      public function add($endereco)
      {
-
-          if($tipo=="pessoafisica"){
-               $sql = $pdo->prepare("INSERT INTO tbl_endereco 
+          if($this->tipo=="pessoa_fisica"){
+               $sql = $this->pdo->prepare("INSERT INTO tbl_endereco 
                (cep, logradouro, bairro, cidade, estado, numero, complemento, id_pessoa_fisica) 
                VALUES (:cep, :logradouro, :bairro, :cidade, :estado, :numero, :complemento, LAST_INSERT_ID())");
-          }elseif($tipo=="pessoajuridica"){
+          }elseif($this->tipo=="pessoa_juridica"){
                $sql = $pdo->prepare("INSERT INTO tbl_endereco 
                (cep, logradouro, bairro, cidade, estado, numero, complemento, id_pessoa_juridica) 
                VALUES (:cep, :logradouro, :bairro, :cidade, :estado, :numero, :complemento, LAST_INSERT_ID())");
           }
-
+          
           $sql->bindValue(":cep", $endereco->getCep());
           $sql->bindValue(":logradouro", $endereco->getLogradouro());
           $sql->bindValue(":bairro", $endereco->getBairro());

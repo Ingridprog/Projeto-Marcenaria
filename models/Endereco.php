@@ -7,7 +7,7 @@ class Endereco
      private $logradouro;
      private $bairro;
      private $cidade;
-     private $estado;
+     private $estado = "";
      private $numero;
      private $complemento = "";
      private $idPessoaFisica;

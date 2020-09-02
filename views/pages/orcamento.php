@@ -30,7 +30,7 @@
         <div class="row width-100p">
             <div class="container">
                 <div class="col s12">
-                    <form id="cadastro-orcamento" class="p-3 mb-5" action="">
+                    <form id="cadastro-orcamento" class="p-3 mb-5" action="../../validacoes/validaForm.php" method="POST">
                         <!-- TIPO DE CLIENTE -->
                         <div class="form-row d-flex justify-content-center mb-3">
                             <div class="form-check mr-5">
@@ -109,9 +109,10 @@
                                 <div class="col-2">
                                     <div class="form-group">
                                         <label for="">Estado</label>
-                                        <select class="form-control" id="exampleFormControlSelect1">
+                                        <select class="form-control" name="estado">
                                         <option selected disabled name="estado">Estado</option>
-                                        <option>SP</option>
+                                        <option value='São Paulo'>SP</option>
+                                        <option value='Rio de Janeiro'>RJ</option>  
                                         </select>
                                     </div>
                                 </div>

@@ -1,13 +1,13 @@
 <?php
 
-require_once('interfaces/DaoMysql.php');
-require_once('models/Orcamento.php');
+require_once('../interfaces/DaoMysql.php');
+require_once('../models/Orcamento.php');
 
 class OrcamentoDao implements DaoMysql
 {
      private $pdo;
 
-     public function __construct(PDO $pdo, String $tipo)
+     public function __construct(PDO $pdo, $tipo)
      {
           $this->pdo = $pdo;
           $this->tipo = trim(strtolower($tipo));
@@ -15,44 +15,45 @@ class OrcamentoDao implements DaoMysql
      
      public function add($orcamento)
      {
-          if($tipo=="pessoafisica"){
-               $sql = $pdo->prepare("INSERT INTO tbl_orcamento 
-                    (hora, data, observacoes, descricao_item, quantidade, preco, valor_material, 
-                    valor_servico, valor_desconto, valor_total, cnpj, data_entrega, situacao, 
-                    id_pessoa_fisica) 
-                    VALUES (:hora, :data, :observacoes, :descricao_item, :quantidade, :preco, :valor_material, 
+          // if($this->tipo=="pessoa_fisica"){
+               $sql = $this->pdo->prepare("INSERT INTO tbl_orcamento 
+                    (hora, data, observacoes, descricao_item, quantidade/*, preco/*, valor_material, 
+                    valor_servico, valor_desconto, valor_total, cnpj)/*, data_entrega, situacao, 
+                    id_pessoa_fisica*/) 
+                    VALUES (:hora, :data, :observacoes, :descricao_item, :quant)/*, :preco)/*, :valor_material, 
                     :valor_servico, :valor_desconto, :valor_total, :cnpj, :data_entrega, :situacao, 
-                    LAST_INSERT_ID())");
-          }elseif($tipo=="pessoajuridica"){
-               $sql = $pdo->prepare("INSERT INTO tbl_orcamento 
-                    (hora, data, observacoes, descricao_item, quantidade, preco, valor_material, 
-                    valor_servico, valor_desconto, valor_total, cnpj, data_entrega, situacao, 
-                    id_pessoa_juridica) 
-                    VALUES (:hora, :data, :observacoes, :descricao_item, :quantidade, :preco, :valor_material, 
-                    :valor_servico, :valor_desconto, :valor_total, :cnpj, :data_entrega, :situacao, 
-                    LAST_INSERT_ID())");
-          }
+                    LAST_INSERT_ID())*/");
+          // }elseif($this->tipo=="pessoa_juridica"){
+          //      $sql = $pdo->prepare("INSERT INTO tbl_orcamento 
+          //           (hora, data, observacoes, descricao_item, quantidade, preco, valor_material, 
+          //           valor_servico, valor_desconto, valor_total, cnpj, data_entrega, situacao, 
+          //           id_pessoa_juridica) 
+          //           VALUES (:hora, :data, :observacoes, :descricao_item, :quantidade, :preco, :valor_material, 
+          //           :valor_servico, :valor_desconto, :valor_total, :cnpj, :data_entrega, :situacao, 
+          //           LAST_INSERT_ID())");
+          // }
 
           $sql->bindValue(":hora", $orcamento->getHora());
           $sql->bindValue(":data", $orcamento->getData());
           $sql->bindValue(":observacoes", $orcamento->getObservacoes());
           $sql->bindValue(":descricao_item", $orcamento->getDescricaoItem());
-          $sql->bindValue(":quantidade", $orcamento->getQuantidade());
-          $sql->bindValue(":preco", $orcamento->getPreco());
-          $sql->bindValue(":valor_material", $orcamento->getValorMaterial());
-          $sql->bindValue(":valor_servico", $orcamento->getValorServico());
-          $sql->bindValue(":valor_desconto", $orcamento->getValorDesconto());
-          $sql->bindValue(":valor_total", $orcamento->getValorTotal());
-          $sql->bindValue(":cnpj", $orcamento->getCnpj());
-          $sql->bindValue(":data_entrega", $orcamento->getDataEntrega());
-          $sql->bindValue(":situacao", $orcamento->getSituacao());
+          $sql->bindValue(":quant", $orcamento->getQuantidade());
+          // $sql->bindValue(":quantidade", $orcamento->getQuantidade());
+          // $sql->bindValue(":preco", $orcamento->getPreco());
+          // $sql->bindValue(":valor_material", $orcamento->getValorMaterial());
+          // $sql->bindValue(":valor_servico", $orcamento->getValorServico());
+          // $sql->bindValue(":valor_desconto", $orcamento->getValorDesconto());
+          // $sql->bindValue(":valor_total", $orcamento->getValorTotal());
+          // $sql->bindValue(":cnpj", $orcamento->getCnpj());
+          // $sql->bindValue(":data_entrega", $orcamento->getDataEntrega());
+          // $sql->bindValue(":situacao", $orcamento->getSituacao());
           $sql->execute();
 
           if($sql->rowCount() > 0){
                $orcamento->setId($this->pdo->lastInsertId());
                return $orcamento;
           }else{
-               return FALSE;
+               return $orcamento->getQuantidade();
           }
      }
 

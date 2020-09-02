@@ -7,9 +7,9 @@ class Orcamento
      private $data;
      private $observacoes;
      private $descricaoItem;
-     private $quantidade;
-     private $preco;
-     private $valorMaterial;
+     private $quantidade = 0;
+     private $preco = 0;
+     private $valorMaterial = 0;
      private $valorServico;
      private $valorDesconto;
      private $valorTotal;
