@@ -37,30 +37,30 @@
 
                     <div class="row d-flex mb-4 justify-content-center align-items-center">
                         <div class="form-check mr-4">
-                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-                            <label class="form-check-label" for="exampleRadios1">
+                            <input onchange="mudarTipoBusca()" class="form-check-input" type="radio" name="tipo-busca" id="nome" value="1">
+                            <label class="form-check-label" for="nome">
                                 Nome do cliente
                             </label>
                         </div>
 
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-                            <label class="form-check-label" for="exampleRadios1">
+                            <input onchange="mudarTipoBusca()" class="form-check-input" type="radio" name="tipo-busca" id="data" value="2">
+                            <label class="form-check-label" for="data">
                                 Data do orçamento
                             </label>
                         </div>
                     </div>
 
                     <div class="row d-flex justify-content-center align-items-center">
-                        <div class="form-group">
-                            <input type="text" class="form-control big-input" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <div class="form-group d-flex">
+                            <input type="text" class="form-control big-input right-radius-none custom-bootstrap-input" id="busca"> <button class="botao-pesquisar right-radius-block"> <img class="button-icon" src="../assets/img/search.png" alt="search" /> </button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row width-100p">
-            <div class="container ">
+        <div class="row width-100p no-margin big-height overflow-auto">
+           
                 <table class="table md-table table-striped">
                     <thead class="table-head-bg text-white">
                         <tr>
@@ -89,13 +89,76 @@
                             <td>the Bird</td>
                             <td>@twitter</td>
                         </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>Larry</td>
+                            <td>the Bird</td>
+                            <td>@twitter</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>Larry</td>
+                            <td>the Bird</td>
+                            <td>@twitter</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>Larry</td>
+                            <td>the Bird</td>
+                            <td>@twitter</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>Larry</td>
+                            <td>the Bird</td>
+                            <td>@twitter</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>Larry</td>
+                            <td>the Bird</td>
+                            <td>@twitter</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>Larry</td>
+                            <td>the Bird</td>
+                            <td>@twitter</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>Larry</td>
+                            <td>the Bird</td>
+                            <td>@twitter</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>Larry</td>
+                            <td>the Bird</td>
+                            <td>@twitter</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>Larry</td>
+                            <td>the Bird</td>
+                            <td>@twitter</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>Larry</td>
+                            <td>the Bird</td>
+                            <td>@twitter</td>
+                        </tr>
                     </tbody>
                 </table>
-            </div>
+           
             
         </div>
-        <footer class="fixed-bottom d-flex justify-content-center align-items-center">
+        <footer class="d-flex justify-content-center align-items-center">
             <h5 class="text-white">2020 - EXB Marcenaria</h5>
-        </footer>   
+        </footer>
+
+        <script src="../assets/js/jquery.js"></script>
+        <script src="../assets/js/formHelpers.js"></script>
     </body>
 </html>

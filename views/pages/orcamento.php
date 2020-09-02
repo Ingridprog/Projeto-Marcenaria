@@ -34,14 +34,14 @@
                         <!-- TIPO DE CLIENTE -->
                         <div class="form-row d-flex justify-content-center mb-3">
                             <div class="form-check mr-5">
-                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" >
-                                <label class="form-check-label" for="exampleRadios1">
+                                <input onchange="mudarTipoCliente()" class="form-check-input" type="radio" name="tipo-cliente" id="pessoa-fisica" value="1" >
+                                <label class="form-check-label" for="pessoa-fisica">
                                     Pessoa Física
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" >
-                                <label class="form-check-label" for="exampleRadios1">
+                                <input onchange="mudarTipoCliente()" class="form-check-input" type="radio" name="tipo-cliente" id="pessoa-juridica" value="2" >
+                                <label class="form-check-label" for="pessoa-juridica">
                                     Pessoa Jurídica
                                 </label>
                             </div>
@@ -53,19 +53,36 @@
                             </div>
                             <div class="row mb-2">
                                 <div class="col">
-                                    <label for="">Nome completo</label>
-                                    <input type="text" class="form-control" name="nome_completo">
+                                    <div id="nome_completo">
+                                        <label for="">Nome completo</label>
+                                        <input type="text" class="form-control" name="nome_completo">
+                                    </div>
+
+                                    <div id="razao_social" class="d-none">
+                                        <label for="">Razão social</label>
+                                        <input type="text" class="form-control" name="razao_social">
+                                    </div>
                                 </div>
+                                <div id="nome-fantasia" class="col d-none">
+                                    <label for="">Nome fantasia</label>
+                                    <input type="text" class="form-control" name="nome_fantasia">
+                                </div>
+
                                 <div class="col">
-                                    <label for="">CPF</label>
-                                    <input type="text" class="form-control" name="cpf">
+                                    <div id="cpf-input">
+                                        <label for="">CPF</label>
+                                        <input type="text" class="form-control" name="cpf">
+                                    </div>
+
+                                    <div id="cnpj-input" class="d-none">
+                                        <label for="">CNPJ</label>
+                                        <input type="text" class="form-control" name="cnpj">
+                                    </div>
                                 </div>
-                                <div class="col">
-                                    <label for="">Email</label>
-                                    <input type="text" class="form-control" name="email">
-                                </div>
+                                
+                                
                             </div>
-                            <div class="row">
+                            <div class="row mb-2">
                                 <div class="col">
                                     <label for="">CEP</label>
                                     <input type="text" class="form-control" name="cep">
@@ -80,7 +97,7 @@
                                 </div>
                             </div>
 
-                            <div class="row">
+                            <div class="row mb-2">
                                 <div class="col-2">
                                     <label for="">Número</label>
                                     <input type="text" class="form-control" name="numero">
@@ -113,18 +130,13 @@
                                     <label for="">Celular</label>
                                     <input type="text" class="form-control" name="celular">
                                 </div>
+                                <div class="col">
+                                    <label for="">Email</label>
+                                    <input type="text" class="form-control" name="email">
+                                </div>
                             </div>
                         </div>
-                        <!-- OBSERVAÇÕES -->
-                        <div id="observacoes">
-                            <div class="linha-dados-cliente mb-3">
-                                Observações
-                            </div>
-                            <div class="form-group">
-                                <textarea class="form-control no-resize" name="observacoes"></textarea>
-                            </div>
-                        </div>
-
+                        <hr>
                         <div id="dados-pedidos">
                             <div class="linha-dados-cliente mb-3">
                                 Dados do pedido
@@ -180,7 +192,7 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <div class="row mb-5">
+                            <div class="row mb-3">
                                 <!-- CADASTRAR ITENS NO PEDIDO -->
                                 <div class="col-2">
                                     <label for="">Valor Serviço</label>
@@ -198,13 +210,27 @@
                                     <input class="form-control" type="text" readonly placeholder="Valor total" name="valor_total">
                                 </div>
                             </div>
-                            <div class="row d-flex justify-content-center">
-                                <div class="col-6">
-                                    <button type="button" class="btn btn-primary btn-lg btn-block">Gerar orçamento</button>
-                                </div>
-                            </div>
+                            
                             
                         </div>
+                        <hr>
+                        <!-- OBSERVAÇÕES -->
+                        <div id="observacoes" class=" mb-4">
+                            <div class="linha-dados-cliente mb-3">
+                                Observações
+                            </div>
+                            <div class="form-group">
+                                <textarea class="form-control no-resize" name="observacoes"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="row d-flex justify-content-center">
+                            <div class="col-6">
+                                <button type="button" class="btn btn-primary btn-lg btn-block">Gerar orçamento</button>
+                            </div>
+                        </div>
+
+                        
 
                     </form>
                 </div>
@@ -213,6 +239,8 @@
         
         <footer class="d-flex justify-content-center align-items-center">
             <h5 class="text-white">2020 - EXB Marcenaria</h5>
-        </footer>   
+        </footer>
+        <script src="../assets/js/jquery.js"></script>
+        <script src="../assets/js/formHelpers.js"></script>   
     </body>
 </html>
