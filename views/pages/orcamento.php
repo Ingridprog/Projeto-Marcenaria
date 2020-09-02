@@ -30,17 +30,17 @@
         <div class="row width-100p">
             <div class="container">
                 <div class="col s12">
-                    <form id="cadastro-orcamento" class="p-3 mb-5" action="">
+                    <form id="cadastro-orcamento" class="p-3 mb-5" action="../../validacoes/validaForm.php" method="POST">
                         <!-- TIPO DE CLIENTE -->
                         <div class="form-row d-flex justify-content-center mb-3">
                             <div class="form-check mr-5">
-                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" >
+                                <input class="form-check-input" type="radio" name="tipo_cliente" id="exampleRadios1" value="pessoa_fisica" checked>
                                 <label class="form-check-label" for="exampleRadios1">
                                     Pessoa Física
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" >
+                                <input class="form-check-input" type="radio" name="tipo_cliente" id="exampleRadios1" value="pessoa_juridica">
                                 <label class="form-check-label" for="exampleRadios1">
                                     Pessoa Jurídica
                                 </label>
@@ -92,9 +92,10 @@
                                 <div class="col-2">
                                     <div class="form-group">
                                         <label for="">Estado</label>
-                                        <select class="form-control" id="exampleFormControlSelect1">
+                                        <select class="form-control" name="estado">
                                         <option selected disabled name="estado">Estado</option>
-                                        <option>SP</option>
+                                        <option value='São Paulo'>SP</option>
+                                        <option value='Rio de Janeiro'>RJ</option>  
                                         </select>
                                     </div>
                                 </div>
@@ -200,7 +201,7 @@
                             </div>
                             <div class="row d-flex justify-content-center">
                                 <div class="col-6">
-                                    <button type="button" class="btn btn-primary btn-lg btn-block">Gerar orçamento</button>
+                                    <button type="submit" class="btn btn-primary btn-lg btn-block">Gerar orçamento</button>
                                 </div>
                             </div>
                             

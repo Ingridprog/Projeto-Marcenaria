@@ -1,7 +1,7 @@
 <?php
 
-require_once('interfaces/DaoMysql.php');
-require_once('models/PessoaFisica.php');
+require_once('../interfaces/DaoMysql.php');
+require_once('../models/PessoaFisica.php');
 
 class PesssoaFisicaDao implements DaoMysql
 {
