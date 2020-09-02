@@ -15,7 +15,9 @@ class PesssoaFisicaDao implements DaoMysql
      public function add($pessoaFisica)
      {
           $sql = $this->pdo->prepare("INSERT INTO tbl_pessoa_fisica 
-               (nome, telefone, celular, email, cpf) VALUES (:nome, :telefone, :celular, :email, :cpf)");
+               (nome, telefone, celular, email, cpf) VALUES (:nome, :telefone, :celular, :email, :cpf); SET @last_id_pessoa_fisica = LAST_INSERT_ID()");
+          
+
           
           $sql->bindValue(":nome", $pessoaFisica->getNome());
           $sql->bindValue(":telefone", $pessoaFisica->getTelefone());

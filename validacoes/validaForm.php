@@ -7,7 +7,7 @@
      require_once('../DAO/OrcamentoDao.php');
 
      // Tipo
-     $tipoCliente = filter_input(INPUT_POST, "tipo_cliente");
+     $tipoCliente = filter_input(INPUT_POST, "tipo-cliente");
 
      $pessoaFisicaDao = new PesssoaFisicaDao($pdo);
      $pessoaJuridicaDao = new PesssoaJuridicaDao($pdo);
@@ -40,17 +40,13 @@
 
      //orçamento
      $descricaoItem = filter_input(INPUT_POST, "descricao_item", FILTER_SANITIZE_SPECIAL_CHARS);
-     $quantidade = filter_input(INPUT_POST, "quantidade", FILTER_VALIDATE_INT);
-     if($quantidade == ""){
-          $quantidade = 0;
-     }
-     $preco = filter_input(INPUT_POST, "preco", FILTER_VALIDATE_FLOAT);
-     $valorServico = filter_input(INPUT_POST, "valor_servico", FILTER_VALIDATE_FLOAT);
-     $valorDesconto = filter_input(INPUT_POST, "valor_desconto", FILTER_VALIDATE_FLOAT);
-     $valorMaterial = filter_input(INPUT_POST, "valor_material", FILTER_VALIDATE_FLOAT);
-     $valorTotal = filter_input(INPUT_POST, "valor_total", FILTER_VALIDATE_FLOAT);
+     $quantidade = filter_input(INPUT_POST, "quantidade", FILTER_VALIDATE_INT)? : 0;
+     $preco = filter_input(INPUT_POST, "preco", FILTER_VALIDATE_FLOAT)? : 0.00;
+     $valorServico = filter_input(INPUT_POST, "valor_servico", FILTER_VALIDATE_FLOAT)? : 0.00;
+     $valorDesconto = filter_input(INPUT_POST, "valor_desconto", FILTER_VALIDATE_FLOAT)? : 0.00;
+     $valorMaterial = filter_input(INPUT_POST, "valor_material", FILTER_VALIDATE_FLOAT)? : 0.00;
+     $valorTotal = filter_input(INPUT_POST, "valor_total", FILTER_VALIDATE_FLOAT)? : 0.00;
      $dataEntrega = filter_input(INPUT_POST, "data_entrega");
-     $formaPagamento = filter_input(INPUT_POST, "forma_pagamento", FILTER_SANITIZE_SPECIAL_CHARS);
      $observacoes = filter_input(INPUT_POST, "observacoes", FILTER_SANITIZE_SPECIAL_CHARS);
 
      if($tipoCliente == "pessoa_fisica"){
@@ -61,7 +57,6 @@
                $pessoaFisica->setEmail($email);
                $pessoaFisica->setTelefone($telefone);
                $pessoaFisica->setCelular($celular);
-     
                $pessoaFisicaDao->add($pessoaFisica);
           }
      }else{
@@ -74,7 +69,6 @@
                $pessoaJuridica->setTelefone($telefone);
                $pessoaJuridica->setCelular($celular);
                $pessoaJuridica->setEmail($email);
-
                $pessoaJuridicaDao->add($pessoaJuridica);
           }
      }
@@ -110,10 +104,11 @@
      $orcamento->setValorDesconto($valorDesconto);
      $orcamento->setValorTotal($valorTotal);
      $orcamento->setDataEntrega($dataEntrega);
+     // $orcamento->setSituacao();
      
      $res = $orcamentoDao->add($orcamento);
 
-     echo $orcamento->getQuantidade();
 
-     print_r($res);
+     echo $res;
+
 ?>

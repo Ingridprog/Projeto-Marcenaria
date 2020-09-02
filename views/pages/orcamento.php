@@ -34,8 +34,8 @@
                         <!-- TIPO DE CLIENTE -->
                         <div class="form-row d-flex justify-content-center mb-3">
                             <div class="form-check mr-5">
-                                <input onchange="mudarTipoCliente()" class="form-check-input" type="radio" name="tipo-cliente" id="pessoa-fisica" value="1" >
-                                <label class="form-check-label" for="pessoa-fisica">
+                                <input onchange="mudarTipoCliente()" class="form-check-input" checked type="radio" name="tipo-cliente" id="pessoa-fisica" value="1" >
+                                <label class="form-check-label" for="pessoa-fisica" >
                                     Pessoa Física
                                 </label>
                             </div>
@@ -227,7 +227,7 @@
 
                         <div class="row d-flex justify-content-center">
                             <div class="col-6">
-                                <button type="button" class="btn btn-primary btn-lg btn-block">Gerar orçamento</button>
+                                <button type="submit" class="btn btn-primary btn-lg btn-block">Gerar orçamento</button>
                             </div>
                         </div>
 

@@ -16,12 +16,12 @@ class EnderecoDao implements DaoMysql
      
      public function add($endereco)
      {
-          if($this->tipo=="pessoa_fisica"){
+          if($this->tipo==1){
                $sql = $this->pdo->prepare("INSERT INTO tbl_endereco 
                (cep, logradouro, bairro, cidade, estado, numero, complemento, id_pessoa_fisica) 
                VALUES (:cep, :logradouro, :bairro, :cidade, :estado, :numero, :complemento, LAST_INSERT_ID())");
-          }elseif($this->tipo=="pessoa_juridica"){
-               $sql = $pdo->prepare("INSERT INTO tbl_endereco 
+          }else{
+               $sql = $this->pdo->prepare("INSERT INTO tbl_endereco 
                (cep, logradouro, bairro, cidade, estado, numero, complemento, id_pessoa_juridica) 
                VALUES (:cep, :logradouro, :bairro, :cidade, :estado, :numero, :complemento, LAST_INSERT_ID())");
           }
