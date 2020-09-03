@@ -193,19 +193,11 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <div class="row mb-3">
+                            <div class="row mb-3 d-flex justify-content-between">
                                 <!-- CADASTRAR ITENS NO PEDIDO -->
-                                <div class="col-2">
-                                    <label for="">Valor Serviço</label>
-                                    <input type="text" class="form-control" name="valor_servico">
-                                </div>
                                 <div class="col-2">
                                     <label for="">Valor Desconto</label>
                                     <input type="text" class="form-control" name="valor_desconto">
-                                </div>
-                                <div class="col-4">
-                                    <label for="">Valor material</label>
-                                    <input type="text" class="form-control" name="valor_material">
                                 </div>
                                 <div class="col-4 d-flex align-items-end">
                                     <input class="form-control" type="text" readonly placeholder="Valor total" name="valor_total">
