@@ -11,7 +11,6 @@ $orcamentos = $data;
 
 $pessoaFisicaDao = new PessoaFisicaDao($pdo);
 $pessoaJuridicaDao = new PessoaJuridicaDao($pdo);
-
 // $orcamentos = $data ?? [];
 
 // if($data)
