@@ -92,9 +92,8 @@ $pessoaJuridicaDao = new PessoaJuridicaDao($pdo);
                         </tr>     
                     </thead>
                     <tbody>
-
                     <?php 
-                        foreach ($orcamentos as $orcamento):
+                        foreach($orcamentos as $orcamento):
                         if($orcamento->getIdPessoaJuridica() != NULL){
                             $pessoaJuridica = $pessoaJuridicaDao->findById($orcamento->getIdPessoaJuridica());
                             $cliente = $pessoaJuridica->getNomeFantasia();

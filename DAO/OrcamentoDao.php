@@ -134,7 +134,7 @@ class OrcamentoDao /*implements DaoMysql*/
                     $orcamentos[] = $orcamento;
                }
 
-               return $orcamentos;
+                return $orcamentos;
           }else
                return false;
      }
