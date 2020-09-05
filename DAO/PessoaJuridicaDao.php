@@ -16,7 +16,7 @@ class PesssoaJuridicaDao implements DaoMysql
      {
           $sql = $this->pdo->prepare("INSERT INTO tbl_pessoa_juridica 
                (razao_social, nome_fantasia, cnpj, telefone, celular, email) 
-               VALUES (:razao_social, :nome_fantasia, :cnpj, :telefone, :celular, :email, :cpf)");
+               VALUES (:razao_social, :nome_fantasia, :cnpj, :telefone, :celular, :email)");
           
           $sql->bindValue(":razao_social", $pessoaJuridica->getRazaoSocial());
           $sql->bindValue(":nome_fantasia", $pessoaJuridica->getNomeFantasia());

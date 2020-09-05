@@ -9,8 +9,6 @@ class Orcamento
      private $descricaoItem;
      private $quantidade;
      private $preco;
-     private $valorMaterial;
-     private $valorServico;
      private $valorDesconto;
      private $valorTotal;
      private $cnpj;
@@ -86,26 +84,6 @@ class Orcamento
      public function setPreco($preco)
      {
           $this->preco = $preco;
-     }
-
-     public function getValorMaterial()
-     {
-          return $this->valorMaterial;
-     }
-
-     public function setValorMaterial($valorMaterial)
-     {
-          $this->valorMaterial = $valorMaterial;
-     }
-
-     public function getValorServico()
-     {
-          return $this->valorServico;
-     }
-
-     public function setValorServico($valorServico)
-     {
-          $this->valorServico = $valorServico;
      }
 
      public function getValorDesconto()

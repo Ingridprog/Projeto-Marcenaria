@@ -42,14 +42,12 @@
      $descricaoItem = filter_input(INPUT_POST, "descricao_item", FILTER_SANITIZE_SPECIAL_CHARS);
      $quantidade = filter_input(INPUT_POST, "quantidade", FILTER_VALIDATE_INT)? : 0;
      $preco = filter_input(INPUT_POST, "preco", FILTER_VALIDATE_FLOAT)? : 0.00;
-     $valorServico = filter_input(INPUT_POST, "valor_servico", FILTER_VALIDATE_FLOAT)? : 0.00;
      $valorDesconto = filter_input(INPUT_POST, "valor_desconto", FILTER_VALIDATE_FLOAT)? : 0.00;
-     $valorMaterial = filter_input(INPUT_POST, "valor_material", FILTER_VALIDATE_FLOAT)? : 0.00;
      $valorTotal = filter_input(INPUT_POST, "valor_total", FILTER_VALIDATE_FLOAT)? : 0.00;
      $dataEntrega = filter_input(INPUT_POST, "data_entrega");
      $observacoes = filter_input(INPUT_POST, "observacoes", FILTER_SANITIZE_SPECIAL_CHARS);
 
-     if($tipoCliente == "pessoa_fisica"){
+     if($tipoCliente == 1){
           if($nome && $cpf && ($telefone || $celular || $email)){
                $pessoaFisica = new PessoaFisica();
                $pessoaFisica->setNome($nome);
@@ -60,8 +58,7 @@
                $pessoaFisicaDao->add($pessoaFisica);
           }
      }else{
-          /* VALIDAR */
-          if($cnpj && ($telefone || $celular || $email)){
+          if(($nomeFantasia || $razaoSocial) &&($telefone || $celular || $email)){
                $pessoaJuridica = new PessoaJuridica();
                $pessoaJuridica->setRazaoSocial($razaoSocial);
                $pessoaJuridica->setNomeFantasia($nomeFantasia);
@@ -84,7 +81,6 @@
      $endereco->setComplemento($complemento);
 
      $enderecoDao->add($endereco);
-     
 
      //orçamento
      $date = new DateTime();
@@ -99,16 +95,12 @@
      $orcamento->setDescricaoItem($descricaoItem);
      $orcamento->setQuantidade($quantidade);
      $orcamento->setPreco($preco);
-     $orcamento->setValorMaterial($valorMaterial);
-     $orcamento->setValorServico($valorServico);
      $orcamento->setValorDesconto($valorDesconto);
      $orcamento->setValorTotal($valorTotal);
      $orcamento->setDataEntrega($dataEntrega);
      // $orcamento->setSituacao();
      
-     $res = $orcamentoDao->add($orcamento);
+     $orcamentoDao->add($orcamento);
 
-
-     echo $res;
 
 ?>

@@ -19,12 +19,14 @@ class EnderecoDao implements DaoMysql
           if($this->tipo==1){
                $sql = $this->pdo->prepare("INSERT INTO tbl_endereco 
                (cep, logradouro, bairro, cidade, estado, numero, complemento, id_pessoa_fisica) 
-               VALUES (:cep, :logradouro, :bairro, :cidade, :estado, :numero, :complemento, LAST_INSERT_ID())");
-          }else{
+               VALUES (:cep, :logradouro, :bairro, :cidade, :estado, :numero, :complemento, :id_cliente)");
+          }elseif($this->tipo==2){
                $sql = $this->pdo->prepare("INSERT INTO tbl_endereco 
                (cep, logradouro, bairro, cidade, estado, numero, complemento, id_pessoa_juridica) 
-               VALUES (:cep, :logradouro, :bairro, :cidade, :estado, :numero, :complemento, LAST_INSERT_ID())");
+               VALUES (:cep, :logradouro, :bairro, :cidade, :estado, :numero, :complemento, :id_cliente)");
           }
+
+          $idCliente = $this->pdo->lastInsertId();
           
           $sql->bindValue(":cep", $endereco->getCep());
           $sql->bindValue(":logradouro", $endereco->getLogradouro());
@@ -33,13 +35,14 @@ class EnderecoDao implements DaoMysql
           $sql->bindValue(":estado", $endereco->getEstado());
           $sql->bindValue(":numero", $endereco->getNumero());
           $sql->bindValue(":complemento", $endereco->getComplemento());
+          $sql->bindValue(":id_cliente", $idCliente);
           $sql->execute();
 
           if($sql->rowCount() > 0){
                $endereco->setId($this->pdo->lastInsertId());
                return $endereco;
           }else{
-               return FALSE;
+               return "NÂO FOI";
           }
      }
 

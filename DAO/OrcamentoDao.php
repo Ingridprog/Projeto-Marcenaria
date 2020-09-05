@@ -15,40 +15,39 @@ class OrcamentoDao implements DaoMysql
      
      public function add($orcamento)
      {
-          if($this->tipo==1){
-               $sql = $this->pdo->prepare("INSERT INTO tbl_orcamento 
-                    (hora, data, observacoes, descricao_item, quantidade, preco, valor_material, 
-                    valor_servico, valor_desconto, valor_total, cnpj, data_entrega, situacao, 
-                    id_pessoa_fisica) 
-                    VALUES (:hora, :data, :observacoes, :descricao_item, :quantidade, :preco, :valor_material, 
-                    :valor_servico, :valor_desconto, :valor_total, :cnpj, :data_entrega, 12, select LAST_INSERT_ID()");
-          }else{
-               $sql = $this->pdo->prepare("INSERT INTO tbl_orcamento 
-                    (hora, data, observacoes, descricao_item, quantidade, preco, valor_material, 
-                    valor_servico, valor_desconto, valor_total, cnpj, data_entrega, situacao, 
-                    id_pessoa_juridica) 
-                    VALUES (:hora, :data, :observacoes, :descricao_item, :quantidade, :preco, :valor_material, 
-                    :valor_servico, :valor_desconto, :valor_total, :cnpj, :data_entrega, 15, 
-                    LAST_INSERT_ID())");
-          }
+          // if($this->tipo==1){
+               $pf= $this->pdo->query("SELECT id FROM tbl_pessoa_fisica ORDER BY id DESC LIMIT 1");
+               $sql = $this->pdo->prepare("INSERT INTO tbl_orcamento (id_pessoa_fisica) VALUES (15)");
+          // }elseif($this->tipo==2){
+          //      $sql = $this->pdo->prepare("INSERT INTO tbl_orcamento 
+          //           (hora, data, observacoes, descricao_item, quantidade, preco, valor_material, 
+          //           valor_servico, valor_desconto, valor_total, cnpj, data_entrega, situacao, 
+          //           id_pessoa_juridica) 
+          //           VALUES (:hora, :data, :observacoes, :descricao_item, :quantidade, :preco, :valor_material, 
+          //           :valor_servico, :valor_desconto, :valor_total, :cnpj, :data_entrega, 15, 
+          //           :id_cliente");
+          // }
 
-          $sql->bindValue(":hora", $orcamento->getHora());
-          $sql->bindValue(":data", $orcamento->getData());
-          $sql->bindValue(":observacoes", $orcamento->getObservacoes());
-          $sql->bindValue(":descricao_item", $orcamento->getDescricaoItem());
-          $sql->bindValue(":quantidade", $orcamento->getQuantidade());
-          $sql->bindValue(":preco", $orcamento->getPreco());
-          $sql->bindValue(":valor_material", $orcamento->getValorMaterial());
-          $sql->bindValue(":valor_servico", $orcamento->getValorServico());
-          $sql->bindValue(":valor_desconto", $orcamento->getValorDesconto());
-          $sql->bindValue(":valor_total", $orcamento->getValorTotal());
-          $sql->bindValue(":cnpj", $orcamento->getCnpj());
-          $sql->bindValue(":data_entrega", $orcamento->getDataEntrega());
+          print_r($pf->fetch(PDO::FETCH_ASSOC));
+          $id = $pf->fetch(PDO::FETCH_ASSOC);
+
+          // $sql->bindValue(":hora", $orcamento->getHora());
+          // $sql->bindValue(":data", $orcamento->getData());
+          // $sql->bindValue(":observacoes", $orcamento->getObservacoes());
+          // $sql->bindValue(":descricao_item", $orcamento->getDescricaoItem());
+          // $sql->bindValue(":quantidade", $orcamento->getQuantidade());
+          // $sql->bindValue(":preco", $orcamento->getPreco());
+          // $sql->bindValue(":valor_desconto", $orcamento->getValorDesconto());
+          // $sql->bindValue(":valor_total", $orcamento->getValorTotal());
+          // $sql->bindValue(":cnpj", $orcamento->getCnpj());
+          // $sql->bindValue(":data_entrega", $orcamento->getDataEntrega());
+          // $sql->bindValue(":id_pf", $id['id']);
           $sql->execute();
 
           if($sql->rowCount() > 0){
                $orcamento->setId($this->pdo->lastInsertId());
-               return $orcamento->getId();
+               // return $orcamento->getId();
+               echo "FOOI";
           }else{
                return "Não foi";
           }
