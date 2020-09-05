@@ -9,10 +9,10 @@
      // Tipo
      $tipoCliente = filter_input(INPUT_POST, "tipo-cliente");
 
-     $pessoaFisicaDao = new PesssoaFisicaDao($pdo);
-     $pessoaJuridicaDao = new PesssoaJuridicaDao($pdo);
+     $pessoaFisicaDao = new PessoaFisicaDao($pdo);
+     $pessoaJuridicaDao = new PessoaJuridicaDao($pdo);
      $enderecoDao = new EnderecoDao($pdo, $tipoCliente);
-     $orcamentoDao = new OrcamentoDao($pdo, $tipoCliente);
+     $orcamentoDao = new OrcamentoDao($pdo);
 
      // Pessoa física
      $nome = filter_input(INPUT_POST, "nome_completo", FILTER_SANITIZE_SPECIAL_CHARS);
@@ -100,7 +100,7 @@
      $orcamento->setDataEntrega($dataEntrega);
      // $orcamento->setSituacao();
      
-     $orcamentoDao->add($orcamento);
+     $orcamentoDao->add($orcamento, $tipoCliente);
 
 
 ?>

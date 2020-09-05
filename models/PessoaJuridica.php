@@ -3,12 +3,12 @@
 class PessoaJuridica
 {
      private $id;
-     private $razaoSocial = "";
-     private $nomeFantasia = "";
-     private $email = "";
-     private $telefone = "";
-     private $celular = "";
-     private $cnpj = "";
+     private $razaoSocial;
+     private $nomeFantasia;
+     private $email;
+     private $telefone;
+     private $celular;
+     private $cnpj;
 
      public function getId()
      {

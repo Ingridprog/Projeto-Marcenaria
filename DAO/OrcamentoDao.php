@@ -1,48 +1,68 @@
 <?php
 
-require_once('../interfaces/DaoMysql.php');
-require_once('../models/Orcamento.php');
+// require_once('../interfaces/DaoMysql.php');
+require_once('../../models/Orcamento.php');
 
-class OrcamentoDao implements DaoMysql
+class OrcamentoDao /*implements DaoMysql*/
 {
      private $pdo;
+     private $tipo;
 
-     public function __construct(PDO $pdo, $tipo)
+     public function __construct(PDO $pdo)
      {
           $this->pdo = $pdo;
-          $this->tipo = trim(strtolower($tipo));
+         
      }
      
-     public function add($orcamento)
+     public function add($orcamento, $tipo)
      {
-          // if($this->tipo==1){
-               $pf= $this->pdo->query("SELECT id FROM tbl_pessoa_fisica ORDER BY id DESC LIMIT 1");
-               $sql = $this->pdo->prepare("INSERT INTO tbl_orcamento (id_pessoa_fisica) VALUES (15)");
-          // }elseif($this->tipo==2){
-          //      $sql = $this->pdo->prepare("INSERT INTO tbl_orcamento 
-          //           (hora, data, observacoes, descricao_item, quantidade, preco, valor_material, 
-          //           valor_servico, valor_desconto, valor_total, cnpj, data_entrega, situacao, 
-          //           id_pessoa_juridica) 
-          //           VALUES (:hora, :data, :observacoes, :descricao_item, :quantidade, :preco, :valor_material, 
-          //           :valor_servico, :valor_desconto, :valor_total, :cnpj, :data_entrega, 15, 
-          //           :id_cliente");
-          // }
+          $this->tipo = trim(strtolower($tipo));
 
-          print_r($pf->fetch(PDO::FETCH_ASSOC));
-          $id = $pf->fetch(PDO::FETCH_ASSOC);
+          $lastInsertId = $this->pdo->lastInsertId();
 
-          // $sql->bindValue(":hora", $orcamento->getHora());
-          // $sql->bindValue(":data", $orcamento->getData());
-          // $sql->bindValue(":observacoes", $orcamento->getObservacoes());
-          // $sql->bindValue(":descricao_item", $orcamento->getDescricaoItem());
-          // $sql->bindValue(":quantidade", $orcamento->getQuantidade());
-          // $sql->bindValue(":preco", $orcamento->getPreco());
-          // $sql->bindValue(":valor_desconto", $orcamento->getValorDesconto());
-          // $sql->bindValue(":valor_total", $orcamento->getValorTotal());
-          // $sql->bindValue(":cnpj", $orcamento->getCnpj());
-          // $sql->bindValue(":data_entrega", $orcamento->getDataEntrega());
-          // $sql->bindValue(":id_pf", $id['id']);
+          if($this->tipo==1){
+               // refatorar 
+               $id = $this->pdo->query("SELECT id_pessoa_fisica FROM tbl_endereco WHERE id=$lastInsertId");
+               $dados = $id->fetch(PDO::FETCH_ASSOC);
+               $idCliente = $dados['id_pessoa_fisica'];
+
+               $sql = $this->pdo->prepare("INSERT INTO tbl_orcamento 
+                    (hora, data, observacoes, descricao_item, quantidade, preco,
+                    valor_desconto, valor_total, cnpj, data_entrega, situacao, 
+                    id_pessoa_fisica) 
+                    VALUES (:hora, :data, :observacoes, :descricao_item, :quantidade, :preco, 
+                    :valor_desconto, :valor_total, :cnpj, :data_entrega, 15, 
+                    :id_cliente)");
+
+          }elseif($this->tipo==2){
+               // refatorar - ridiculo
+               $id = $this->pdo->query("SELECT id_pessoa_juridica FROM tbl_endereco WHERE id=$lastInsertId");
+               $dados = $id->fetch(PDO::FETCH_ASSOC);
+               $idCliente = $dados['id_pessoa_juridica'];
+
+               $sql = $this->pdo->prepare("INSERT INTO tbl_orcamento 
+                    (hora, data, observacoes, descricao_item, quantidade, preco,
+                    valor_desconto, valor_total, cnpj, data_entrega, situacao, 
+                    id_pessoa_juridica) 
+                    VALUES (:hora, :data, :observacoes, :descricao_item, :quantidade, :preco,
+                    :valor_desconto, :valor_total, :cnpj, :data_entrega, 15, 
+                    :id_cliente)");
+          }
+
+          $sql->bindValue(":hora", $orcamento->getHora());
+          $sql->bindValue(":data", $orcamento->getData());
+          $sql->bindValue(":observacoes", $orcamento->getObservacoes());
+          $sql->bindValue(":descricao_item", $orcamento->getDescricaoItem());
+          $sql->bindValue(":quantidade", $orcamento->getQuantidade());
+          $sql->bindValue(":preco", $orcamento->getPreco());
+          $sql->bindValue(":valor_desconto", $orcamento->getValorDesconto());
+          $sql->bindValue(":valor_total", $orcamento->getValorTotal());
+          $sql->bindValue(":cnpj", $orcamento->getCnpj());
+          $sql->bindValue(":data_entrega", $orcamento->getDataEntrega());
+          $sql->bindValue(":id_cliente", $idCliente);
           $sql->execute();
+
+          
 
           if($sql->rowCount() > 0){
                $orcamento->setId($this->pdo->lastInsertId());
@@ -70,8 +90,6 @@ class OrcamentoDao implements DaoMysql
                $orcamento->setDescricaoItem($dados['descricao_item']);
                $orcamento->setQuantidade($dados['quantidade']);
                $orcamento->setPreco($dados['preco']);
-               $orcamento->setValorMaterial($dados['valor_material']);
-               $orcamento->setValorServico($dados['valor_servico']);
                $orcamento->setValorDesconto($dados['valor_desconto']);
                $orcamento->setValorTotal($dados['valor_total']);
                $orcamento->setCnpj($dados['cnpj']);
@@ -105,8 +123,6 @@ class OrcamentoDao implements DaoMysql
                     $orcamento->setDescricaoItem($dados['descricao_item']);
                     $orcamento->setQuantidade($dados['quantidade']);
                     $orcamento->setPreco($dados['preco']);
-                    $orcamento->setValorMaterial($dados['valor_material']);
-                    $orcamento->setValorServico($dados['valor_servico']);
                     $orcamento->setValorDesconto($dados['valor_desconto']);
                     $orcamento->setValorTotal($dados['valor_total']);
                     $orcamento->setCnpj($dados['cnpj']);
@@ -119,7 +135,8 @@ class OrcamentoDao implements DaoMysql
                }
 
                return $orcamentos;
-          }
+          }else
+               return false;
      }
 
      public function update($orcamento)

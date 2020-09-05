@@ -2,7 +2,7 @@
 
 $dbName = "db_exb";
 $host = "localhost";
-$user = "ingridyasmin";
+$user = "root";
 $password = "bcd127";
 
 

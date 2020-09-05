@@ -1,3 +1,24 @@
+<?php
+require_once('../../DAO/config.php');
+require_once('../../DAO/OrcamentoDao.php');
+require_once('../../DAO/PessoaFisicaDao.php');
+require_once('../../DAO/PessoaJuridicaDao.php');
+
+$orcamentos = array();
+$orcamentoDao = new OrcamentoDao($pdo);
+$data = $orcamentoDao->findAll();
+$orcamentos = $data;
+
+$pessoaFisicaDao = new PessoaFisicaDao($pdo);
+$pessoaJuridicaDao = new PessoaJuridicaDao($pdo);
+
+// $orcamentos = $data ?? [];
+
+// if($data)
+//     $orcamentos = $data;
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -59,7 +80,7 @@
                 </div>
             </div>
         </div>
-        <div class="row width-100p no-margin big-height overflow-auto">
+        <div class="row width-100p no-margin big-height overflow-auto p-3">
            
                 <table class="table md-table table-striped">
                     <thead class="table-head-bg text-white">
@@ -67,88 +88,34 @@
                             <th scope="col">Data</th>
                             <th scope="col">Nome do cliente</th>
                             <th scope="col">Valor do orçamento</th>
-                            <th scope="col">Opção</th>
+                            <th>Opções</th>
                         </tr>     
                     </thead>
                     <tbody>
+
+                    <?php 
+                        foreach ($orcamentos as $orcamento):
+                        if($orcamento->getIdPessoaJuridica() != NULL){
+                            $pessoaJuridica = $pessoaJuridicaDao->findById($orcamento->getIdPessoaJuridica());
+                            $cliente = $pessoaJuridica->getNomeFantasia();
+                        }elseif($orcamento->getIdPessoaFisica() != NULL){
+                            $pessoaFisica = $pessoaFisicaDao->findById($orcamento->getIdPessoaFisica());
+                            $cliente = $pessoaFisica->getNome();
+                        }
+                        
+                    ?>
+                        
                         <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
+                            <td><?=$orcamento->getData()?></td>
+                            <td><?="pinto"?></td>
+                            <td><?=$cliente?></td>
+                            <td>
+                                <a href="validacoes/delete.php?id=<?=$orcamento->getId()?>" class="btn btn-danger btn-sm">Excluir</a> 
+                                <a href="validacoes/edit.php?id=<?=$orcamento->getId()?>&modo=editar" class="btn btn-warning btn-sm">Editar</a>
+                                <button class="btn btn-info btn-sm">Ver</button>
+                            </td>
                         </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>@twitter</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>@twitter</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>@twitter</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>@twitter</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>@twitter</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>@twitter</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>@twitter</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>@twitter</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>@twitter</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>@twitter</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>@twitter</td>
-                        </tr>
+                    <?php endforeach;?>
                     </tbody>
                 </table>
            

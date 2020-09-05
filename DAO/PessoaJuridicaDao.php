@@ -1,9 +1,9 @@
 <?php
 
-require_once('../interfaces/DaoMysql.php');
-require_once('../models/PessoaJuridica.php');
+require_once('../../interfaces/DaoMysql.php');
+require_once('../../models/PessoaJuridica.php');
 
-class PesssoaJuridicaDao implements DaoMysql
+class PessoaJuridicaDao implements DaoMysql
 {
      private $pdo;
 
