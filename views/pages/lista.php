@@ -28,6 +28,9 @@ $pessoaJuridicaDao = new PessoaJuridicaDao($pdo);
         <link rel="stylesheet" href="../assets/css/styles.css">
     </head>
     <body>
+        <div id="modal_orcamento">
+            
+        </div>
         <nav class="width-100p mb-5 navbar pd-zero navbar-expand-lg navbar-dark bg-primary">
             <div class="container d-flex justify-content-end">
                 <div class="ativar-nav-item nav-item text-white d-flex justify-content-center align-items-center">
@@ -111,7 +114,7 @@ $pessoaJuridicaDao = new PessoaJuridicaDao($pdo);
                             <td>
                                 <a href="validacoes/delete.php?id=<?=$orcamento->getId()?>" class="btn btn-danger btn-sm">Excluir</a> 
                                 <a href="validacoes/edit.php?id=<?=$orcamento->getId()?>&modo=editar" class="btn btn-warning btn-sm">Editar</a>
-                                <button class="btn btn-info btn-sm">Ver</button>
+                                <button class="btn btn-info btn-sm" onclick="abrirModalOramento()">Ver</button>
                             </td>
                         </tr>
                     <?php endforeach;?>
@@ -126,5 +129,6 @@ $pessoaJuridicaDao = new PessoaJuridicaDao($pdo);
 
         <script src="../assets/js/jquery.js"></script>
         <script src="../assets/js/formHelpers.js"></script>
+        <script src="../assets/js/modalHelpers.js"></script>
     </body>
 </html>

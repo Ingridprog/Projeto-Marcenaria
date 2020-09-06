@@ -146,3 +146,21 @@ footer h5{
     bottom: 0px !important;
 }
 
+#modal_orcamento{
+    width: 100vw;
+    height: 100vh;
+    background-color:#0000007a;
+    opacity: 0;
+    visibility: hidden;
+    position: fixed;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    z-index: -5;
+}
+.content{
+    width: 600px;
+    height: 550px;
+    background-color:#ffffff;
+}
+
