@@ -1,3 +1,26 @@
+<?php
+    require_once("../../DAO/config.php");
+    require_once("../../DAO/OrcamentoDao.php");
+    require_once("../../DAO/PessoaFisicaDao.php");
+    require_once("../../DAO/PessoaJuridicaDao.php");
+
+    $orcamentoDao = new OrcamentoDao($pdo);
+    $pessoaFisicaDao = new PessoaFisicaDao($pdo);
+    $pessoaJuridicaDao = new PessoaJuridicaDao($pdo);
+
+    $button = "Gerar Orçamento";
+
+    $id = filter_input(INPUT_GET, 'id');
+    $modo = filter_input(INPUT_GET, 'modo');
+    if(isset($modo)){
+        if(strtoupper($modo) == "EDITAR"){
+            $button = "Editar";
+
+            $dadosOrcamento = $orcamentoDao->findById($id);
+        }
+    }
+?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -146,15 +169,15 @@
                                 <!-- CADASTRAR ITENS NO PEDIDO -->
                                 <div class="col-6">
                                     <label for="">Descrição do item</label>
-                                    <input type="text" class="form-control" name="descricao_item">
+                                    <input type="text" class="form-control" name="descricao_item" value="<?=@$dadosOrcamento->getDescricaoItem()?>">
                                 </div>
                                 <div class="col-2">
                                     <label for="">Quantidade</label>
-                                    <input type="text" class="form-control" name="quantidade">
+                                    <input type="text" class="form-control" name="quantidade" value="<?=@$dadosOrcamento->getQuantidade()?>">
                                 </div>
                                 <div class="col-2">
                                     <label for="">Preço</label>
-                                    <input type="text" class="form-control" name="preco">
+                                    <input type="text" class="form-control" name="preco" value="<?=@$dadosOrcamento->getPreco()?>">
                                 </div>
                                 <div class="col-2 d-flex align-items-end">
                                     <input value="adicionar" type="submit" class="form-control btn btn-info">
@@ -197,7 +220,7 @@
                                 <!-- CADASTRAR ITENS NO PEDIDO -->
                                 <div class="col-2">
                                     <label for="">Valor Desconto</label>
-                                    <input type="text" class="form-control" name="valor_desconto">
+                                    <input type="text" class="form-control" name="valor_desconto" value="<?=@$dadosOrcamento->getValorDesconto()?>">
                                 </div>
                                 <div class="col-4 d-flex align-items-end">
                                     <input class="form-control" type="text" readonly placeholder="Valor total" name="valor_total">
@@ -213,18 +236,15 @@
                                 Observações
                             </div>
                             <div class="form-group">
-                                <textarea class="form-control no-resize" name="observacoes"></textarea>
+                                <textarea class="form-control no-resize" name="observacoes"><?=@$dadosOrcamento->getObservacoes()?></textarea>
                             </div>
                         </div>
 
                         <div class="row d-flex justify-content-center">
                             <div class="col-6">
-                                <button type="submit" class="btn btn-primary btn-lg btn-block">Gerar orçamento</button>
+                                <button type="submit" class="btn btn-primary btn-lg btn-block"><?=$button?></button>
                             </div>
                         </div>
-
-                        
-
                     </form>
                 </div>
             </div>

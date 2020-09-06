@@ -109,7 +109,7 @@ $pessoaJuridicaDao = new PessoaJuridicaDao($pdo);
                             <td><?=$cliente?></td>
                             <td>
                                 <a href="validacoes/delete.php?id=<?=$orcamento->getId()?>" class="btn btn-danger btn-sm">Excluir</a> 
-                                <a href="validacoes/edit.php?id=<?=$orcamento->getId()?>&modo=editar" class="btn btn-warning btn-sm">Editar</a>
+                                <a href="orcamento.php?id=<?=$orcamento->getId()?>&modo=editar" class="btn btn-warning btn-sm">Editar</a>
                                 <button class="btn btn-info btn-sm">Ver</button>
                             </td>
                         </tr>

@@ -27,11 +27,9 @@ class OrcamentoDao /*implements DaoMysql*/
                $idCliente = $dados['id_pessoa_fisica'];
 
                $sql = $this->pdo->prepare("INSERT INTO tbl_orcamento 
-                    (hora, data, observacoes, descricao_item, quantidade, preco,
-                    valor_desconto, valor_total, cnpj, data_entrega, situacao, 
+                    (hora, data, observacoes, valor_desconto, valor_total, cnpj, data_entrega, situacao, 
                     id_pessoa_fisica) 
-                    VALUES (:hora, :data, :observacoes, :descricao_item, :quantidade, :preco, 
-                    :valor_desconto, :valor_total, :cnpj, :data_entrega, 15, 
+                    VALUES (:hora, :data, :observacoes, :valor_desconto, :valor_total, :cnpj, :data_entrega, 15, 
                     :id_cliente)");
 
           }elseif($this->tipo==2){
@@ -41,20 +39,15 @@ class OrcamentoDao /*implements DaoMysql*/
                $idCliente = $dados['id_pessoa_juridica'];
 
                $sql = $this->pdo->prepare("INSERT INTO tbl_orcamento 
-                    (hora, data, observacoes, descricao_item, quantidade, preco,
-                    valor_desconto, valor_total, cnpj, data_entrega, situacao, 
+                    (hora, data, observacoes, valor_desconto, valor_total, cnpj, data_entrega, situacao, 
                     id_pessoa_juridica) 
-                    VALUES (:hora, :data, :observacoes, :descricao_item, :quantidade, :preco,
-                    :valor_desconto, :valor_total, :cnpj, :data_entrega, 15, 
+                    VALUES (:hora, :data, :observacoes, :valor_desconto, :valor_total, :cnpj, :data_entrega, 15, 
                     :id_cliente)");
           }
 
           $sql->bindValue(":hora", $orcamento->getHora());
           $sql->bindValue(":data", $orcamento->getData());
           $sql->bindValue(":observacoes", $orcamento->getObservacoes());
-          $sql->bindValue(":descricao_item", $orcamento->getDescricaoItem());
-          $sql->bindValue(":quantidade", $orcamento->getQuantidade());
-          $sql->bindValue(":preco", $orcamento->getPreco());
           $sql->bindValue(":valor_desconto", $orcamento->getValorDesconto());
           $sql->bindValue(":valor_total", $orcamento->getValorTotal());
           $sql->bindValue(":cnpj", $orcamento->getCnpj());
@@ -62,12 +55,9 @@ class OrcamentoDao /*implements DaoMysql*/
           $sql->bindValue(":id_cliente", $idCliente);
           $sql->execute();
 
-          
-
           if($sql->rowCount() > 0){
                $orcamento->setId($this->pdo->lastInsertId());
-               // return $orcamento->getId();
-               echo "FOOI";
+               return $orcamento;
           }else{
                return "Não foi";
           }
@@ -87,9 +77,6 @@ class OrcamentoDao /*implements DaoMysql*/
                $orcamento->setHora($dados['hora']);
                $orcamento->setData($dados['data']);
                $orcamento->setObservacoes($dados['observacoes']);
-               $orcamento->setDescricaoItem($dados['descricao_item']);
-               $orcamento->setQuantidade($dados['quantidade']);
-               $orcamento->setPreco($dados['preco']);
                $orcamento->setValorDesconto($dados['valor_desconto']);
                $orcamento->setValorTotal($dados['valor_total']);
                $orcamento->setCnpj($dados['cnpj']);
@@ -120,9 +107,6 @@ class OrcamentoDao /*implements DaoMysql*/
                     $orcamento->setHora($dados['hora']);
                     $orcamento->setData($dados['data']);
                     $orcamento->setObservacoes($dados['observacoes']);
-                    $orcamento->setDescricaoItem($dados['descricao_item']);
-                    $orcamento->setQuantidade($dados['quantidade']);
-                    $orcamento->setPreco($dados['preco']);
                     $orcamento->setValorDesconto($dados['valor_desconto']);
                     $orcamento->setValorTotal($dados['valor_total']);
                     $orcamento->setCnpj($dados['cnpj']);
@@ -151,11 +135,6 @@ class OrcamentoDao /*implements DaoMysql*/
           $sql->bindValue(":hora", $orcamento->getHora());
           $sql->bindValue(":data", $orcamento->getData());
           $sql->bindValue(":observacoes", $orcamento->getObservacoes());
-          $sql->bindValue(":descricao_item", $orcamento->getDescricaoItem());
-          $sql->bindValue(":quantidade", $orcamento->getQuantidade());
-          $sql->bindValue(":preco", $orcamento->getPreco());
-          $sql->bindValue(":valor_material", $orcamento->getValorMaterial());
-          $sql->bindValue(":valor_servico", $orcamento->getValorServico());
           $sql->bindValue(":valor_desconto", $orcamento->getValorDesconto());
           $sql->bindValue(":valor_total", $orcamento->getValorTotal());
           $sql->bindValue(":cnpj", $orcamento->getCnpj());
