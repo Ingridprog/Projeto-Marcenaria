@@ -38,10 +38,12 @@
      $numero = filter_input(INPUT_POST, "numero", FILTER_SANITIZE_SPECIAL_CHARS);
      $complemento = filter_input(INPUT_POST, "complemento", FILTER_SANITIZE_SPECIAL_CHARS);
 
-     //orçamento
+     //itens orçamento
      $descricaoItem = filter_input(INPUT_POST, "descricao_item", FILTER_SANITIZE_SPECIAL_CHARS);
      $quantidade = filter_input(INPUT_POST, "quantidade", FILTER_VALIDATE_INT)? : 0;
      $preco = filter_input(INPUT_POST, "preco", FILTER_VALIDATE_FLOAT)? : 0.00;
+     
+     //orçamento
      $valorDesconto = filter_input(INPUT_POST, "valor_desconto", FILTER_VALIDATE_FLOAT)? : 0.00;
      $valorTotal = filter_input(INPUT_POST, "valor_total", FILTER_VALIDATE_FLOAT)? : 0.00;
      $dataEntrega = filter_input(INPUT_POST, "data_entrega");

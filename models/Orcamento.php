@@ -6,9 +6,6 @@ class Orcamento
      private $hora;
      private $data;
      private $observacoes;
-     private $descricaoItem;
-     private $quantidade;
-     private $preco;
      private $valorDesconto;
      private $valorTotal;
      private $cnpj;
@@ -57,35 +54,7 @@ class Orcamento
           $this->observacoes = $observacoes;
      }
 
-     public function getDescricaoItem()
-     {
-          return $this->descricaoItem;
-     }
-
-     public function setDescricaoItem($descricaoItem)
-     {
-          $this->descricaoItem = $descricaoItem;
-     }
-     public function getQuantidade()
-     {
-          return $this->quantidade;
-     }
-
-     public function setQuantidade($quantidade)
-     {
-          $this->quantidade = $quantidade;
-     }
-
-     public function getPreco()
-     {
-          return $this->preco;
-     }
-
-     public function setPreco($preco)
-     {
-          $this->preco = $preco;
-     }
-
+     
      public function getValorDesconto()
      {
           return $this->valorDesconto;

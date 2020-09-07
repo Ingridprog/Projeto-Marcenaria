@@ -1,7 +1,8 @@
 <?php
 
 $dbName = "db_exb";
-$host = "localhost";
+$host = "127.0.0.1";
+// $user = "ingridyasmin";
 $user = "root";
 $password = "bcd127";
 

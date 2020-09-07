@@ -1,3 +1,26 @@
+<?php
+    require_once("../../DAO/config.php");
+    require_once("../../DAO/OrcamentoDao.php");
+    require_once("../../DAO/PessoaFisicaDao.php");
+    require_once("../../DAO/PessoaJuridicaDao.php");
+
+    $orcamentoDao = new OrcamentoDao($pdo);
+    $pessoaFisicaDao = new PessoaFisicaDao($pdo);
+    $pessoaJuridicaDao = new PessoaJuridicaDao($pdo);
+
+    $button = "Gerar Orçamento";
+
+    $id = filter_input(INPUT_GET, 'id');
+    $modo = filter_input(INPUT_GET, 'modo');
+    if(isset($modo)){
+        if(strtoupper($modo) == "EDITAR"){
+            $button = "Editar";
+
+            $dadosOrcamento = $orcamentoDao->findById($id);
+        }
+    }
+?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -85,15 +108,15 @@
                             <div class="row mb-2">
                                 <div class="col">
                                     <label for="">CEP</label>
-                                    <input type="text" class="form-control" name="cep">
+                                    <input type="text" class="form-control" name="cep" id="cep" onblur="pesquisarCep(this.value)" maxlength="8">
                                 </div>
                                 <div class="col">
                                     <label for="">Logradouro</label>
-                                    <input type="text" class="form-control" name="logradouro">
+                                    <input type="text" class="form-control" name="logradouro" id="logradouro">
                                 </div>
                                 <div class="col">
                                     <label for="">Bairro</label>
-                                    <input type="text" class="form-control" name="bairro">
+                                    <input type="text" class="form-control" name="bairro" id="bairro">
                                 </div>
                             </div>
 
@@ -104,16 +127,12 @@
                                 </div>
                                 <div class="col-3">
                                     <label for="">Cidade</label>
-                                    <input type="text" class="form-control" name="cidade">
+                                    <input type="text" class="form-control" name="cidade" id="cidade">
                                 </div>
                                 <div class="col-2">
                                     <div class="form-group">
-                                        <label for="">Estado</label>
-                                        <select class="form-control" name="estado">
-                                        <option selected disabled name="estado">Estado</option>
-                                        <option value='São Paulo'>SP</option>
-                                        <option value='Rio de Janeiro'>RJ</option>  
-                                        </select>
+                                        <label for="">UF</label>
+                                        <input type="text" class="form-control" name="estado" id="uf" maxlength="2">
                                     </div>
                                 </div>
                                 <div class="col-5">
@@ -146,61 +165,45 @@
                                 <!-- CADASTRAR ITENS NO PEDIDO -->
                                 <div class="col-6">
                                     <label for="">Descrição do item</label>
-                                    <input type="text" class="form-control" name="descricao_item">
+                                    <input type="text" class="form-control" name="descricao_item" id="desc_item">
                                 </div>
                                 <div class="col-2">
                                     <label for="">Quantidade</label>
-                                    <input type="text" class="form-control" name="quantidade">
+                                    <input type="text" class="form-control" name="quantidade" id="quantidade_item">
                                 </div>
                                 <div class="col-2">
                                     <label for="">Preço</label>
-                                    <input type="text" class="form-control" name="preco">
+                                    <input type="text" class="form-control" name="preco" id="preco_item">
                                 </div>
                                 <div class="col-2 d-flex align-items-end">
-                                    <input value="adicionar" type="submit" class="form-control btn btn-info">
+                                    <input value="adicionar" type="button" onclick="adicionarItens()" class="form-control btn btn-info">
                                 </div>
                             </div>
                             <!-- ITENS CADASTRADOS -->
                             <span class="sub-title"> Produtos cadastrados </span>
-                            <table class="table mt-2">
-                                <tbody>
+                            <table class="table table-striped table-hover mt-2 hoverble">
+                                <thead class="thead-dark">
                                     <tr>
                                         <td>Descrição do item</td>
                                         <td>Qtd</td>
-                                        <td>Preço</td>
-                                        <td class="small-column">
-                                           <button class="btn btn-sm btn-warning">Editar</button>
-                                           <button class="btn btn-sm btn-danger">Excluir</button>
-                                        </td>
+                                        <td>Valor unitário</td>
+                                        <td>Valor</td>
+                                        <td>Opções</td>
                                     </tr>
-                                    <tr>
-                                        <td>Descrição do item</td>
-                                        <td>Qtd</td>
-                                        <td>Preço</td>
-                                        <td class="small-column">
-                                            <button class="btn btn-sm btn-warning">Editar</button>
-                                            <button class="btn btn-sm btn-danger">Excluir</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Descrição do item</td>
-                                        <td>Qtd</td>
-                                        <td>Preço</td>
-                                        <td class="small-column">
-                                            <button class="btn btn-sm btn-warning">Editar</button>
-                                            <button class="btn btn-sm btn-danger">Excluir</button>
-                                        </td>
-                                    </tr>
+                                </thead>
+                                <tbody id="tbody">
+                                    <!-- Linhas sendo cadastradas com JS -->
                                 </tbody>
                             </table>
                             <div class="row mb-3 d-flex justify-content-between">
                                 <!-- CADASTRAR ITENS NO PEDIDO -->
                                 <div class="col-2">
                                     <label for="">Valor Desconto</label>
-                                    <input type="text" class="form-control" name="valor_desconto">
+                                    <input type="text" class="form-control" name="valor_desconto" value="" id="valor_desconto" onblur="aplicarDesconto()">
                                 </div>
-                                <div class="col-4 d-flex align-items-end">
-                                    <input class="form-control" type="text" readonly placeholder="Valor total" name="valor_total">
+                                <div class="col-4 ">
+                                    <label for="valor_total">Valor Total</label>
+                                    <input class="form-control" type="text" id=valor_total readonly placeholder="Valor total" name="valor_total" value="0">
                                 </div>
                             </div>
                             
@@ -219,12 +222,9 @@
 
                         <div class="row d-flex justify-content-center">
                             <div class="col-6">
-                                <button type="submit" class="btn btn-primary btn-lg btn-block">Gerar orçamento</button>
+                                <button type="submit" class="btn btn-primary btn-lg btn-block"><?=$button?></button>
                             </div>
                         </div>
-
-                        
-
                     </form>
                 </div>
             </div>
@@ -234,6 +234,7 @@
             <h5 class="text-white">2020 - EXB Marcenaria</h5>
         </footer>
         <script src="../assets/js/jquery.js"></script>
-        <script src="../assets/js/formHelpers.js"></script>   
+        <script src="../assets/js/formHelpers.js"></script>
+        <script src="../assets/js/external_services.js"></script>  
     </body>
 </html>
