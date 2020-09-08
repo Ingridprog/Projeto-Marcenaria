@@ -1,5 +1,9 @@
 <?php
 
+session_start();
+
+$base = 'http://localhost/exbMarcenaria';
+
 $dbName = "db_exb";
 $host = "127.0.0.1";
 // $user = "ingridyasmin";
