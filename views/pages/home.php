@@ -1,8 +1,8 @@
 <?php
-// // require_once('config.php');
-// require_once('DAO/OrcamentoDao.php');
-// require_once('DAO/PessoaFisicaDao.php');
-// require_once('DAO/PessoaJuridicaDao.php');
+require_once('../../config.php');
+require_once("$base/DAO/OrcamentoDao.php");
+require_once("$base/DAO/PessoaFisicaDao.php");
+require_once("$base/DAO/PessoaJuridicaDao.php");
 
 $orcamentos = array();
 $orcamentoDao = new OrcamentoDao($pdo);

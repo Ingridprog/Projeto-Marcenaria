@@ -2,7 +2,7 @@
 
 session_start();
 
-$base = 'http://localhost/exbMarcenaria';
+$base = dirname(__FILE__);
 
 $dbName = "db_exb";
 $host = "127.0.0.1";

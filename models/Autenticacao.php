@@ -1,6 +1,7 @@
 <?php
 
-require_once('../DAO/ResponsavelDao.php');
+require_once dirname(__FILE__)."/../config.php";
+require_once $base.'/DAO/ResponsavelDao.php';
 
 class Autenticacao
 {
@@ -25,7 +26,7 @@ class Autenticacao
                     return $responsavel;
                }
           }
-          header("location: ".$this->base."/views/pages/login.php");
+          header("location: views/pages/login.php");
           exit;
      }
 
@@ -39,6 +40,7 @@ class Autenticacao
                     $token = md5(time().rand(0, 9999));
                     $_SESSION['token'] = $token;
                     $responsavel->token = $token;
+
                     $responsavelDao->update($responsavel);
 
                     return TRUE;

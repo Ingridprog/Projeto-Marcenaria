@@ -222,11 +222,12 @@ CREATE TABLE `tbl_responsavel` (
   `nome` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `email` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `cpf` varchar(25) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `cnpj` varchar(25) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `cnpj` int(11) NOT NULL,
+  `senha` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `token` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `fk_cnpj_empresa` (`cnpj`),
-  CONSTRAINT `fk_cnpj_empresa` FOREIGN KEY (`cnpj`) REFERENCES `tbl_dados_exb` (`cnpj`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  KEY `fk_cnpj_empresa` (`cnpj`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -235,6 +236,7 @@ CREATE TABLE `tbl_responsavel` (
 
 LOCK TABLES `tbl_responsavel` WRITE;
 /*!40000 ALTER TABLE `tbl_responsavel` DISABLE KEYS */;
+INSERT INTO `tbl_responsavel` VALUES (3,'exb','exb@gmail.com','123456',1,'$2y$10$AYTfkbJGHVKZzAThJCQj7O9.5y9ekrzAzkbOB/JWpRXdNPlJ3FYqq','8f19de292d14569252476786e06177f8');
 /*!40000 ALTER TABLE `tbl_responsavel` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -251,4 +253,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-09-05 21:00:35
+-- Dump completed on 2020-09-09 22:33:40

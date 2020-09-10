@@ -11,11 +11,4 @@ class Responsavel
      public $token;
 }
 
-interface DaoResponsavel
-{
-     public function findByToken($token);
-     public function findByEmail($email);
-     public function update(Responsavel $responsavel);
-}
-
 ?>

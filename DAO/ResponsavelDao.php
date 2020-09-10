@@ -1,8 +1,11 @@
 <?php
 
-require_once('../models/Responsavel.php');
+require_once dirname(__FILE__)."/../config.php";
+require_once $base."/interfaces/ResponsavelDAO.php";
+require_once $base.'/models/Responsavel.php';
 
-class ResponsavelDao implements DaoResponsavel 
+
+class ResponsavelDao implements DAOResponsavel
 {
      private $pdo;
 
@@ -44,7 +47,7 @@ class ResponsavelDao implements DaoResponsavel
 
      public function findByEmail($email)
      {
-          if(!empty($token)){
+          if(!empty($email)){
                $sql = $this->pdo->prepare('SELECT * FROM tbl_responsavel WHERE email = :email');
                $sql->bindValue(":email", $email);
                $sql->execute();

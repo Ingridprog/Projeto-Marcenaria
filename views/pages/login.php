@@ -1,6 +1,5 @@
 <?php
-    require_once('../../config.php');
-
+    require_once ("../../config.php");
 ?>
 
 <!DOCTYPE html>
@@ -9,8 +8,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exb - Orçamentos</title>
-    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link rel="stylesheet" href="http://localhost/exbMarcenaria/views/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://localhost/exbMarcenaria/views/assets/css/styles.css">
 </head>
     <body>
         <section id="login-main">
@@ -20,8 +19,14 @@
                         <div class="login-header bg-dark-blue text-white d-flex justify-content-center align-items-center">
                             <h5>LOGIN</h5>
                         </div>
+                        <?php
+                            if(!empty($_SESSION['err'])){
+                                echo $_SESSION['err'];
+                                $_SESSION['err'] = "";
+                            }
+                        ?>
                         <div class="login-body">
-                            <form method="POST" action="<?=$base;?>/validacoes/loginAction.php">
+                            <form method="POST" action="../../validacoes/loginAction.php">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Email</label>
                                     <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email">

@@ -1,5 +1,5 @@
 <?php
-    require_once("../../DAO/config.php");
+    require_once "../../config.php";
     require_once("../../DAO/OrcamentoDao.php");
     require_once("../../DAO/PessoaFisicaDao.php");
     require_once("../../DAO/PessoaJuridicaDao.php");
