@@ -30,6 +30,8 @@ function mudarTipoCliente(){
     } 
 }
 
+
+
 // Interações dos itens do orçamento
 // JS Puro
 const $lista = document.getElementById("tbody");
@@ -42,7 +44,6 @@ const $precoItem = document.getElementById("preco_item");
 var arr = [];
 var totalArr = [];
 var valorTotal = 0
-
 const reducer = (acc, currentValue) => acc + currentValue;
 
 const resetarCampos = () =>{
@@ -68,7 +69,7 @@ const removerItem = (i) => {
 const listarItens = (array) =>{
     return array.map((elemento, i) =>
         `
-            <tr id="item${i}">
+            <tr id="item${i}" name="itens[]">
                 <td>${elemento[0]}</td>
                 <td>${elemento[1]}</td>
                 <td>${elemento[2]}</td>

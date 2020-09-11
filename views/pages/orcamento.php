@@ -199,7 +199,7 @@
                                 <!-- CADASTRAR ITENS NO PEDIDO -->
                                 <div class="col-2">
                                     <label for="">Valor Desconto</label>
-                                    <input type="text" class="form-control" name="valor_desconto" value="" id="valor_desconto" onblur="aplicarDesconto()">
+                                    <input type="text" class="form-control" name="valor_desconto" value="" id="valor_desconto" onkeyup="aplicarDesconto()">
                                 </div>
                                 <div class="col-4 ">
                                     <label for="valor_total">Valor Total</label>
@@ -222,7 +222,7 @@
 
                         <div class="row d-flex justify-content-center">
                             <div class="col-6">
-                                <button type="submit" class="btn btn-primary btn-lg btn-block"><?=$button?></button>
+                                <button type="button" onclick="cadastroOrcamento()" class="btn btn-primary btn-lg btn-block"><?=$button?></button>
                             </div>
                         </div>
                     </form>
@@ -235,6 +235,7 @@
         </footer>
         <script src="../assets/js/jquery.js"></script>
         <script src="../assets/js/formHelpers.js"></script>
-        <script src="../assets/js/external_services.js"></script>  
+        <script src="../assets/js/external_services.js"></script>
+        <script src="../assets/js/ajax_cadastro_orcamento.js"></script>
     </body>
 </html>
