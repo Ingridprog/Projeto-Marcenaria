@@ -6,6 +6,10 @@
      require_once("$base/DAO/EnderecoDao.php");
      require_once("$base/DAO/OrcamentoDao.php");
 
+     $modo = filter_input(INPUT_POST, 'modo');
+
+
+
      // Tipo
      $tipoCliente = filter_input(INPUT_POST, "tipo-cliente");
 
@@ -100,5 +104,6 @@
      
      $orcamentoDao->add($orcamento, $tipoCliente);
 
+     // header("location: ../.php");
 
 ?>
