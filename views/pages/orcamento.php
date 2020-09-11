@@ -35,7 +35,7 @@
         <nav class="width-100p mb-3 navbar pd-zero navbar-expand-lg navbar-dark bg-primary">
             <div class="container d-flex justify-content-end">
                 <div class="nav-item text-white d-flex justify-content-center align-items-center">
-                    <a href="lista.php" class="text-white font-weight-bold">Home</a>
+                    <a href="home.php" class="text-white font-weight-bold">Home</a>
                 </div>
 
                 <div class="ativar-nav-item nav-item text-white d-flex justify-content-center align-items-center">
