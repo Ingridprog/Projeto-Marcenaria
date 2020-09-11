@@ -1,7 +1,8 @@
 <?php
 
-require_once('../../interfaces/DaoMysql.php');
-require_once('../../models/PessoaJuridica.php');
+require_once(dirname(__FILE__)."/../config.php");
+require_once("$base/interfaces/DaoMysql.php");
+require_once("$base/models/PessoaJuridica.php");
 
 class PessoaJuridicaDao implements DaoMysql
 {
