@@ -11,7 +11,6 @@ header("location: views/pages/home.php");
 
 // echo md5(time().rand(0, 9999));
 
-// echo "<br>";
 // echo password_hash('123', PASSWORD_DEFAULT);
 
 ?>

@@ -1,10 +1,10 @@
 <?php
 
-     require_once('../DAO/config.php');
-     require_once('../DAO/PessoaFisicaDao.php');
-     require_once('../DAO/PessoaJuridicaDao.php');
-     require_once('../DAO/EnderecoDao.php');
-     require_once('../DAO/OrcamentoDao.php');
+     require_once(dirname(__FILE__).'/../config.php');
+     require_once("$base/DAO/PessoaFisicaDao.php");
+     require_once("$base/DAO/PessoaJuridicaDao.php");
+     require_once("$base/DAO/EnderecoDao.php");
+     require_once("$base/DAO/OrcamentoDao.php");
 
      // Tipo
      $tipoCliente = filter_input(INPUT_POST, "tipo-cliente");
@@ -94,13 +94,9 @@
      $orcamento->setHora($hora);
      $orcamento->setData($data);
      $orcamento->setObservacoes($observacoes);
-     $orcamento->setDescricaoItem($descricaoItem);
-     $orcamento->setQuantidade($quantidade);
-     $orcamento->setPreco($preco);
      $orcamento->setValorDesconto($valorDesconto);
      $orcamento->setValorTotal($valorTotal);
      $orcamento->setDataEntrega($dataEntrega);
-     // $orcamento->setSituacao();
      
      $orcamentoDao->add($orcamento, $tipoCliente);
 
