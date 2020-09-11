@@ -222,7 +222,7 @@
 
                         <div class="row d-flex justify-content-center">
                             <div class="col-6">
-                                <button type="button" onclick="cadastroOrcamento()" class="btn btn-primary btn-lg btn-block"><?=$button?></button>
+                                <button type="button" id="btn-cadastrar" onclick="cadastroOrcamento()" class="btn btn-primary btn-lg btn-block"><?=$button?></button>
                             </div>
                         </div>
                     </form>
