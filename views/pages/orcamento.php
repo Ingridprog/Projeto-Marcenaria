@@ -91,36 +91,28 @@
                                 <div class="col">
                                     <div id="nome_completo">
                                         <label for="">Nome completo</label>
-<<<<<<< HEAD
-                                        <input type="text" class="form-control" name="nome_completo" id="nome_completo">
-=======
-                                        <input type="text" class="form-control" name="nome_completo" value="<?=$dadosPessoaFisica->getNome()?>">
->>>>>>> cf32c6bfc1c13d733f2b08c38eb56c4aa5c363e9
+                                        <input type="text" class="form-control" id="nome_completo" name="nome_completo" value="<?=$dadosPessoaFisica->getNome()?>">
                                     </div>
 
                                     <div id="razao_social" class="d-none">
                                         <label for="">Razão social</label>
-<<<<<<< HEAD
-                                        <input type="text" class="form-control" name="razao_social" id="razao_social">
-=======
-                                        <input type="text" class="form-control" name="razao_social" value="<?php echo (($dadosPessoaJuridica->getRazaoSocial())? "TESTE" :NULL);?>">
->>>>>>> cf32c6bfc1c13d733f2b08c38eb56c4aa5c363e9
+                                        <input type="text" class="form-control" id="razao_social" name="razao_social" value="<?php echo (($dadosPessoaJuridica->getRazaoSocial())? "TESTE" :NULL);?>">
                                     </div>
                                 </div>
                                 <div id="nome-fantasia" class="col d-none">
                                     <label for="">Nome fantasia</label>
-                                    <input type="text" class="form-control" name="nome_fantasia" id="nome_fantasia">
+                                    <input type="text" class="form-control" id="nome_fantasia" name="nome_fantasia" id="nome_fantasia">
                                 </div>
 
                                 <div class="col">
                                     <div id="cpf-input">
                                         <label for="">CPF</label>
-                                        <input type="text" class="form-control" name="cpf" id="cpf">
+                                        <input type="text" class="form-control" id="cpf" name="cpf" id="cpf">
                                     </div>
 
                                     <div id="cnpj-input" class="d-none">
                                         <label for="">CNPJ</label>
-                                        <input type="text" class="form-control" name="cnpj" id="cnpj">
+                                        <input type="text" class="form-control" id="cnpj" name="cnpj" id="cnpj">
                                     </div>
                                 </div>
                                 
