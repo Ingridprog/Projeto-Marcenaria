@@ -108,9 +108,6 @@ function aplicarDesconto(){
     }else{
         $valor_total.value = totalArr.reduce(reducer);
     }
-    
-    
-
 }
 
 

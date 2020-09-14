@@ -78,28 +78,28 @@
                                 <div class="col">
                                     <div id="nome_completo">
                                         <label for="">Nome completo</label>
-                                        <input type="text" class="form-control" name="nome_completo">
+                                        <input type="text" class="form-control" name="nome_completo" id="nome_completo">
                                     </div>
 
                                     <div id="razao_social" class="d-none">
                                         <label for="">Razão social</label>
-                                        <input type="text" class="form-control" name="razao_social">
+                                        <input type="text" class="form-control" name="razao_social" id="razao_social">
                                     </div>
                                 </div>
                                 <div id="nome-fantasia" class="col d-none">
                                     <label for="">Nome fantasia</label>
-                                    <input type="text" class="form-control" name="nome_fantasia">
+                                    <input type="text" class="form-control" name="nome_fantasia" id="nome_fantasia">
                                 </div>
 
                                 <div class="col">
                                     <div id="cpf-input">
                                         <label for="">CPF</label>
-                                        <input type="text" class="form-control" name="cpf">
+                                        <input type="text" class="form-control" name="cpf" id="cpf">
                                     </div>
 
                                     <div id="cnpj-input" class="d-none">
                                         <label for="">CNPJ</label>
-                                        <input type="text" class="form-control" name="cnpj">
+                                        <input type="text" class="form-control" name="cnpj" id="cnpj">
                                     </div>
                                 </div>
                                 
@@ -123,7 +123,7 @@
                             <div class="row mb-2">
                                 <div class="col-2">
                                     <label for="">Número</label>
-                                    <input type="text" class="form-control" name="numero">
+                                    <input type="text" class="form-control" name="numero" id="numero">
                                 </div>
                                 <div class="col-3">
                                     <label for="">Cidade</label>
@@ -137,22 +137,22 @@
                                 </div>
                                 <div class="col-5">
                                     <label for="">Complemento</label>
-                                    <input type="text" class="form-control" name="complemento">
+                                    <input type="text" class="form-control" name="complemento" id="complemento">
                                 </div>
                             </div>
 
                             <div class="row">
                                 <div class="col-4">
                                     <label for="">Telefone</label>
-                                    <input type="text" class="form-control" name="telefone">
+                                    <input type="text" class="form-control" name="telefone" id="telefone">
                                 </div>
                                 <div class="col-4">
                                     <label for="">Celular</label>
-                                    <input type="text" class="form-control" name="celular">
+                                    <input type="text" class="form-control" name="celular" id="celular">
                                 </div>
                                 <div class="col">
                                     <label for="">Email</label>
-                                    <input type="text" class="form-control" name="email">
+                                    <input type="text" class="form-control" name="email" id="email">
                                 </div>
                             </div>
                         </div>
