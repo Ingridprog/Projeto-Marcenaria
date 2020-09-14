@@ -1,18 +1,18 @@
-function cadastroOrcamento(){
+function cadastroOrcamento() {
     let itens = arr
     var botao = $("#btn-cadastrar").text()
     console.log(botao)
     $.ajax({
-        url:'arquivoDoPhp',
-        type:'POST',
-        data:{
-            itens:itens,
-            botao:botao
+        url: '../../../validacoes/validaForm.php',
+        type: 'POST',
+        data: {
+            itens: itens,
+            botao: botao
         },
-        success: function(data){
+        success: function (data) {
             console.log(data)
         },
-        error: function(){
+        error: function () {
             console.log('error')
         }
     })

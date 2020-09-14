@@ -6,9 +6,9 @@
      require_once("$base/DAO/EnderecoDao.php");
      require_once("$base/DAO/OrcamentoDao.php");
 
-     $modo = filter_input(INPUT_POST, 'modo');
+     $botao = filter_input(INPUT_POST, 'botao');
 
-
+     echo "TESTE ".$botao;
 
      // Tipo
      $tipoCliente = filter_input(INPUT_POST, "tipo-cliente");
