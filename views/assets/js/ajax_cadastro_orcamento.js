@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 function cadastroOrcamento(){
     
     var tipo = 0;
@@ -48,11 +49,23 @@ function cadastroOrcamento(){
             celular:celular,
             email:email,
             botao:botao
+=======
+function cadastroOrcamento() {
+    let itens = arr
+    var botao = $("#btn-cadastrar").text()
+    console.log(botao)
+    $.ajax({
+        url: '../../../validacoes/validaForm.php',
+        type: 'POST',
+        data: {
+            itens: itens,
+            botao: botao
+>>>>>>> cf32c6bfc1c13d733f2b08c38eb56c4aa5c363e9
         },
-        success: function(data){
+        success: function (data) {
             console.log(data)
         },
-        error: function(){
+        error: function () {
             console.log('error')
         }
     })

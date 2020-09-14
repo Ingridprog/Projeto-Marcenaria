@@ -11,10 +11,6 @@ $orcamentos = $data;
 
 $pessoaFisicaDao = new PessoaFisicaDao($pdo);
 $pessoaJuridicaDao = new PessoaJuridicaDao($pdo);
-// $orcamentos = $data ?? [];
-
-// if($data)
-//     $orcamentos = $data;
 
 ?>
 
@@ -108,11 +104,11 @@ $pessoaJuridicaDao = new PessoaJuridicaDao($pdo);
                         
                         <tr>
                             <td><?=$orcamento->getData()?></td>
-                            <td><?="pinto"?></td>
                             <td><?=$cliente?></td>
+                            <td><?="teste"?></td>
                             <td>
-                                <a href="validacoes/delete.php?id=<?=$orcamento->getId()?>" class="btn btn-danger btn-sm">Excluir</a> 
-                                <a href="validacoes/edit.php?id=<?=$orcamento->getId()?>&modo=editar" class="btn btn-warning btn-sm">Editar</a>
+                                <a href="../../validacoes/delete.php?id=<?=$orcamento->getId()?>" class="btn btn-danger btn-sm" onclick="return confirm('Deseja realmente excluir?')">Excluir</a> 
+                                <a href="orcamento.php?id=<?=$orcamento->getId()?>&modo=editar" class="btn btn-warning btn-sm">Editar</a>
                                 <button class="btn btn-info btn-sm" onclick="abrirModalOramento()">Ver</button>
                             </td>
                         </tr>

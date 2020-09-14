@@ -1,14 +1,19 @@
 <?php
-    require_once "../../config.php";
-    require_once("../../DAO/OrcamentoDao.php");
-    require_once("../../DAO/PessoaFisicaDao.php");
-    require_once("../../DAO/PessoaJuridicaDao.php");
+    require_once(dirname(__FILE__)."/../../config.php");
+    require_once($base."/DAO/OrcamentoDao.php");
+    require_once($base."/DAO/PessoaFisicaDao.php");
+    require_once($base."/DAO/PessoaJuridicaDao.php");
 
     $orcamentoDao = new OrcamentoDao($pdo);
     $pessoaFisicaDao = new PessoaFisicaDao($pdo);
     $pessoaJuridicaDao = new PessoaJuridicaDao($pdo);
 
+    $dadosOrcamento = [];
+    $dadosPessoaFisica = [];
+    $dadosPessoaFisica = [];
+
     $button = "Gerar Orçamento";
+    $tipo = "";
 
     $id = filter_input(INPUT_GET, 'id');
     $modo = filter_input(INPUT_GET, 'modo');
@@ -17,6 +22,14 @@
             $button = "Editar";
 
             $dadosOrcamento = $orcamentoDao->findById($id);
+
+            if($dadosOrcamento->getIdPessoaFisica() != NULL){
+                $dadosPessoaFisica = $pessoaFisicaDao->findById($dadosOrcamento->getIdPessoaFisica());
+                $tipo = 'pessoa-fisica';
+            }elseif($dadosOrcamento->getIdPessoaJuridica()){
+                $dadosPessoaJuridica = $pessoaJuridicaDao->findById($dadosOrcamento->getIdPessoaJuridica());
+                $tipo = 'pessoa-juridica';
+            }
         }
     }
 ?>
@@ -57,7 +70,7 @@
                         <!-- TIPO DE CLIENTE -->
                         <div class="form-row d-flex justify-content-center mb-3">
                             <div class="form-check mr-5">
-                                <input onchange="mudarTipoCliente()" class="form-check-input" checked type="radio" name="tipo-cliente" id="pessoa-fisica" value="1" >
+                                <input onchange="mudarTipoCliente()" class="form-check-input"  type="radio" name="tipo-cliente" id="pessoa-fisica" value="1" >
                                 <label class="form-check-label" for="pessoa-fisica" >
                                     Pessoa Física
                                 </label>
@@ -78,12 +91,20 @@
                                 <div class="col">
                                     <div id="nome_completo">
                                         <label for="">Nome completo</label>
+<<<<<<< HEAD
                                         <input type="text" class="form-control" name="nome_completo" id="nome_completo">
+=======
+                                        <input type="text" class="form-control" name="nome_completo" value="<?=$dadosPessoaFisica->getNome()?>">
+>>>>>>> cf32c6bfc1c13d733f2b08c38eb56c4aa5c363e9
                                     </div>
 
                                     <div id="razao_social" class="d-none">
                                         <label for="">Razão social</label>
+<<<<<<< HEAD
                                         <input type="text" class="form-control" name="razao_social" id="razao_social">
+=======
+                                        <input type="text" class="form-control" name="razao_social" value="<?php echo (($dadosPessoaJuridica->getRazaoSocial())? "TESTE" :NULL);?>">
+>>>>>>> cf32c6bfc1c13d733f2b08c38eb56c4aa5c363e9
                                     </div>
                                 </div>
                                 <div id="nome-fantasia" class="col d-none">
