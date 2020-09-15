@@ -4,7 +4,7 @@ require_once(dirname(__FILE__)."/../config.php");
 require_once("$base/interfaces/DaoMysql.php");
 require_once("$base/models/Orcamento.php");
 
-class ItensOrcamento implements DaoMysql
+class ItensOrcamentoDao
 {
      private $pdo;
 
@@ -17,16 +17,19 @@ class ItensOrcamento implements DaoMysql
      public function add($itensOrcamento)
      {
 
+          $lastIdOrcamento = $this->pdo->prepare("SELECT id FROM tbl_orcamento ORDER BY id DESC LIMIT 1");
+          $lastIdOrcamento->execute();
+          
+          $realLastIdOrcamento = $lastIdOrcamento->fetch(PDO::FETCH_ASSOC);
+
           $sql = $this->pdo->prepare("INSERT INTO tbl_itens_orcamento 
                (descricao_item, quantidade, preco, id_orcamento) 
                VALUES (:descricao_item, :quantidade, :preco, :id_orcamento)");
 
-          $idOrcamento = $this->pdo->lastInsertId();
-
           $sql->bindValue(":descricao_item", $itensOrcamento->getDescricaoItem());
           $sql->bindValue(":quantidade", $itensOrcamento->getQuantidade());
           $sql->bindValue(":preco", $itensOrcamento->getPreco());
-          $sql->bindValue(":id_orcamento", $idOrcamento);
+          $sql->bindValue(":id_orcamento", $realLastIdOrcamento['id']);
           $sql->execute();
 
           if($sql->rowCount() > 0){
@@ -54,7 +57,6 @@ class ItensOrcamento implements DaoMysql
                $orcamento->setValorDesconto($dados['valor_desconto']);
                $orcamento->setValorTotal($dados['valor_total']);
                $orcamento->setCnpj($dados['cnpj']);
-               $orcamento->setDataEntrega($dados['data_entrega']);
                $orcamento->setSituacao($dados['situacao']);
                $orcamento->setIdPessoaFisica($dados['id_pessoa_fisica']);
                $orcamento->setIdPessoaJuridica($dados['id_pessoa_juridica']);
@@ -84,7 +86,6 @@ class ItensOrcamento implements DaoMysql
                     $orcamento->setValorDesconto($dados['valor_desconto']);
                     $orcamento->setValorTotal($dados['valor_total']);
                     $orcamento->setCnpj($dados['cnpj']);
-                    $orcamento->setDataEntrega($dados['data_entrega']);
                     $orcamento->setSituacao($dados['situacao']);
                     $orcamento->setIdPessoaFisica($dados['id_pessoa_fisica']);
                     $orcamento->setIdPessoaJuridica($dados['id_pessoa_juridica']);

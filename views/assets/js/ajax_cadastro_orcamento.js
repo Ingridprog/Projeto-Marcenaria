@@ -37,7 +37,7 @@ function cadastroOrcamento() {
         url: '../../validacoes/validaForm.php',
         type: 'POST',
         data: {
-            itens: itens,
+            itens: JSON.stringify(itens),
             tipo_cliente: tipoCadastro,
             nome_completo: nomeCompleto,
             razao_social: razaoSocial,

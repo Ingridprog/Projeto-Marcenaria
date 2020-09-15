@@ -1,9 +1,20 @@
 <?php
 
 class ItensOrcamento{
+     private $id;
      private $descricaoItem;
      private $quantidade;
      private $preco;
+
+     public function getId()
+     {
+          return $this->id;
+     }
+
+     public function setId($id)
+     {
+          $this->id = $id;
+     }
 
      public function getDescricaoItem()
      {

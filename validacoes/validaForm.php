@@ -5,6 +5,8 @@
      require_once("$base/DAO/PessoaJuridicaDao.php");
      require_once("$base/DAO/EnderecoDao.php");
      require_once("$base/DAO/OrcamentoDao.php");
+     require_once("$base/DAO/ItensOrcamentoDao.php");
+     require_once("$base/models/ItensOrcamento.php");
 
      $botao = filter_input(INPUT_POST, 'botao');
 
@@ -17,6 +19,7 @@
      $pessoaJuridicaDao = new PessoaJuridicaDao($pdo);
      $enderecoDao = new EnderecoDao($pdo, $tipoCliente);
      $orcamentoDao = new OrcamentoDao($pdo);
+     $itensOrcamentoDao = new ItensOrcamentoDao($pdo);
 
      // Pessoa física
      $nome = filter_input(INPUT_POST, "nome_completo", FILTER_SANITIZE_SPECIAL_CHARS);
@@ -42,11 +45,8 @@
      $numero = filter_input(INPUT_POST, "numero", FILTER_SANITIZE_SPECIAL_CHARS);
      $complemento = filter_input(INPUT_POST, "complemento", FILTER_SANITIZE_SPECIAL_CHARS);
 
-     //itens orçamento
-     $descricaoItem = filter_input(INPUT_POST, "descricao_item", FILTER_SANITIZE_SPECIAL_CHARS);
-     $quantidade = filter_input(INPUT_POST, "quantidade", FILTER_VALIDATE_INT)? : 0;
-     $preco = filter_input(INPUT_POST, "preco", FILTER_VALIDATE_FLOAT)? : 0.00;
-     
+     $itensOrcamento = json_decode(filter_input(INPUT_POST, "itens"));
+     // print_r($itensOrcamento);
      //orçamento
      $valorDesconto = filter_input(INPUT_POST, "valor_desconto", FILTER_VALIDATE_FLOAT)? : 0.00;
      $valorTotal = filter_input(INPUT_POST, "valor_total", FILTER_VALIDATE_FLOAT)? : 0.00;
@@ -100,6 +100,17 @@
      $orcamento->setValorDesconto($valorDesconto);
      $orcamento->setValorTotal($valorTotal);
      $orcamentoDao->add($orcamento, $tipoCliente);
+
+     // $listaItensOrcamento = array();
+
+     foreach($itensOrcamento as $item){
+          $itensOrcamento = new ItensOrcamento();
+          $itensOrcamento->setDescricaoItem($item[0]);
+          $itensOrcamento->setQuantidade($item[1]);
+          $itensOrcamento->setPreco($item[2]);
+
+          $itensOrcamentoDao->add($itensOrcamento);
+     }
 
      // header("location: ../.php");
 

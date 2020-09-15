@@ -29,7 +29,7 @@ class OrcamentoDao /*implements DaoMysql*/
                $sql = $this->pdo->prepare("INSERT INTO tbl_orcamento 
                     (hora, data, observacoes, valor_desconto, valor_total, cnpj,  situacao, 
                     id_pessoa_fisica) 
-                    VALUES (:hora, :data, :observacoes, :valor_desconto, :valor_total, :cnpj, 15, 
+                    VALUES (:hora, :data, :observacoes, :valor_desconto, :valor_total, :cnpj, 0, 
                     :id_cliente)");
 
           }elseif($this->tipo==2){
@@ -41,7 +41,7 @@ class OrcamentoDao /*implements DaoMysql*/
                $sql = $this->pdo->prepare("INSERT INTO tbl_orcamento 
                     (hora, data, observacoes, valor_desconto, valor_total, cnpj, situacao, 
                     id_pessoa_juridica) 
-                    VALUES (:hora, :data, :observacoes, :valor_desconto, :valor_total, :cnpj, 15, 
+                    VALUES (:hora, :data, :observacoes, :valor_desconto, :valor_total, :cnpj, 0, 
                     :id_cliente)");
           }
 
