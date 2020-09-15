@@ -66,7 +66,8 @@
         <div class="row width-100p">
             <div class="container">
                 <div class="col s12">
-                    <form id="cadastro-orcamento" class="p-3 mb-5" action="../../validacoes/validaForm.php" method="POST">
+                    <!-- action="../../validacoes/validaForm.php" method="POST" -->
+                    <form id="cadastro-orcamento" class="p-3 mb-5" >
                         <!-- TIPO DE CLIENTE -->
                         <div class="form-row d-flex justify-content-center mb-3">
                             <div class="form-check mr-5">
@@ -89,30 +90,30 @@
                             </div>
                             <div class="row mb-2">
                                 <div class="col">
-                                    <div id="nome_completo">
+                                    <div id="nome-completo">
                                         <label for="">Nome completo</label>
-                                        <input type="text" class="form-control" id="nome_completo" name="nome_completo" value="<?=$dadosPessoaFisica->getNome()?>">
+                                        <input type="text" class="form-control" id="nome_completo" name="nome_completo" >
                                     </div>
 
-                                    <div id="razao_social" class="d-none">
+                                    <div id="razao-social" class="d-none">
                                         <label for="">Razão social</label>
-                                        <input type="text" class="form-control" id="razao_social" name="razao_social" value="<?php echo (($dadosPessoaJuridica->getRazaoSocial())? "TESTE" :NULL);?>">
+                                        <input type="text" class="form-control" id="razao_social" name="razao_social" >
                                     </div>
                                 </div>
                                 <div id="nome-fantasia" class="col d-none">
                                     <label for="">Nome fantasia</label>
-                                    <input type="text" class="form-control" id="nome_fantasia" name="nome_fantasia" id="nome_fantasia">
+                                    <input type="text" class="form-control" id="nome_fantasia" name="nome_fantasia" >
                                 </div>
 
                                 <div class="col">
                                     <div id="cpf-input">
                                         <label for="">CPF</label>
-                                        <input type="text" class="form-control" id="cpf" name="cpf" id="cpf">
+                                        <input type="text" class="form-control" id="cpf" name="cpf" >
                                     </div>
 
                                     <div id="cnpj-input" class="d-none">
                                         <label for="">CNPJ</label>
-                                        <input type="text" class="form-control" id="cnpj" name="cnpj" id="cnpj">
+                                        <input type="text" class="form-control" id="cnpj" name="cnpj" >
                                     </div>
                                 </div>
                                 

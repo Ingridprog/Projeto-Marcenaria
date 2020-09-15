@@ -11,7 +11,7 @@
      echo "TESTE ".$botao;
 
      // Tipo
-     $tipoCliente = filter_input(INPUT_POST, "tipo-cliente");
+     $tipoCliente = filter_input(INPUT_POST, "tipo_cliente");
 
      $pessoaFisicaDao = new PessoaFisicaDao($pdo);
      $pessoaJuridicaDao = new PessoaJuridicaDao($pdo);
@@ -28,11 +28,11 @@
      //Pessoa juridica
      $razaoSocial = filter_input(INPUT_POST, "razao_social");
      $nomeFantasia = filter_input(INPUT_POST, "nome_fantasia");
-     $cnpj = filter_input(INPUT_POST, "nome_fantasia");
+     $cnpj = filter_input(INPUT_POST, "cnpj");
      $telefone = filter_input(INPUT_POST, "telefone", FILTER_SANITIZE_SPECIAL_CHARS);
      $celular = filter_input(INPUT_POST, "celular", FILTER_SANITIZE_SPECIAL_CHARS);
      $email = filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL);
-     
+
      // Endereço
      $cep = filter_input(INPUT_POST, "cep", FILTER_SANITIZE_SPECIAL_CHARS);
      $logradouro = filter_input(INPUT_POST, "logradouro", FILTER_SANITIZE_SPECIAL_CHARS);

@@ -15,16 +15,16 @@ function mudarTipoCliente(){
     
     if(tipoCliente == 1){
         $("#cpf-input").removeClass("d-none");
-        $("#nome_completo").removeClass("d-none");
+        $("#nome-completo").removeClass("d-none");
 
         $("#cnpj-input").addClass("d-none");
         $("#nome-fantasia").addClass("d-none");
-        $("#razao_social").addClass("d-none");
+        $("#razao-social").addClass("d-none");
     }else{
         $("#cpf-input").addClass("d-none");
-        $("#nome_completo").addClass("d-none");
+        $("#nome-completo").addClass("d-none");
 
-        $("#razao_social").removeClass("d-none");
+        $("#razao-social").removeClass("d-none");
         $("#nome-fantasia").removeClass("d-none");
         $("#cnpj-input").removeClass("d-none");
     } 
