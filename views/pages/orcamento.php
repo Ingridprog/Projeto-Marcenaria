@@ -213,7 +213,7 @@
                                 <!-- CADASTRAR ITENS NO PEDIDO -->
                                 <div class="col-2">
                                     <label for="">Valor Desconto</label>
-                                    <input type="text" class="form-control" name="valor_desconto" value="" id="valor_desconto" onkeyup="aplicarDesconto()">
+                                    <input type="text" class="form-control" id="valor_desconto" name="valor_desconto" value=""  onkeyup="aplicarDesconto()">
                                 </div>
                                 <div class="col-4 ">
                                     <label for="valor_total">Valor Total</label>
@@ -225,12 +225,12 @@
                         </div>
                         <hr>
                         <!-- OBSERVAÇÕES -->
-                        <div id="observacoes" class=" mb-4">
+                        <div id="observacoes-txt" class=" mb-4">
                             <div class="linha-dados-cliente mb-3">
                                 Observações
                             </div>
                             <div class="form-group">
-                                <textarea class="form-control no-resize" name="observacoes"></textarea>
+                                <textarea class="form-control no-resize" name="observacoes" id="observacoes"></textarea>
                             </div>
                         </div>
 

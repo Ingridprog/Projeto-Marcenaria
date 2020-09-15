@@ -21,6 +21,9 @@ function cadastroOrcamento() {
     var telefone = $("#telefone").val();
     var celular = $("#celular").val();
     var email = $("#email").val();
+    var valor_total = $("#valor_total").val();
+    var valor_desconto = $("#valor_desconto").val();
+    var observacoes = $("#observacoes").val();
 
     // if (tipoCadastro == 1)
     //     tipo = $("#pessoa_fisica").val();
@@ -51,6 +54,9 @@ function cadastroOrcamento() {
             telefone: telefone,
             celular: celular,
             email: email,
+            valor_desconto:valor_desconto,
+            valor_total:valor_total,
+            observacoes:observacoes,
             botao: botao
         },
         success: function (data) {
