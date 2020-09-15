@@ -9,7 +9,6 @@ class Orcamento
      private $valorDesconto;
      private $valorTotal;
      private $cnpj;
-     private $dataEntrega;
      private $situacao;
      private $idPessoaFisica;
      private $idPessoaJuridica;
@@ -83,16 +82,6 @@ class Orcamento
      public function setCnpj($cnpj)
      {
           $this->cnpj = $cnpj;
-     }
- 
-     public function getDataEntrega()
-     {
-          return $this->dataEntrega;
-     }
-
-     public function setDataEntrega($dataEntrega)
-     {
-          $this->dataEntrega = $dataEntrega;
      }
     
      public function getSituacao()

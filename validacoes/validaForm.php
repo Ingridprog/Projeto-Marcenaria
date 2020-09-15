@@ -50,7 +50,6 @@
      //orçamento
      $valorDesconto = filter_input(INPUT_POST, "valor_desconto", FILTER_VALIDATE_FLOAT)? : 0.00;
      $valorTotal = filter_input(INPUT_POST, "valor_total", FILTER_VALIDATE_FLOAT)? : 0.00;
-     $dataEntrega = filter_input(INPUT_POST, "data_entrega");
      $observacoes = filter_input(INPUT_POST, "observacoes", FILTER_SANITIZE_SPECIAL_CHARS);
 
      if($tipoCliente == 1){
@@ -100,8 +99,6 @@
      $orcamento->setObservacoes($observacoes);
      $orcamento->setValorDesconto($valorDesconto);
      $orcamento->setValorTotal($valorTotal);
-     $orcamento->setDataEntrega($dataEntrega);
-     
      $orcamentoDao->add($orcamento, $tipoCliente);
 
      // header("location: ../.php");

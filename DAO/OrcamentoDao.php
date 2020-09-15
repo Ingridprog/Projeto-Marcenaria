@@ -27,9 +27,9 @@ class OrcamentoDao /*implements DaoMysql*/
                $idCliente = $dados['id_pessoa_fisica'];
 
                $sql = $this->pdo->prepare("INSERT INTO tbl_orcamento 
-                    (hora, data, observacoes, valor_desconto, valor_total, cnpj, data_entrega, situacao, 
+                    (hora, data, observacoes, valor_desconto, valor_total, cnpj,  situacao, 
                     id_pessoa_fisica) 
-                    VALUES (:hora, :data, :observacoes, :valor_desconto, :valor_total, :cnpj, :data_entrega, 15, 
+                    VALUES (:hora, :data, :observacoes, :valor_desconto, :valor_total, :cnpj, 15, 
                     :id_cliente)");
 
           }elseif($this->tipo==2){
@@ -39,9 +39,9 @@ class OrcamentoDao /*implements DaoMysql*/
                $idCliente = $dados['id_pessoa_juridica'];
 
                $sql = $this->pdo->prepare("INSERT INTO tbl_orcamento 
-                    (hora, data, observacoes, valor_desconto, valor_total, cnpj, data_entrega, situacao, 
+                    (hora, data, observacoes, valor_desconto, valor_total, cnpj, situacao, 
                     id_pessoa_juridica) 
-                    VALUES (:hora, :data, :observacoes, :valor_desconto, :valor_total, :cnpj, :data_entrega, 15, 
+                    VALUES (:hora, :data, :observacoes, :valor_desconto, :valor_total, :cnpj, 15, 
                     :id_cliente)");
           }
 
@@ -51,7 +51,6 @@ class OrcamentoDao /*implements DaoMysql*/
           $sql->bindValue(":valor_desconto", $orcamento->getValorDesconto());
           $sql->bindValue(":valor_total", $orcamento->getValorTotal());
           $sql->bindValue(":cnpj", $orcamento->getCnpj());
-          $sql->bindValue(":data_entrega", $orcamento->getDataEntrega());
           $sql->bindValue(":id_cliente", $idCliente);
           $sql->execute();
 
@@ -80,7 +79,6 @@ class OrcamentoDao /*implements DaoMysql*/
                $orcamento->setValorDesconto($dados['valor_desconto']);
                $orcamento->setValorTotal($dados['valor_total']);
                $orcamento->setCnpj($dados['cnpj']);
-               $orcamento->setDataEntrega($dados['data_entrega']);
                $orcamento->setSituacao($dados['situacao']);
                $orcamento->setIdPessoaFisica($dados['id_pessoa_fisica']);
                $orcamento->setIdPessoaJuridica($dados['id_pessoa_juridica']);
@@ -110,7 +108,6 @@ class OrcamentoDao /*implements DaoMysql*/
                     $orcamento->setValorDesconto($dados['valor_desconto']);
                     $orcamento->setValorTotal($dados['valor_total']);
                     $orcamento->setCnpj($dados['cnpj']);
-                    $orcamento->setDataEntrega($dados['data_entrega']);
                     $orcamento->setSituacao($dados['situacao']);
                     $orcamento->setIdPessoaFisica($dados['id_pessoa_fisica']);
                     $orcamento->setIdPessoaJuridica($dados['id_pessoa_juridica']);
@@ -126,9 +123,8 @@ class OrcamentoDao /*implements DaoMysql*/
      public function update($orcamento)
      {
           $sql = $this->pdo->prepare("UPDATE tbl_orcamento 
-               SET hora=:hora, data=:data, observacoes=:observacoes, descricao_item=:descricao_item,
-               quantidade=:quantidade, preco=:preco, valor_material=:valor_material, valor_servico=:valor_servico,
-               valor_desconto=:valor_desconto, valor_total=:valor_total, cnpj=:cnpj, data_entrega=:data_entrega,
+               SET hora=:hora, data=:data, observacoes=:observacoes,
+               valor_desconto=:valor_desconto, valor_total=:valor_total, cnpj=:cnpj,
 
                WHERE id=:id");
           
@@ -138,7 +134,6 @@ class OrcamentoDao /*implements DaoMysql*/
           $sql->bindValue(":valor_desconto", $orcamento->getValorDesconto());
           $sql->bindValue(":valor_total", $orcamento->getValorTotal());
           $sql->bindValue(":cnpj", $orcamento->getCnpj());
-          $sql->bindValue(":data_entrega", $orcamento->getDataEntrega());
           $sql->bindValue(":situacao", $orcamento->getSituacao());
           $sql->execute();
 
