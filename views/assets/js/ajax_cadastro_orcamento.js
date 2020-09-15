@@ -1,10 +1,5 @@
-<<<<<<< HEAD
 function cadastroOrcamento() {
 
-=======
-function cadastroOrcamento(){
-    
->>>>>>> 07d3baba250f856da385ab2c8427b33ecaf2ad2d
     var tipo = 0;
 
     //Radio de tipo de cadastro
@@ -34,7 +29,6 @@ function cadastroOrcamento(){
     var botao = $("#btn-cadastrar").text();
 
     $.ajax({
-<<<<<<< HEAD
         url: '../../validacoes/validaForm.php',
         type: 'POST',
         data: {
@@ -54,27 +48,6 @@ function cadastroOrcamento(){
             celular: celular,
             email: email,
             botao: botao
-=======
-        url:'../../validacoes/validaForm.php',
-        type:'POST',
-        data:{
-            itens:itens,
-            tipo:tipo,
-            nome_completo:nomeCompleto,
-            razao_social:razaoSocial,
-            nome_fantasia:nomeFantasia,
-            cep:cep,
-            logradouro:logradouro,
-            bairro:bairro,
-            numero:numero,
-            cidade:cidade,
-            estado:estado,
-            complemento:complemento,
-            telefone:telefone,
-            celular:celular,
-            email:email,
-            botao:botao
->>>>>>> 07d3baba250f856da385ab2c8427b33ecaf2ad2d
         },
         success: function (data) {
             console.log(data)
