@@ -115,6 +115,19 @@ class ItensOrcamentoDao
                return FALSE;
           }
      }
+
+     public function findAllByOrcamento($idOrcamento)
+     {
+          $sql = $this->pdo->prepare("SELECT * FROM tbl_itens_orcamento WHERE id_orcamento = :id_orcamento");
+          $sql->bindValue(":id_orcamento", $idOrcamento);
+          $sql->execute();
+
+          if($sql->rowCount() > 0){
+               $dados = $sql->fetchAll(PDO::FETCH_ASSOC);
+               return $dados;
+          }else
+               return FALSE;
+     }
 }
 
 ?>

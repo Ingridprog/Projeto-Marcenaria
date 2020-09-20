@@ -108,7 +108,7 @@ $pessoaJuridicaDao = new PessoaJuridicaDao($pdo);
                             <td><?="teste"?></td>
                             <td>
                                 <a href="../../validacoes/delete.php?id=<?=$orcamento->getId()?>" class="btn btn-danger btn-sm" onclick="return confirm('Deseja realmente excluir?')">Excluir</a> 
-                                <a href="orcamento.php?id=<?=$orcamento->getId()?>&modo=editar" class="btn btn-warning btn-sm">Editar</a>
+                                <button onclick="editOrcamento(<?=$orcamento->getId()?>)" class="btn btn-warning btn-sm">Editar</button>
                                 <button class="btn btn-info btn-sm" onclick="abrirModalOramento()">Ver</button>
                             </td>
                         </tr>
@@ -125,5 +125,6 @@ $pessoaJuridicaDao = new PessoaJuridicaDao($pdo);
         <script src="../assets/js/jquery.js"></script>
         <script src="../assets/js/formHelpers.js"></script>
         <script src="../assets/js/modalHelpers.js"></script>
+        <script src="../assets/js/ajax_editar_orcamento.js"></script>
     </body>
 </html>

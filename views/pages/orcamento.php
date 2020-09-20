@@ -1,40 +1,3 @@
-<?php
-    require_once(dirname(__FILE__)."/../../config.php");
-    require_once($base."/DAO/OrcamentoDao.php");
-    require_once($base."/DAO/PessoaFisicaDao.php");
-    require_once($base."/DAO/PessoaJuridicaDao.php");
-
-    $orcamentoDao = new OrcamentoDao($pdo);
-    $pessoaFisicaDao = new PessoaFisicaDao($pdo);
-    $pessoaJuridicaDao = new PessoaJuridicaDao($pdo);
-
-    $dadosOrcamento = [];
-    $dadosPessoaFisica = [];
-    $dadosPessoaFisica = [];
-
-    $button = "Gerar Orçamento";
-    $tipo = "";
-
-    $id = filter_input(INPUT_GET, 'id');
-    $modo = filter_input(INPUT_GET, 'modo');
-    if(isset($modo)){
-        if(strtoupper($modo) == "EDITAR"){
-            $button = "Editar";
-
-            $dadosOrcamento = $orcamentoDao->findById($id);
-
-            if($dadosOrcamento->getIdPessoaFisica() != NULL){
-                $dadosPessoaFisica = $pessoaFisicaDao->findById($dadosOrcamento->getIdPessoaFisica());
-                $tipo = 'pessoa-fisica';
-            }elseif($dadosOrcamento->getIdPessoaJuridica()){
-                $dadosPessoaJuridica = $pessoaJuridicaDao->findById($dadosOrcamento->getIdPessoaJuridica());
-                $tipo = 'pessoa-juridica';
-            }
-        }
-    }
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -251,5 +214,9 @@
         <script src="../assets/js/formHelpers.js"></script>
         <script src="../assets/js/external_services.js"></script>
         <script src="../assets/js/ajax_cadastro_orcamento.js"></script>
+        <script src="../assets/js/ajax_editar_orcamento.js"></script>
+        <script>
+           console.log(orcamento) 
+        </script>
     </body>
 </html>
