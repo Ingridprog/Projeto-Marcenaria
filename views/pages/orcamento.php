@@ -199,7 +199,7 @@
 
                         <div class="row d-flex justify-content-center">
                             <div class="col-6">
-                                <button type="button" id="btn-cadastrar" onclick="cadastroOrcamento()" class="btn btn-primary btn-lg btn-block"><?=$button?></button>
+                                <button type="button" id="btn-cadastrar" onclick="cadastroOrcamento()" class="btn btn-primary btn-lg btn-block">Gerar orçamento</button>
                             </div>
                         </div>
                     </form>
@@ -215,8 +215,7 @@
         <script src="../assets/js/external_services.js"></script>
         <script src="../assets/js/ajax_cadastro_orcamento.js"></script>
         <script src="../assets/js/ajax_editar_orcamento.js"></script>
-        <script>
-           console.log(orcamento) 
-        </script>
+        <script src="../assets/js/orcamento.js"></script>
+        
     </body>
 </html>

@@ -1,4 +1,3 @@
-var item = "itens"
 function editOrcamento(id){
     $.ajax({
         url:'../../helpers/editar_orcamento.php',
@@ -10,9 +9,11 @@ function editOrcamento(id){
             console.log('carregando...')
         },
         success: function(data){
-            var orcamento = JSON.parse(data);
+            var teste = JSON.parse(data)
+            localStorage.setItem('orcamento', data)
+            console.log(teste)
             window.location.href = '../pages/orcamento.php';
-        },
+            },
         error: function(){
             console.log('erro!')
         }

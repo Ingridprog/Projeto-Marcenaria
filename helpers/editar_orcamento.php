@@ -45,6 +45,7 @@ if(isset($id)){
                 'celular' => $dadosPessoaFisica->getCelular(),
                 'email' => $dadosPessoaFisica->getEmail()
             ],
+            'pessoa_juridica' => false,
             'itens_orcamento' => []
         ];
     }elseif($dadosOrcamento->getIdPessoaJuridica()){
@@ -67,20 +68,20 @@ if(isset($id)){
                 'celular' => $dadosPessoaJuridica->getCelular(),
                 'email' => $dadosPessoaJuridica->getEmail()
             ],
+            'pessoa_fisica' => false,
             'itens_orcamento' => []
         ];
     }
 
     $dadosItensOrcamento = $itensOrcamentoDao->findAllByOrcamento($id);
-
-    if($json['itens_orcamento'] == [])
-        $json['itens_orcamento'] = 'Sem itens';
-    else{
+    
+    if($dadosItensOrcamento){
         foreach($dadosItensOrcamento as $item){
             array_push($json['itens_orcamento'], $item);
         }
-    }
-
+    }else
+        $json['itens_orcamento'] = FALSE;
+    
     echo(json_encode($json));
 }
 
