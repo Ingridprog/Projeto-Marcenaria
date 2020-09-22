@@ -1,4 +1,4 @@
-function cadastroOrcamento() {
+function cadastroOrcamento(tipoCadastro) {
 
     var tipo = 0;
 
@@ -57,7 +57,8 @@ function cadastroOrcamento() {
             valor_desconto:valor_desconto,
             valor_total:valor_total,
             observacoes:observacoes,
-            botao: botao
+            botao: botao,
+            tipo_cadastro:tipoCadastro
         },
         success: function (data) {
             console.log(data)

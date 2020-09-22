@@ -1,3 +1,16 @@
+<?php
+    $modo = filter_input(INPUT_GET, 'modo');
+    $tipoDeCadastro = 'add';
+    $txtButton = "Gerar orçamento";
+
+    if(isset($modo)){
+        if(strtoupper($modo) == "EDITAR"){
+            $tipoDeCadastro = 'edit';
+            $txtButton = 'Editar orçamento';
+        }
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -199,7 +212,7 @@
 
                         <div class="row d-flex justify-content-center">
                             <div class="col-6">
-                                <button type="button" id="btn-cadastrar" onclick="cadastroOrcamento()" class="btn btn-primary btn-lg btn-block">Gerar orçamento</button>
+                                <button type="button" id="btn-cadastrar" onclick="cadastroOrcamento(<?=$tipoDeCadastro?>)" class="btn btn-primary btn-lg btn-block"><?=$txtButton?></button>
                             </div>
                         </div>
                     </form>

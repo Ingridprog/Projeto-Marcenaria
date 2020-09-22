@@ -11,7 +11,7 @@ function editOrcamento(id){
         success: function(data){
             // var teste = JSON.parse(data)
             localStorage.setItem('orcamento', data)
-            window.location.href = '../pages/orcamento.php';
+            window.location.href = '../pages/orcamento.php?modo=editar';
             },
         error: function(){
             console.log('erro!')

@@ -112,6 +112,6 @@ if(localStorage.getItem('orcamento') != null){
 
     }
 
-    // localStorage.removeItem('orcamento')
+    localStorage.removeItem('orcamento')
 }else
     console.log('erro')

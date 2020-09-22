@@ -9,8 +9,7 @@
      require_once("$base/models/ItensOrcamento.php");
 
      $botao = filter_input(INPUT_POST, 'botao');
-
-     echo "TESTE ".$botao;
+     $tipoCadasto = filter_input(INPUT_POST, 'tipo_cadastro');
 
      // Tipo
      $tipoCliente = filter_input(INPUT_POST, "tipo_cliente");
