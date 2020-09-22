@@ -5,6 +5,7 @@ require_once($base."/DAO/OrcamentoDao.php");
 require_once($base."/DAO/PessoaFisicaDao.php");
 require_once($base."/DAO/PessoaJuridicaDao.php");
 require_once($base."/DAO/ItensOrcamentoDao.php");
+require_once($base."/DAO/EnderecoDao.php");
 
 $orcamentoDao = new OrcamentoDao($pdo);
 $pessoaFisicaDao = new PessoaFisicaDao($pdo);
@@ -17,7 +18,6 @@ $dadosPessoaFisica = [];
 
 $button = "Gerar Orçamento";
 $tipo = "";
-
 $id = filter_input(INPUT_POST, 'id');
 
 if(isset($id)){
@@ -28,7 +28,7 @@ if(isset($id)){
 
     if($dadosOrcamento->getIdPessoaFisica() != NULL){
         $dadosPessoaFisica = $pessoaFisicaDao->findById($dadosOrcamento->getIdPessoaFisica());
-        $tipo = 'pessoa-fisica';
+        $tipo = 1;
 
         $json = [
             'id' => $dadosOrcamento->getId(),
@@ -46,11 +46,19 @@ if(isset($id)){
                 'email' => $dadosPessoaFisica->getEmail()
             ],
             'pessoa_juridica' => false,
-            'itens_orcamento' => []
+            'itens_orcamento' => [],
+            'id_endereco' => "",
+            'cep' => "",
+            'logradouro'=>"",
+            'numero' => "",
+            'complemento' => "",
+            'bairro' => "",
+            'cidade' => "",
+            'uf' => ""
         ];
     }elseif($dadosOrcamento->getIdPessoaJuridica()){
         $dadosPessoaJuridica = $pessoaJuridicaDao->findById($dadosOrcamento->getIdPessoaJuridica());
-        $tipo = 'pessoa-juridica';
+        $tipo = 2;
 
         $json = [
             'id' => $dadosOrcamento->getId(),
@@ -69,12 +77,37 @@ if(isset($id)){
                 'email' => $dadosPessoaJuridica->getEmail()
             ],
             'pessoa_fisica' => false,
-            'itens_orcamento' => []
+            'itens_orcamento' => [],
+            'id_endereco' => "",
+            'cep' => "",
+            'logradouro'=>"",
+            'numero' => "",
+            'complemento' => "",
+            'bairro' => "",
+            'cidade' => "",
+            'uf' => ""
         ];
     }
 
-    $dadosItensOrcamento = $itensOrcamentoDao->findAllByOrcamento($id);
+    $enderecoDao = new EnderecoDao($pdo, $tipo);
     
+    if($tipo == 1)
+        $dadosEndereco = $enderecoDao->findByIdPessoa($dadosOrcamento->getIdPessoaFisica(), $tipo);
+    else
+        $dadosEndereco = $enderecoDao->findByIdPessoa($dadosOrcamento->getIdPessoaJuridica(), $tipo);
+
+    //REFATORAR, RIDICULO
+    $json['id_endereco'] = $dadosEndereco->getId();
+    $json['cep'] = $dadosEndereco->getCep();
+    $json['logradouro'] = $dadosEndereco->getLogradouro();
+    $json['numero'] = $dadosEndereco->getNumero();
+    $json['complemento'] = $dadosEndereco->getComplemento();
+    $json['bairro'] = $dadosEndereco->getBairro();
+    $json['cidade'] = $dadosEndereco->getCidade();
+    $json['uf'] = $dadosEndereco->getEstado();
+
+    $dadosItensOrcamento = $itensOrcamentoDao->findAllByOrcamento($id);
+
     if($dadosItensOrcamento){
         foreach($dadosItensOrcamento as $item){
             array_push($json['itens_orcamento'], $item);

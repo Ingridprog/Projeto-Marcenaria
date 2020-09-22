@@ -95,12 +95,22 @@ class Endereco
 
      public function getIdPessoaFisica()
      {
-          return $this->idCliente;
+          return $this->idPessoaFisica;
      }
 
      public function setIdPessoaFisica($idCliente)
      {
-          $this->idCliente = $idCliente;
+          $this->idPessoaFisica = $idCliente;
+     }
+
+     public function getIdPessoaJuridica()
+     {
+          return $this->idPessoaJuridica;
+     }
+
+     public function setIdPessoaJuridica($idCliente)
+     {
+          $this->idPessoaJuridica = $idCliente;
      }
 }
 

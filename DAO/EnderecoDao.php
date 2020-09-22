@@ -74,6 +74,40 @@ class EnderecoDao implements DaoMysql
           }
      }
 
+     public function findByIdPessoa($idCliente, $tipo)
+     {
+
+          if($tipo == 1)
+               $sql = $this->pdo->prepare("SELECT * FROM tbl_endereco WHERE id_pessoa_fisica=:id");
+          else
+               $sql = $this->pdo->prepare("SELECT * FROM tbl_endereco WHERE id_pessoa_juridica=:id");
+
+
+          $sql->bindValue(":id", $idCliente);
+          $sql->execute();
+          
+          if($sql->rowCount() > 0)
+          {
+               $dados = $sql->fetch(PDO::FETCH_ASSOC);
+               $endereco = new Endereco();
+               $endereco->setId($dados['id']);
+               $endereco->setCep($dados['cep']);
+               $endereco->setLogradouro($dados['logradouro']);
+               $endereco->setBairro($dados['bairro']);
+               $endereco->setCidade($dados['cidade']);
+               $endereco->setEstado($dados['estado']);
+               $endereco->setNumero($dados['numero']);
+               $endereco->setComplemento($dados['complemento']);
+               $endereco->setIdPessoaFisica($dados['id_pessoa_fisica']);
+               $endereco->setIdPessoaJuridica($dados['id_pessoa_juridica']);
+
+               return $endereco;
+
+          }else{
+               return FALSE;
+          }
+     }
+
      public function findAll()
      {
           $enderecos = [];
@@ -141,6 +175,7 @@ class EnderecoDao implements DaoMysql
                return FALSE;
           }
      }
+
 }
 
 ?>
