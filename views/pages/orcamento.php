@@ -174,11 +174,11 @@
                             <table class="table table-striped table-hover mt-2 hoverble">
                                 <thead class="thead-dark">
                                     <tr>
-                                        <td>Descrição do item</td>
-                                        <td>Qtd</td>
-                                        <td>Valor unitário</td>
-                                        <td>Valor</td>
-                                        <td>Opções</td>
+                                        <th scope="col">Descrição do item</th>
+                                        <th scope="col">Qth</th>
+                                        <th scope="col">Valor unitário</th>
+                                        <th scope="col">Valor</th>
+                                        <th scope="col">Opções</th>
                                     </tr>
                                 </thead>
                                 <tbody id="tbody">
