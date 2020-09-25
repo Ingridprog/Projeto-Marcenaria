@@ -10,6 +10,16 @@
 
      $botao = filter_input(INPUT_POST, 'botao');
      $tipoCadasto = filter_input(INPUT_POST, 'tipo_cadastro');
+     
+     $id = filter_input(INPUT_POST, 'id');
+     $id_pessoa_fisica = filter_input(INPUT_POST, 'id_pessoa_fisica');
+     $id_pessoa_juridica = filter_input(INPUT_POST, 'id_pessoa_juridica');
+     $id_endereco = filter_input(INPUT_POST, 'id_endereco');
+
+     // echo ("ids:".$id."<br/>");
+     // echo ("ids:".$id_pessoa_fisica."<br/>");
+     // echo ("ids:".$id_pessoa_juridica."<br/>");
+     // echo ("ids:".$id_endereco."<br/>");
 
      // Tipo
      $tipoCliente = filter_input(INPUT_POST, "tipo_cliente");
@@ -115,6 +125,6 @@
           $itensOrcamentoDao->add($itensOrcamento);
      }
 
-     // header("location: ../.php");
+     header("location: ../.php");
 
 ?>

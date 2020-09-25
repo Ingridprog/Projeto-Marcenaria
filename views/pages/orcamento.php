@@ -212,7 +212,7 @@
 
                         <div class="row d-flex justify-content-center">
                             <div class="col-6">
-                                <button type="button" id="btn-cadastrar" onclick="cadastroOrcamento(<?=$tipoDeCadastro?>)" class="btn btn-primary btn-lg btn-block"><?=$txtButton?></button>
+                                <button type="button" id="btn-cadastrar" onclick="cadastroOrcamento('<?=$tipoDeCadastro?>')" class="btn btn-primary btn-lg btn-block"><?=$txtButton?></button>
                             </div>
                         </div>
                     </form>
