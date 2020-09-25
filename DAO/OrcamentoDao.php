@@ -122,19 +122,21 @@ class OrcamentoDao /*implements DaoMysql*/
 
      public function update($orcamento)
      {
+          print_r($orcamento);
           $sql = $this->pdo->prepare("UPDATE tbl_orcamento 
                SET hora=:hora, data=:data, observacoes=:observacoes,
-               valor_desconto=:valor_desconto, valor_total=:valor_total, cnpj=:cnpj,
+               valor_desconto=:valor_desconto, valor_total=:valor_total, cnpj=:cnpj
 
                WHERE id=:id");
-          
+          $sql->bindValue(":id", $orcamento->getId());
           $sql->bindValue(":hora", $orcamento->getHora());
           $sql->bindValue(":data", $orcamento->getData());
           $sql->bindValue(":observacoes", $orcamento->getObservacoes());
           $sql->bindValue(":valor_desconto", $orcamento->getValorDesconto());
           $sql->bindValue(":valor_total", $orcamento->getValorTotal());
           $sql->bindValue(":cnpj", $orcamento->getCnpj());
-          $sql->bindValue(":situacao", $orcamento->getSituacao());
+          // $sql->bindValue(":id_pessoa_fisica", $orcamento->getIdPessoaFisica());
+          // $sql->bindValue(":situacao", $orcamento->getSituacao());
           $sql->execute();
 
           if($sql->rowCount() > 0){

@@ -93,9 +93,11 @@ class PessoaFisicaDao implements DaoMysql
           $sql->bindValue(":celular", $pessoaFisica->getCelular());
           $sql->bindValue(":email", $pessoaFisica->getEmail());
           $sql->bindValue(":cpf", $pessoaFisica->getCpf());
+          $sql->execute();
 
           if($sql->rowCount() > 0){
-               return $pessoaFisica;
+               // return $pessoaFisica;
+               print_r($pessoaFisica);
           }else{
                return FALSE;
           }

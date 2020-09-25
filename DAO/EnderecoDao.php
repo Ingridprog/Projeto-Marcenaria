@@ -139,10 +139,13 @@ class EnderecoDao implements DaoMysql
 
      public function update($endereco)
      {
-          $sql = $this->pdo->prepare("UPDATE tbl_endereco 
+         
+               $sql = $this->pdo->prepare("UPDATE tbl_endereco 
                SET cep=:cep, logradouro=:logradouro, bairro=:bairro, cidade=:cidade, 
-               estado=:estado, numero=:numero, complemento=:complemento, id_pessoa_fisica=:id_pessoa_fisica, id_pessoa_juridica=:id_pessoa_juridica
+               estado=:estado, numero=:numero, complemento=:complemento
                WHERE id=:id");
+          
+          
           
           $sql->bindValue(":id", $endereco->getId());
           $sql->bindValue(":cep", $endereco->getCep());
@@ -152,8 +155,6 @@ class EnderecoDao implements DaoMysql
           $sql->bindValue(":estado", $endereco->getEstado());
           $sql->bindValue(":numero", $endereco->getNumero());
           $sql->bindValue(":complemento", $endereco->getComplemento());
-          $sql->bindValue(":id_pessoa_fisica", $endereco->getIdPessoaFisica());
-          $sql->bindValue(":id_pessoa_juridica", $endereco->getIdPessoaJuridica());
           $sql->execute();
 
           if($sql->rowCount() > 0){

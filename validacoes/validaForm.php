@@ -71,8 +71,11 @@
 
                if(strtoupper($tipoCadasto) == "ADD")
                     $pessoaFisicaDao->add($pessoaFisica);
-               else
+               else{
+                    $pessoaFisica->setId($id_pessoa_fisica);
                     $pessoaFisicaDao->update($pessoaFisica);
+               }
+                    
           }
      }else{
           if(($nomeFantasia || $razaoSocial) &&($telefone || $celular || $email)){
@@ -83,7 +86,14 @@
                $pessoaJuridica->setTelefone($telefone);
                $pessoaJuridica->setCelular($celular);
                $pessoaJuridica->setEmail($email);
-               $pessoaJuridicaDao->add($pessoaJuridica);
+
+               if(strtoupper($tipoCadasto) == "ADD")
+                    $pessoaJuridicaDao->add($pessoaJuridica);
+               else{
+                    $pessoaJuridica->setId($id_pessoa_fisica);
+                    $pessoaJuridicaDao->update($pessoaJuridica);
+               }
+                    
           }
      }
 
@@ -97,8 +107,15 @@
      $endereco->setNumero($numero);
      $endereco->setComplemento($complemento);
 
-     $enderecoDao->add($endereco);
-
+     if(strtoupper($tipoCadasto) == "ADD")
+          $enderecoDao->add($endereco);
+     else{
+          $endereco->setId($id_endereco);
+          $endereco->setIdPessoaFisica($id_pessoa_fisica);
+          // $endereco->setIdPessoaJuridica($id_pessoa_juridica);
+          $enderecoDao->update($endereco);
+     }
+  
      //orçamento
      $date = new DateTime();
      $date->setTimezone(new DateTimeZone('America/Sao_Paulo'));
@@ -111,8 +128,15 @@
      $orcamento->setObservacoes($observacoes);
      $orcamento->setValorDesconto($valorDesconto);
      $orcamento->setValorTotal($valorTotal);
-     $orcamentoDao->add($orcamento, $tipoCliente);
 
+     if(strtoupper($tipoCadasto) == "ADD")
+          $orcamentoDao->add($orcamento, $tipoCliente);
+     else{
+          $orcamento->setId($id);
+          // $orcamento->setIdPessoaFisica($id_pessoa_fisica);
+          $orcamentoDao->update($orcamento);
+     }
+          
      // $listaItensOrcamento = array();
 
      foreach($itensOrcamento as $item){
@@ -124,6 +148,6 @@
           $itensOrcamentoDao->add($itensOrcamento);
      }
 
-     header("location: ../.php");
+     // header("location: ../.php");
 
 ?>
