@@ -58,7 +58,11 @@
                $pessoaFisica->setEmail($email);
                $pessoaFisica->setTelefone($telefone);
                $pessoaFisica->setCelular($celular);
-               $pessoaFisicaDao->add($pessoaFisica);
+
+               if(strtoupper($tipoCadasto) == "ADD")
+                    $pessoaFisicaDao->add($pessoaFisica);
+               else
+                    $pessoaFisicaDao->update($pessoaFisica);
           }
      }else{
           if(($nomeFantasia || $razaoSocial) &&($telefone || $celular || $email)){

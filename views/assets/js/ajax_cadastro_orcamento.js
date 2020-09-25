@@ -1,4 +1,4 @@
-function cadastroOrcamento(tipoCadastro) {
+function cadastroOrcamento(modo) {
 
     var tipo = 0;
 
@@ -24,12 +24,6 @@ function cadastroOrcamento(tipoCadastro) {
     var valor_total = $("#valor_total").val();
     var valor_desconto = $("#valor_desconto").val();
     var observacoes = $("#observacoes").val();
-
-    // if (tipoCadastro == 1)
-    //     tipo = $("#pessoa_fisica").val();
-    // else
-    //     tipo = $("#pessoa_juridica").val();
-
     let itens = arr;
     var botao = $("#btn-cadastrar").text();
 
@@ -58,7 +52,7 @@ function cadastroOrcamento(tipoCadastro) {
             valor_total:valor_total,
             observacoes:observacoes,
             botao: botao,
-            tipo_cadastro:tipoCadastro
+            tipo_cadastro:modo
         },
         success: function (data) {
             console.log(data)
