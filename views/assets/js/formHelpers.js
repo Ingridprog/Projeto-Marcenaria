@@ -46,6 +46,8 @@ var totalArr = [];
 var valorTotal = 0
 const reducer = (acc, currentValue) => acc + currentValue;
 
+
+
 const resetarCampos = () =>{
     $descricaoItem.value = ""
     $quantidadeItem.value = ""
@@ -70,10 +72,10 @@ const listarItens = (array) =>{
     return array.map((elemento, i) =>
         `
             <tr id="item${i}" name="itens[]">
-                <td>${elemento[0]}</td>
                 <td>${elemento[1]}</td>
                 <td>${elemento[2]}</td>
-                <td>${elemento[2] * elemento[1]}</td>
+                <td>${elemento[3]}</td>
+                <td>${elemento[2] * elemento[3]}</td>
                 <td class="small-column">
                 <button type="button" class="btn btn-sm btn-danger" onclick="removerItem(${i})">Excluir</button>
                 </td>
@@ -82,17 +84,29 @@ const listarItens = (array) =>{
     )
 }
 
+if(localStorage.getItem('orcamento') != null){
+    jsonLocal = JSON.parse(localStorage.getItem('orcamento'))
+
+    for(let i = 0; i < jsonLocal.itens_orcamento.length; i++){
+        arr.push(Object.values(jsonLocal.itens_orcamento[i]))
+    }
+
+    valorTotal = parseFloat(jsonLocal.valor_total)
+}
+
+console.log(arr)
+
 
 function adicionarItens(){
     var descItem = $descricaoItem.value;
     var qtdItem = parseInt($quantidadeItem.value);
     var precoItem = parseFloat($precoItem.value);
-    var item = [descItem, parseInt(qtdItem),precoItem];
+    var item = [0, descItem, parseInt(qtdItem),precoItem, 0];
 
     arr.push(item);
     totalArr.push(precoItem * qtdItem);
 
-    console.log(totalArr)
+    console.log(arr)
 
     $valor_total.value = totalArr.reduce(reducer);
     $lista.innerHTML = listarItens(arr).reduce(reducer)
