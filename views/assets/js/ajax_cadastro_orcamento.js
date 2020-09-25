@@ -2,6 +2,8 @@ function cadastroOrcamento(modo) {
 
     var tipo = 0;
 
+    console.log(modo)
+    
     //Radio de tipo de cadastro
     var tipoCadastro = $("input[name='tipo-cliente']:checked").val();
 
@@ -27,10 +29,19 @@ function cadastroOrcamento(modo) {
     let itens = arr;
     var botao = $("#btn-cadastrar").text();
 
+    var json = JSON.parse(localStorage.getItem('orcamento'))
+
     $.ajax({
         url: '../../validacoes/validaForm.php',
         type: 'POST',
         data: {
+            //Valores vindos do localStorage
+            id:json.id,
+            id_pessoa_fisica:json.pessoa_fisica.id ?? "",
+            id_pessoa_juridica:json.pessoa_juridica.id ?? "",
+            id_endereco:json.id_endereco,
+           
+            //valores vindos dos inputs
             itens: JSON.stringify(itens),
             tipo_cliente: tipoCadastro,
             nome_completo: nomeCompleto,
