@@ -13,7 +13,6 @@
 
      // Tipo
      $tipoCliente = filter_input(INPUT_POST, "tipo_cliente");
-
      $pessoaFisicaDao = new PessoaFisicaDao($pdo);
      $pessoaJuridicaDao = new PessoaJuridicaDao($pdo);
      $enderecoDao = new EnderecoDao($pdo, $tipoCliente);
