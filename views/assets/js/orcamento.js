@@ -46,12 +46,15 @@ const listarItensOrcamento = (array) =>{
                 <td>${parseFloat(elemento.preco)}</td>
                 <td>${parseFloat(elemento.preco) * parseInt(elemento.quantidade)}</td>
                 <td class="small-column">
-                <button type="button" class="btn btn-sm btn-danger" onclick="removerItem(${i})">Excluir</button>
+                    <button type="button" class="btn btn-sm btn-warning" onclick="abrirModalEditarItem(${elemento.id})">Editar</button>
+                    <button type="button" class="btn btn-sm btn-danger" onclick="removerItem(${i})">Excluir</button>
                 </td>
             </tr>
         `
     )
 }
+
+function adicionarItensEdit(){}
 
 if(localStorage.getItem('orcamento') != null){
 
@@ -107,7 +110,7 @@ if(localStorage.getItem('orcamento') != null){
             $tbodyItens.innerHTML = "<tr style='background-color:#ffbdbd;'><td>Sem itens</td><td></td><td></td><td></td><td></td></tr>"
         }else{
             // console.log(orcamento.itens_orcamento)
-            console.log($tbodyItens.innerHTML = listarItensOrcamento(orcamento.itens_orcamento).reduce(reducer))
+           $tbodyItens.innerHTML = listarItensOrcamento(orcamento.itens_orcamento).reduce(reducer)
         }
 
     }

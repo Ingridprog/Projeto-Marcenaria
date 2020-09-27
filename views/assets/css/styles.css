@@ -146,7 +146,8 @@ footer h5{
     bottom: 0px !important;
 }
 
-#modal_orcamento{
+#modal_orcamento,
+#modal_itens{
     width: 100vw;
     height: 100vh;
     background-color:#0000007a;
@@ -158,11 +159,16 @@ footer h5{
     align-items: center;
     z-index: -5;
 }
-.content{
+.content,
+.content-itens{
     width: 800px;
     height: 650px;
     background-color:#ffffff;
     border-radius: 8px;
+}
+.content-itens{
+    width: 850px;
+    height: 160px;
 }
 .fix-height{
     height: 400px !important;

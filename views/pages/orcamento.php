@@ -21,6 +21,9 @@
         <link rel="stylesheet" href="../assets/css/styles.css">
     </head>
     <body>
+        <div id="modal_itens">
+            
+        </div>
         <nav class="width-100p mb-3 navbar pd-zero navbar-expand-lg navbar-dark bg-primary">
             <div class="container d-flex justify-content-end">
                 <div class="nav-item text-white d-flex justify-content-center align-items-center">
@@ -229,6 +232,7 @@
         <script src="../assets/js/ajax_cadastro_orcamento.js"></script>
         <script src="../assets/js/ajax_editar_orcamento.js"></script>
         <script src="../assets/js/orcamento.js"></script>
+        <script src="../assets/js/modalHelpers.js"></script>
         
     </body>
 </html>

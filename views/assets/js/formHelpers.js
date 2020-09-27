@@ -30,8 +30,6 @@ function mudarTipoCliente(){
     } 
 }
 
-
-
 // Interações dos itens do orçamento
 // JS Puro
 const $lista = document.getElementById("tbody");
@@ -44,14 +42,14 @@ const $precoItem = document.getElementById("preco_item");
 var arr = [];
 var totalArr = [];
 var valorTotal = 0
+
 const reducer = (acc, currentValue) => acc + currentValue;
-
-
 
 const resetarCampos = () =>{
     $descricaoItem.value = ""
     $quantidadeItem.value = ""
     $precoItem.value = ""
+    $valor_desconto.value = 0
 }
 
 //removendo itens da lista
@@ -59,6 +57,7 @@ const removerItem = (i) => {
     arr.splice(i, 1)
     totalArr.splice(i, 1)
     const $item = document.getElementById(`item${i}`)
+    $valor_desconto.value = 0
     $item.style.display = "none";
     
     if(arr.length != 0)
@@ -77,7 +76,8 @@ const listarItens = (array) =>{
                 <td>${elemento[3]}</td>
                 <td>${elemento[2] * elemento[3]}</td>
                 <td class="small-column">
-                <button type="button" class="btn btn-sm btn-danger" onclick="removerItem(${i})">Excluir</button>
+                    <button type="button" class="btn btn-sm btn-warning" onclick="abrirModalEditarItem(${elemento[0]})">Editar</button>
+                    <button type="button" class="btn btn-sm btn-danger" onclick="removerItem(${i})">Excluir</button>
                 </td>
             </tr>
         `
@@ -88,14 +88,38 @@ if(localStorage.getItem('orcamento') != null){
     jsonLocal = JSON.parse(localStorage.getItem('orcamento'))
 
     for(let i = 0; i < jsonLocal.itens_orcamento.length; i++){
+        
         arr.push(Object.values(jsonLocal.itens_orcamento[i]))
-    }
 
+        let itemAux = [];
+        
+        for(let j = 0; j < arr[i].length; j++){
+            
+            switch(j){
+                case 0:
+                    itemAux.push(parseInt(arr[i][j]))
+                    break
+                case 2:
+                    itemAux.push(parseInt(arr[i][j]))
+                    break
+                case 3:
+                    itemAux.push(parseFloat(arr[i][j]))
+                    totalArr.push(parseFloat(arr[i][j]) * itemAux[2])
+                    break
+                case 4:
+                    itemAux.push(parseInt(arr[i][j]))
+                    break
+                default:
+                    itemAux.push(arr[i][j])
+                    break
+            }
+
+        }
+        arr.splice(i, 1)
+        arr.push(itemAux)
+    }
     valorTotal = parseFloat(jsonLocal.valor_total)
 }
-
-console.log(arr)
-
 
 function adicionarItens(){
     var descItem = $descricaoItem.value;
@@ -105,8 +129,6 @@ function adicionarItens(){
 
     arr.push(item);
     totalArr.push(precoItem * qtdItem);
-
-    console.log(arr)
 
     $valor_total.value = totalArr.reduce(reducer);
     $lista.innerHTML = listarItens(arr).reduce(reducer)
@@ -123,6 +145,7 @@ function aplicarDesconto(){
         $valor_total.value = totalArr.reduce(reducer);
     }
 }
+
 
 
 
