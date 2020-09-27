@@ -1,9 +1,10 @@
 <?php
 
-require_once('interfaces/DaoMysql.php');
-require_once('models/DadosExb.php');
+require_once(dirname(__FILE__)."/../config.php");
+require_once("$base/interfaces/DadosExbInterface.php");
+require_once("$base/models/DadosExb.php");
 
-class DadosExbDao implements DaoMysql
+class DadosExbDao implements DadosExbInterface
 {
      private $pdo;
 

@@ -1,9 +1,10 @@
 <?php
 
 require_once(dirname(__FILE__)."/../config.php");
+require_once("$base/interfaces/OrcamentoInterface.php");
 require_once("$base/models/Orcamento.php");
 
-class OrcamentoDao /*implements DaoMysql*/
+class OrcamentoDao implements OrcamentoInterface
 {
      private $pdo;
      private $tipo;
@@ -11,7 +12,6 @@ class OrcamentoDao /*implements DaoMysql*/
      public function __construct(PDO $pdo)
      {
           $this->pdo = $pdo;
-         
      }
      
      public function add($orcamento, $tipo)
@@ -33,7 +33,7 @@ class OrcamentoDao /*implements DaoMysql*/
                     :id_cliente)");
 
           }elseif($this->tipo==2){
-               // refatorar - ridiculo
+               // refatorar
                $id = $this->pdo->query("SELECT id_pessoa_juridica FROM tbl_endereco WHERE id=$lastInsertId");
                $dados = $id->fetch(PDO::FETCH_ASSOC);
                $idCliente = $dados['id_pessoa_juridica'];
@@ -58,7 +58,7 @@ class OrcamentoDao /*implements DaoMysql*/
                $orcamento->setId($this->pdo->lastInsertId());
                return $orcamento;
           }else{
-               return "Não foi";
+               return FALSE;
           }
      }
 
@@ -122,7 +122,6 @@ class OrcamentoDao /*implements DaoMysql*/
 
      public function update($orcamento)
      {
-          print_r($orcamento);
           $sql = $this->pdo->prepare("UPDATE tbl_orcamento 
                SET hora=:hora, data=:data, observacoes=:observacoes,
                valor_desconto=:valor_desconto, valor_total=:valor_total, cnpj=:cnpj
@@ -135,8 +134,6 @@ class OrcamentoDao /*implements DaoMysql*/
           $sql->bindValue(":valor_desconto", $orcamento->getValorDesconto());
           $sql->bindValue(":valor_total", $orcamento->getValorTotal());
           $sql->bindValue(":cnpj", $orcamento->getCnpj());
-          // $sql->bindValue(":id_pessoa_fisica", $orcamento->getIdPessoaFisica());
-          // $sql->bindValue(":situacao", $orcamento->getSituacao());
           $sql->execute();
 
           if($sql->rowCount() > 0){

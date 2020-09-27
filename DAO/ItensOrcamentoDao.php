@@ -1,10 +1,10 @@
 <?php
 
 require_once(dirname(__FILE__)."/../config.php");
-require_once("$base/interfaces/DaoMysql.php");
+require_once("$base/interfaces/ItensOrcamentoInterface.php");
 require_once("$base/models/Orcamento.php");
 
-class ItensOrcamentoDao
+class ItensOrcamentoDao implements ItensOrcamentoInterface
 {
      private $pdo;
 
@@ -36,7 +36,7 @@ class ItensOrcamentoDao
                $itensOrcamento->setId($this->pdo->lastInsertId());
                return $itensOrcamento;
           }else{
-               return "Não foi";
+               return FALSE;
           }
      }
 
@@ -95,7 +95,7 @@ class ItensOrcamentoDao
 
                 return $orcamentos;
           }else
-               return false;
+               return FALSE;
      }
 
      public function update($orcamento)

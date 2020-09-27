@@ -1,10 +1,10 @@
 <?php
 
 require_once(dirname(__FILE__)."/../config.php");
-require_once("$base/interfaces/DaoMysql.php");
+require_once("$base/interfaces/PessoaJuridicaInterface.php");
 require_once("$base/models/PessoaJuridica.php");
 
-class PessoaJuridicaDao implements DaoMysql
+class PessoaJuridicaDao implements PessoaJuridicaInterface
 {
      private $pdo;
 
@@ -41,8 +41,7 @@ class PessoaJuridicaDao implements DaoMysql
           $sql->bindValue(":id", $id);
           $sql->execute();
 
-          if($sql->rowCount() > 0)
-          {
+          if($sql->rowCount() > 0){
                $dados = $sql->fetch(PDO::FETCH_ASSOC);
                $pessoaJuridica = new PessoaJuridica();
                $pessoaJuridica->setId($dados['id']);
@@ -66,8 +65,7 @@ class PessoaJuridicaDao implements DaoMysql
 
           $sql = $this->pdo->query("SELECT * FROM tbl_pessoa_juridica");
 
-          if($sql->rowCount() > 0)
-          {    
+          if($sql->rowCount() > 0){    
                $dados = $sql->fetchAll(PDO::FETCH_ASSOC);
                foreach($dados as $cliente){
                     $pessoaJuridica = new PessoaJuridica();
@@ -83,6 +81,8 @@ class PessoaJuridicaDao implements DaoMysql
                }
 
                return $clientes;
+          }else{
+               return FALSE;
           }
      }
 
