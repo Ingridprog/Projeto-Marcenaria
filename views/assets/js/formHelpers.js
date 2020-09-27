@@ -117,8 +117,10 @@ if(localStorage.getItem('orcamento') != null){
         }
         arr.splice(i, 1)
         arr.push(itemAux)
+        console.log(totalArr)
     }
     valorTotal = parseFloat(jsonLocal.valor_total)
+    $valor_total.value = totalArr.reduce(reducer) - parseFloat($valor_desconto.value)
 }
 
 function adicionarItens(){

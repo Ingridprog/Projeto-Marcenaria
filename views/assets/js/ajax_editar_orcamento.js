@@ -26,7 +26,7 @@ function editOrcamento(id){
     })
 }
 
-function editarItensOrcamento(idItem){
+function editarItensOrcamento(idItem, idOrcamento){
     var descricaoItem = $("#desc_item_edit").val()
     var quantidade = $("#quantidade_item_edit").val()
     var preco = $("#preco_item_edit").val()
@@ -38,11 +38,12 @@ function editarItensOrcamento(idItem){
             id:idItem,
             descricao_item: descricaoItem,
             quantidade: quantidade,
-            preco: preco
+            preco: preco,
         },
         success: function(data){
             if(data == "TRUE"){
                 fecharModal();
+                editOrcamento(idOrcamento);
             }else{
                 alert('Erro ao editar');
             }

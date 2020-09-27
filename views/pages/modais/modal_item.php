@@ -7,6 +7,7 @@ $descricaoItem = (String) "";
 $quantidade = (int) 0;
 $preco = (float) 0;
 $dadosItensOrcamento = array();
+$idOrcamento = (int) 0;
 
 if(isset($id)){
     $itensOrcamentoDao = new ItensOrcamentoDao($pdo);
@@ -14,6 +15,7 @@ if(isset($id)){
     $descricaoItem = $dadosItensOrcamento->getDescricaoItem();
     $quantidade = $dadosItensOrcamento->getQuantidade();
     $preco = $dadosItensOrcamento->getPreco();
+    $idOrcamento = $dadosItensOrcamento->getIdOrcamento();
 }
 
 ?>
@@ -38,7 +40,7 @@ if(isset($id)){
 
     <div class="row">
         <div class="col d-flex justify-content-center">
-            <button class="btn btn-success mr-5" onclick="editarItensOrcamento(<?=$id?>)">
+            <button class="btn btn-success mr-5" onclick="editarItensOrcamento(<?=$id?>, <?=$idOrcamento?>)">
                 Editar
                 <img src="../assets/img/tick.png" class="button-icon" alt="editar">
             </button>

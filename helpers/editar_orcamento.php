@@ -15,10 +15,12 @@ $itensOrcamentoDao = new ItensOrcamentoDao($pdo);
 $dadosOrcamento = [];
 $dadosPessoaFisica = [];
 $dadosPessoaFisica = [];
-
+$valorTotal = array();
 $button = "Gerar Orçamento";
 $tipo = "";
 $id = filter_input(INPUT_POST, 'id');
+
+
 
 if(isset($id)){
     
@@ -36,7 +38,7 @@ if(isset($id)){
             'data' => $dadosOrcamento->getData(),
             'observacoes' => $dadosOrcamento->getObservacoes(),
             'valor_desconto' => $dadosOrcamento->getValorDesconto(),
-            'valor_total' => $dadosOrcamento->getValorTotal(),
+            'valor_total' => 0,
             'pessoa_fisica' => [
                 'id' => $dadosPessoaFisica->getId(),
                 'nome' => $dadosPessoaFisica->getNome(),
@@ -66,7 +68,7 @@ if(isset($id)){
             'data' => $dadosOrcamento->getData(),
             'observacoes' => $dadosOrcamento->getObservacoes(),
             'valor_desconto' => $dadosOrcamento->getValorDesconto(),
-            'valor_total' => $dadosOrcamento->getValorTotal(),
+            'valor_total' => 0,
             'pessoa_juridica' => [
                 'id' => $dadosPessoaJuridica->getId(),
                 'razao_social' => $dadosPessoaJuridica->getRazaoSocial(),
@@ -111,11 +113,15 @@ if(isset($id)){
     if($dadosItensOrcamento){
         foreach($dadosItensOrcamento as $item){
             array_push($json['itens_orcamento'], $item);
+            array_push($valorTotal, $item['preco'] * $item['quantidade']);
         }
     }else
         $json['itens_orcamento'] = FALSE;
+
+    $json['valor_total'] = array_sum($valorTotal) - $json['valor_desconto'];
     
     echo(json_encode($json));
+    // print_r($valorTotal);
 }
 
 ?>
