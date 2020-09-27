@@ -136,6 +136,19 @@ class ItensOrcamentoDao implements ItensOrcamentoInterface
           }else
                return FALSE;
      }
+
+     public function deleteListItens($idOrcamento)
+     {
+          $sql = $this->pdo->prepare("DELETE FROM tbl_itens_orcamento WHERE id_orcamento = :id");
+          $sql->bindValue(":id", $idOrcamento);
+          $sql->execute();
+
+          if($sql->rowCount() > 0){
+               return TRUE;
+          }else{
+               return FALSE;
+          }
+     }
 }
 
 ?>
