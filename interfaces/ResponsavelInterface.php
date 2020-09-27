@@ -1,6 +1,6 @@
 <?php
 
-interface DAOResponsavel
+interface ResponsavelInterface
 {
      public function findByToken($token);
      public function findByEmail($email);

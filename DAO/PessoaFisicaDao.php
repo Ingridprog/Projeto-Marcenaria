@@ -1,10 +1,10 @@
 <?php
 
 require_once(dirname(__FILE__)."/../config.php");
-require_once("$base/interfaces/DaoMysql.php");
+require_once("$base/interfaces/PessoaFisicaInterface.php");
 require_once("$base/models/PessoaFisica.php");
 
-class PessoaFisicaDao implements DaoMysql
+class PessoaFisicaDao implements PessoaFisicaInterface
 {
      private $pdo;
 
@@ -64,8 +64,7 @@ class PessoaFisicaDao implements DaoMysql
 
           $sql = $this->pdo->query("SELECT * FROM tbl_pessoa_fisica");
 
-          if($sql->rowCount() > 0)
-          {    
+          if($sql->rowCount() > 0){    
                $dados = $sql->fetchAll(PDO::FETCH_ASSOC);
                foreach($dados as $cliente){
                     $pessoaFisica = new PessoaFisica();
@@ -80,6 +79,8 @@ class PessoaFisicaDao implements DaoMysql
                }
 
                return $clientes;
+          }else{
+               return FALSE;
           }
      }
 
@@ -96,8 +97,7 @@ class PessoaFisicaDao implements DaoMysql
           $sql->execute();
 
           if($sql->rowCount() > 0){
-               // return $pessoaFisica;
-               print_r($pessoaFisica);
+               return $pessoaFisica;
           }else{
                return FALSE;
           }

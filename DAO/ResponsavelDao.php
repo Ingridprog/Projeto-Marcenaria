@@ -1,11 +1,10 @@
 <?php
 
 require_once dirname(__FILE__)."/../config.php";
-require_once $base."/interfaces/ResponsavelDAO.php";
+require_once $base."/interfaces/ResponsavelInterface.php";
 require_once $base.'/models/Responsavel.php';
 
-
-class ResponsavelDao implements DAOResponsavel
+class ResponsavelDao implements ResponsavelInterface
 {
      private $pdo;
 

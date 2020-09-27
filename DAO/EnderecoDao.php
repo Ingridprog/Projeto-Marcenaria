@@ -1,9 +1,10 @@
 <?php
 
-require_once('../interfaces/DaoMysql.php');
-require_once('../models/Endereco.php');
+require_once(dirname(__FILE__)."/../config.php");
+require_once("$base/interfaces/EnderecoInterface.php");
+require_once("$base/models/Endereco.php");
 
-class EnderecoDao implements DaoMysql
+class EnderecoDao implements EnderecoInterface
 {
      private $pdo;
      private $tipo;
@@ -42,7 +43,7 @@ class EnderecoDao implements DaoMysql
                $endereco->setId($this->pdo->lastInsertId());
                return $endereco;
           }else{
-               return "NÂO FOI";
+               return FALSE;
           }
      }
 
@@ -76,12 +77,10 @@ class EnderecoDao implements DaoMysql
 
      public function findByIdPessoa($idCliente, $tipo)
      {
-
           if($tipo == 1)
                $sql = $this->pdo->prepare("SELECT * FROM tbl_endereco WHERE id_pessoa_fisica=:id");
           else
                $sql = $this->pdo->prepare("SELECT * FROM tbl_endereco WHERE id_pessoa_juridica=:id");
-
 
           $sql->bindValue(":id", $idCliente);
           $sql->execute();
@@ -114,8 +113,7 @@ class EnderecoDao implements DaoMysql
 
           $sql = $this->pdo->query("SELECT * FROM tbl_endereco");
 
-          if($sql->rowCount() > 0)
-          {    
+          if($sql->rowCount() > 0){    
                $dados = $sql->fetchAll(PDO::FETCH_ASSOC);
                foreach($dados as $end){
                     $endereco = new Endereco();
@@ -134,18 +132,18 @@ class EnderecoDao implements DaoMysql
                }
 
                return $enderecos;
+          }else{
+               return FALSE;
           }
      }
 
      public function update($endereco)
      {
          
-               $sql = $this->pdo->prepare("UPDATE tbl_endereco 
-               SET cep=:cep, logradouro=:logradouro, bairro=:bairro, cidade=:cidade, 
-               estado=:estado, numero=:numero, complemento=:complemento
-               WHERE id=:id");
-          
-          
+          $sql = $this->pdo->prepare("UPDATE tbl_endereco 
+          SET cep=:cep, logradouro=:logradouro, bairro=:bairro, cidade=:cidade, 
+          estado=:estado, numero=:numero, complemento=:complemento
+          WHERE id=:id");
           
           $sql->bindValue(":id", $endereco->getId());
           $sql->bindValue(":cep", $endereco->getCep());
