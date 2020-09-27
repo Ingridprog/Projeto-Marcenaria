@@ -1,0 +1,33 @@
+#heade_pdf{
+    width: 100%;
+    height: 130px;
+}
+.exb_logo{
+    height: 130px;
+}
+#exb_info{
+    width: 100%;
+    height: 140px;
+}
+.exb_info_wrapper{
+    width: 100%;
+    height: 100%;
+    border: solid 2px #000;
+}
+.nome_cliente{
+    width: 100%;
+    height: 30px;
+}
+.border-bottom{
+    
+    border-bottom:solid 1px #000 !important;
+}
+#itens_wrapper{
+    width:100%;
+    height:auto;
+}
+.itens_orcamento{
+    width: 100%;
+    min-height: 200px;
+    border: solid 2px #000;
+}

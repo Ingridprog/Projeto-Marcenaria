@@ -47,7 +47,7 @@ const listarItensOrcamento = (array) =>{
                 <td>${parseFloat(elemento.preco) * parseInt(elemento.quantidade)}</td>
                 <td class="small-column">
                     <button type="button" class="btn btn-sm btn-warning" onclick="abrirModalEditarItem(${elemento.id})">Editar</button>
-                    <button type="button" class="btn btn-sm btn-danger" onclick="removerItem(${i})">Excluir</button>
+                    <button type="button" class="btn btn-sm btn-danger" onclick="excluirItensOrcamento(${elemento.id}, ${elemento.id_orcamento})">Excluir</button>
                 </td>
             </tr>
         `

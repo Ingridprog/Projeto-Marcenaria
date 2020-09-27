@@ -107,9 +107,9 @@ $pessoaJuridicaDao = new PessoaJuridicaDao($pdo);
                             <td><?=$cliente?></td>
                             <td><?="teste"?></td>
                             <td>
-                                <a href="../../validacoes/delete.php?id=<?=$orcamento->getId()?>" class="btn btn-danger btn-sm" onclick="return confirm('Deseja realmente excluir?')">Excluir</a> 
+                                <button class="btn btn-info btn-sm" onclick="abrirModalOramento()">Resumo</button>
                                 <button onclick="editOrcamento(<?=$orcamento->getId()?>)" class="btn btn-warning btn-sm">Editar</button>
-                                <button class="btn btn-info btn-sm" onclick="abrirModalOramento()">Ver</button>
+                                <a href="../../validacoes/delete.php?id=<?=$orcamento->getId()?>" class="btn btn-danger btn-sm" onclick="return confirm('Deseja realmente excluir?')">Excluir</a> 
                             </td>
                         </tr>
                     <?php endforeach;?>

@@ -38,6 +38,8 @@ const $valor_desconto = document.getElementById("valor_desconto");
 const $descricaoItem = document.getElementById("desc_item");
 const $quantidadeItem = document.getElementById("quantidade_item");
 const $precoItem = document.getElementById("preco_item");
+const $pessoa_fisica = document.getElementById("pessoa-fisica");
+const $pessoa_juridica = document.getElementById("pessoa-juridica");
 
 var arr = [];
 var totalArr = [];
@@ -56,13 +58,16 @@ const resetarCampos = () =>{
 const removerItem = (i) => {
     arr.splice(i, 1)
     totalArr.splice(i, 1)
-    const $item = document.getElementById(`item${i}`)
+    // const $item = document.getElementById(`item${i}`)
     $valor_desconto.value = 0
-    $item.style.display = "none";
+    // $item.style.display = "none";
+
+    $valor_total.value = totalArr.reduce(reducer);
+    $lista.innerHTML = listarItens(arr).reduce(reducer)
     
-    if(arr.length != 0)
+    if(arr.length != 0){
         $valor_total.value = totalArr.reduce(reducer);
-    else
+    }else
         $valor_total.value = 0
 }
 
@@ -85,7 +90,9 @@ const listarItens = (array) =>{
 }
 
 if(localStorage.getItem('orcamento') != null){
-    jsonLocal = JSON.parse(localStorage.getItem('orcamento'))
+    jsonLocal = JSON.parse(localStorage.getItem('orcamento'));
+    $pessoa_fisica.setAttribute('disabled', 'true')
+    $pessoa_juridica.setAttribute('disabled', 'true')
 
     for(let i = 0; i < jsonLocal.itens_orcamento.length; i++){
         

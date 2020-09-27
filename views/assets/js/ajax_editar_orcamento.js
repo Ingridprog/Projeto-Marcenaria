@@ -50,3 +50,19 @@ function editarItensOrcamento(idItem, idOrcamento){
         }
     })
 }
+
+function excluirItensOrcamento(idItem, idOrcamento){
+    $.ajax({
+        url:'../../helpers/excluir_itens_orcamento.php',
+        type:'POST',
+        data:{
+            id:idItem
+        },
+        success: function(data){
+            editOrcamento(idOrcamento);
+        },
+        error: function(){
+            console.log('erro')
+        }
+    })
+}
