@@ -131,6 +131,9 @@
           $orcamentoDao->update($orcamento);
      }
 
+     $itens = new ItensOrcamentoDao();
+     $itens->deleteListItens($id);
+
      foreach($itensOrcamento as $item){
           $itensOrcamento = new ItensOrcamento();
           $itensOrcamento->setDescricaoItem($item[0]);

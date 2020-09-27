@@ -8,6 +8,7 @@ interface ItensOrcamentoInterface
      public function findAllByOrcamento($idOrcamento);
      public function update(ItensOrcamento $itensOrcamento);
      public function delete($id);
+     public function deleteListItens($idOrcamento);
 }
 
 ?>
