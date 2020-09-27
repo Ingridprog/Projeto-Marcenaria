@@ -5,6 +5,7 @@ class ItensOrcamento{
      private $descricaoItem;
      private $quantidade;
      private $preco;
+     private $idOrcamento;
 
      public function getId()
      {
@@ -43,6 +44,16 @@ class ItensOrcamento{
      public function setPreco($preco)
      {
           $this->preco = $preco;
+     }
+
+     public function getIdOrcamento()
+     {
+          return $this->idOrcamento;
+     }
+
+     public function setIdOrcamento($idOrcamento)
+     {
+          $this->idOrcamento = $idOrcamento;
      }
 
 }

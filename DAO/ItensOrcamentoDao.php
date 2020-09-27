@@ -3,6 +3,7 @@
 require_once(dirname(__FILE__)."/../config.php");
 require_once("$base/interfaces/ItensOrcamentoInterface.php");
 require_once("$base/models/Orcamento.php");
+require_once("$base/models/ItensOrcamento.php");
 
 class ItensOrcamentoDao implements ItensOrcamentoInterface
 {
@@ -42,26 +43,21 @@ class ItensOrcamentoDao implements ItensOrcamentoInterface
 
      public function findById($id)
      {
-          $sql = $this->pdo->prepare("SELECT * FROM tbl_orcamento WHERE id=:id");
+          $sql = $this->pdo->prepare("SELECT * FROM tbl_itens_orcamento WHERE id=:id");
           $sql->bindValue(":id", $id);
           $sql->execute();
 
           if($sql->rowCount() > 0)
           {
                $dados = $sql->fetch(PDO::FETCH_ASSOC);
-               $orcamento = new Orcamento();
-               $orcamento->setId($dados['id']);
-               $orcamento->setHora($dados['hora']);
-               $orcamento->setData($dados['data']);
-               $orcamento->setObservacoes($dados['observacoes']);
-               $orcamento->setValorDesconto($dados['valor_desconto']);
-               $orcamento->setValorTotal($dados['valor_total']);
-               $orcamento->setCnpj($dados['cnpj']);
-               $orcamento->setSituacao($dados['situacao']);
-               $orcamento->setIdPessoaFisica($dados['id_pessoa_fisica']);
-               $orcamento->setIdPessoaJuridica($dados['id_pessoa_juridica']);
+               $itensOrcamento = new ItensOrcamento();
+               $itensOrcamento->setId($dados['id']);
+               $itensOrcamento->setDescricaoItem($dados['descricao_item']);
+               $itensOrcamento->setQuantidade($dados['quantidade']);
+               $itensOrcamento->setPreco($dados['preco']);
+               $itensOrcamento->setIdOrcamento($dados['id_orcamento']);
 
-               return $orcamento;
+               return $itensOrcamento;
 
           }else{
                return FALSE;
@@ -98,9 +94,21 @@ class ItensOrcamentoDao implements ItensOrcamentoInterface
                return FALSE;
      }
 
-     public function update($orcamento)
+     public function update($itensOrcamento)
      {
-          
+          $sql = $this->pdo->prepare("UPDATE tbl_itens_orcamento SET descricao_item = :descricao_item, quantidade = :quantidade, preco = :preco WHERE id = :id");
+          $sql->bindValue(":id", $itensOrcamento->getId());
+          $sql->bindValue(":descricao_item", $itensOrcamento->getDescricaoItem());
+          $sql->bindValue(":quantidade", $itensOrcamento->getQuantidade());
+          $sql->bindValue(":preco", $itensOrcamento->getPreco());
+          $sql->execute();
+
+          if($sql->rowCount() > 0)
+          {
+               return $itensOrcamento;
+          }else{
+               return FALSE;
+          }
      }
 
      public function delete($id)

@@ -25,3 +25,27 @@ function editOrcamento(id){
         }
     })
 }
+
+function editarItensOrcamento(idItem){
+    var descricaoItem = $("#desc_item_edit").val()
+    var quantidade = $("#quantidade_item_edit").val()
+    var preco = $("#preco_item_edit").val()
+
+    $.ajax({
+        url:'../../helpers/editar_itens_orcamento.php',
+        type:'POST',
+        data:{
+            id:idItem,
+            descricao_item: descricaoItem,
+            quantidade: quantidade,
+            preco: preco
+        },
+        success: function(data){
+            if(data == "TRUE"){
+                fecharModal();
+            }else{
+                alert('Erro ao editar');
+            }
+        }
+    })
+}
