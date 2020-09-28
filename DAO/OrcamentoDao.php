@@ -4,7 +4,7 @@ require_once(dirname(__FILE__)."/../config.php");
 require_once("$base/interfaces/OrcamentoInterface.php");
 require_once("$base/models/Orcamento.php");
 
-class OrcamentoDao implements OrcamentoInterface
+class OrcamentoDao //implements OrcamentoInterface
 {
      private $pdo;
      private $tipo;
@@ -118,6 +118,21 @@ class OrcamentoDao implements OrcamentoInterface
                 return $orcamentos;
           }else
                return false;
+     }
+
+     public function findByClientName($nome)
+     {
+          $sql = $this->pdo->prepare("SELECT tbl_orcamento.*, tbl_pessoa_fisica.nome AS nome_pessoa_fisica, tbl_pessoa_juridica.razao_social, tbl_pessoa_juridica.nome_fantasia FROM tbl_orcamento LEFT JOIN tbl_pessoa_fisica ON tbl_orcamento.id_pessoa_fisica = tbl_pessoa_fisica.id LEFT JOIN tbl_pessoa_juridica ON tbl_orcamento.id_pessoa_juridica = tbl_pessoa_juridica.id WHERE tbl_pessoa_fisica.nome LIKE '%ingrid%' OR tbl_pessoa_juridica.razao_social LIKE '%ingrid%' OR tbl_pessoa_juridica.nome_fantasia LIKE '%ingrid%'");
+
+          // $sql->bindValue(":nome", "%$nome%");
+          $sql->execute();
+          $dados = $sql->fetchAll(PDO::FETCH_ASSOC);
+
+          if($sql->rowCount() > 0)
+               return $dados;
+          else
+               return $sql;
+
      }
 
      public function update($orcamento)

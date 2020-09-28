@@ -72,7 +72,7 @@ $pessoaJuridicaDao = new PessoaJuridicaDao($pdo);
 
                     <div class="row d-flex justify-content-center align-items-center">
                         <div class="form-group d-flex">
-                            <input type="text" class="form-control big-input right-radius-none custom-bootstrap-input" id="busca"> <button class="botao-pesquisar right-radius-block"> <img class="button-icon" src="../assets/img/search.png" alt="search" /> </button>
+                            <input type="text" class="form-control big-input right-radius-none custom-bootstrap-input" id="busca"> <button class="botao-pesquisar right-radius-block" onclick="buscarOrcamento()"> <img class="button-icon" src="../assets/img/search.png" alt="search" /> </button>
                         </div>
                     </div>
                 </div>
@@ -126,6 +126,7 @@ $pessoaJuridicaDao = new PessoaJuridicaDao($pdo);
         <script src="../assets/js/formHelpers.js"></script>
         <script src="../assets/js/modalHelpers.js"></script>
         <script src="../assets/js/ajax_editar_orcamento.js"></script>
+        <script src="../assets/js/home.js"></script>
         <script>
             localStorage.removeItem('orcamento')
         </script>
