@@ -61,14 +61,17 @@ const removerItem = (i) => {
     // const $item = document.getElementById(`item${i}`)
     $valor_desconto.value = 0
     // $item.style.display = "none";
-
-    $valor_total.value = totalArr.reduce(reducer);
-    $lista.innerHTML = listarItens(arr).reduce(reducer)
+    
+    // $valor_total.value = totalArr.reduce(reducer);
+    // $lista.innerHTML = listarItens(arr).reduce(reducer);
     
     if(arr.length != 0){
         $valor_total.value = totalArr.reduce(reducer);
-    }else
+        $lista.innerHTML = listarItens(arr).reduce(reducer)
+    }else{
         $valor_total.value = 0
+        $lista.innerHTML = ""
+    }
 }
 
 //listando itens do orçamento

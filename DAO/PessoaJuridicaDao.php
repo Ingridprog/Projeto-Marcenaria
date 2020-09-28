@@ -89,7 +89,7 @@ class PessoaJuridicaDao implements PessoaJuridicaInterface
      public function update($pessoaJuridica)
      {
           $sql = $this->pdo->prepare("UPDATE tbl_pessoa_juridica 
-               SET razao_social=:razao_social, nome_fantasia=:nome_fantasia, cnpj:cnpj, 
+               SET razao_social=:razao_social, nome_fantasia=:nome_fantasia, cnpj=:cnpj, 
                telefone=:telefone, celular=:celular, email=:email WHERE id=:id");
 
           $sql->bindValue(":id", $pessoaJuridica->getId());

@@ -13,6 +13,8 @@
      $tipoCliente = filter_input(INPUT_POST, "tipo_cliente");
      
      $id = filter_input(INPUT_POST, 'id');
+     echo $id;
+
      $id_pessoa_fisica = filter_input(INPUT_POST, 'id_pessoa_fisica');
      $id_pessoa_juridica = filter_input(INPUT_POST, 'id_pessoa_juridica');
      $id_endereco = filter_input(INPUT_POST, 'id_endereco');
@@ -49,6 +51,7 @@
 
      // Itens do orçamento
      $itensOrcamento = json_decode(filter_input(INPUT_POST, "itens"));
+     // print_r($itensOrcamento);
 
      // Orçamento
      $valorDesconto = filter_input(INPUT_POST, "valor_desconto", FILTER_VALIDATE_FLOAT)? : 0.00;
@@ -86,7 +89,7 @@
                if(strtoupper($tipoCadasto) == "ADD")
                     $pessoaJuridicaDao->add($pessoaJuridica);
                else{
-                    $pessoaJuridica->setId($id_pessoa_fisica);
+                    $pessoaJuridica->setId($id_pessoa_juridica);
                     $pessoaJuridicaDao->update($pessoaJuridica);
                }
                     
@@ -123,23 +126,26 @@
      $orcamento->setObservacoes($observacoes);
      $orcamento->setValorDesconto($valorDesconto);
      $orcamento->setValorTotal($valorTotal);
+     $itens = new ItensOrcamentoDao($pdo);
 
      if(strtoupper($tipoCadasto) == "ADD")
           $orcamentoDao->add($orcamento, $tipoCliente);
      else{
           $orcamento->setId($id);
           $orcamentoDao->update($orcamento);
+          $itens->deleteListItens($id);
      }
 
-     $itens = new ItensOrcamentoDao();
-     $itens->deleteListItens($id);
+     if(!isset($id)){
+          $id = 0;
+     }
 
      foreach($itensOrcamento as $item){
           $itensOrcamento = new ItensOrcamento();
-          $itensOrcamento->setDescricaoItem($item[0]);
-          $itensOrcamento->setQuantidade($item[1]);
-          $itensOrcamento->setPreco($item[2]);
-          $itensOrcamentoDao->add($itensOrcamento);
+          $itensOrcamento->setDescricaoItem($item[1]);
+          $itensOrcamento->setQuantidade($item[2]);
+          $itensOrcamento->setPreco($item[3]);
+          $itensOrcamentoDao->add($itensOrcamento, $id);
      }
 
 

@@ -59,6 +59,7 @@ function excluirItensOrcamento(idItem, idOrcamento){
             id:idItem
         },
         success: function(data){
+            alert("Alteração salva com sucesso!")
             editOrcamento(idOrcamento);
         },
         error: function(){

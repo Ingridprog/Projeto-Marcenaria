@@ -2,11 +2,13 @@
     $modo = filter_input(INPUT_GET, 'modo');
     $tipoDeCadastro = 'add';
     $txtButton = "Gerar orçamento";
+    $textoConfirmacao = "Deseja gerar orçamento?";
 
     if(isset($modo)){
         if(strtoupper($modo) == "EDITAR"){
             $tipoDeCadastro = 'edit';
             $txtButton = 'Editar orçamento';
+            $textoConfirmacao = 'Deseja salvar alterações?';
         }
     }
 ?>
@@ -178,7 +180,7 @@
                                 <thead class="thead-dark">
                                     <tr>
                                         <th scope="col">Descrição do item</th>
-                                        <th scope="col">Qth</th>
+                                        <th scope="col">Qtd</th>
                                         <th scope="col">Valor unitário</th>
                                         <th scope="col">Valor</th>
                                         <th scope="col">Opções</th>
@@ -215,7 +217,7 @@
 
                         <div class="row d-flex justify-content-center">
                             <div class="col-6">
-                                <button type="button" id="btn-cadastrar" onclick="cadastroOrcamento('<?=$tipoDeCadastro?>')" class="btn btn-primary btn-lg btn-block"><?=$txtButton?></button>
+                                <button type="button" id="btn-cadastrar" onclick="return confirm('<?=$textoConfirmacao?>') ? cadastroOrcamento('<?=$tipoDeCadastro?>') : null" class="btn btn-primary btn-lg btn-block"><?=$txtButton?></button>
                             </div>
                         </div>
                     </form>

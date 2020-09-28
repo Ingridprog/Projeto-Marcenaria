@@ -5,7 +5,7 @@ require_once("$base/interfaces/ItensOrcamentoInterface.php");
 require_once("$base/models/Orcamento.php");
 require_once("$base/models/ItensOrcamento.php");
 
-class ItensOrcamentoDao implements ItensOrcamentoInterface
+class ItensOrcamentoDao
 {
      private $pdo;
 
@@ -15,13 +15,18 @@ class ItensOrcamentoDao implements ItensOrcamentoInterface
          
      }
      
-     public function add($itensOrcamento)
+     public function add($itensOrcamento, $id)
      {
 
-          $lastIdOrcamento = $this->pdo->prepare("SELECT id FROM tbl_orcamento ORDER BY id DESC LIMIT 1");
-          $lastIdOrcamento->execute();
+          if($id == 0){
+               $lastIdOrcamento = $this->pdo->prepare("SELECT id FROM tbl_orcamento ORDER BY id DESC LIMIT 1");
+               $lastIdOrcamento->execute();
+               $realLastIdOrcamento = $lastIdOrcamento->fetch(PDO::FETCH_ASSOC);
+               $idAdicionar = $realLastIdOrcamento['id'];
+          }else{
+               $idAdicionar = $id;
+          }
           
-          $realLastIdOrcamento = $lastIdOrcamento->fetch(PDO::FETCH_ASSOC);
 
           $sql = $this->pdo->prepare("INSERT INTO tbl_itens_orcamento 
                (descricao_item, quantidade, preco, id_orcamento) 
@@ -30,7 +35,7 @@ class ItensOrcamentoDao implements ItensOrcamentoInterface
           $sql->bindValue(":descricao_item", $itensOrcamento->getDescricaoItem());
           $sql->bindValue(":quantidade", $itensOrcamento->getQuantidade());
           $sql->bindValue(":preco", $itensOrcamento->getPreco());
-          $sql->bindValue(":id_orcamento", $realLastIdOrcamento['id']);
+          $sql->bindValue(":id_orcamento", $idAdicionar);
           $sql->execute();
 
           if($sql->rowCount() > 0){
@@ -149,6 +154,8 @@ class ItensOrcamentoDao implements ItensOrcamentoInterface
                return FALSE;
           }
      }
+
+
 }
 
 ?>

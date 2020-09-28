@@ -126,5 +126,8 @@ $pessoaJuridicaDao = new PessoaJuridicaDao($pdo);
         <script src="../assets/js/formHelpers.js"></script>
         <script src="../assets/js/modalHelpers.js"></script>
         <script src="../assets/js/ajax_editar_orcamento.js"></script>
+        <script>
+            localStorage.removeItem('orcamento')
+        </script>
     </body>
 </html>
