@@ -122,16 +122,31 @@ class OrcamentoDao //implements OrcamentoInterface
 
      public function findByClientName($nome)
      {
-          $sql = $this->pdo->prepare("SELECT tbl_orcamento.*, tbl_pessoa_fisica.nome AS nome_pessoa_fisica, tbl_pessoa_juridica.razao_social, tbl_pessoa_juridica.nome_fantasia FROM tbl_orcamento LEFT JOIN tbl_pessoa_fisica ON tbl_orcamento.id_pessoa_fisica = tbl_pessoa_fisica.id LEFT JOIN tbl_pessoa_juridica ON tbl_orcamento.id_pessoa_juridica = tbl_pessoa_juridica.id WHERE tbl_pessoa_fisica.nome LIKE '%ingrid%' OR tbl_pessoa_juridica.razao_social LIKE '%ingrid%' OR tbl_pessoa_juridica.nome_fantasia LIKE '%ingrid%'");
+          $sql = $this->pdo->prepare("SELECT tbl_orcamento.*, tbl_pessoa_fisica.nome AS nome_pessoa_fisica, tbl_pessoa_juridica.razao_social, tbl_pessoa_juridica.nome_fantasia FROM tbl_orcamento LEFT JOIN tbl_pessoa_fisica ON tbl_orcamento.id_pessoa_fisica = tbl_pessoa_fisica.id LEFT JOIN tbl_pessoa_juridica ON tbl_orcamento.id_pessoa_juridica = tbl_pessoa_juridica.id WHERE tbl_pessoa_fisica.nome LIKE :nome OR tbl_pessoa_juridica.razao_social LIKE :nome OR tbl_pessoa_juridica.nome_fantasia LIKE :nome");
 
-          // $sql->bindValue(":nome", "%$nome%");
+          $sql->bindValue(":nome", "%".$nome."%");
           $sql->execute();
           $dados = $sql->fetchAll(PDO::FETCH_ASSOC);
 
           if($sql->rowCount() > 0)
                return $dados;
           else
-               return $sql;
+               return [];
+
+     }
+
+     public function findByDate($data)
+     {
+          $sql = $this->pdo->prepare("SELECT tbl_orcamento.*, tbl_pessoa_fisica.nome AS nome_pessoa_fisica, tbl_pessoa_juridica.razao_social, tbl_pessoa_juridica.nome_fantasia FROM tbl_orcamento LEFT JOIN tbl_pessoa_fisica ON tbl_orcamento.id_pessoa_fisica = tbl_pessoa_fisica.id LEFT JOIN tbl_pessoa_juridica ON tbl_orcamento.id_pessoa_juridica = tbl_pessoa_juridica.id WHERE tbl_orcamento.data = :data");
+
+          $sql->bindValue(":data", $data);
+          $sql->execute();
+          $dados = $sql->fetchAll(PDO::FETCH_ASSOC);
+
+          if($sql->rowCount() > 0)
+               return $dados;
+          else
+               return [];
 
      }
 

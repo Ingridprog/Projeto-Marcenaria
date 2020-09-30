@@ -1,15 +1,27 @@
-function abrirModalOramento(){
-    $("#modal_orcamento").css({
-        opacity:"1",
-        visibility:"visible",
-        zIndex:"99"
-    })
-
+var jsonModal = {}
+function abrirModalOramento(idOrcamento){
     $.ajax({
-        url:'modais/modal_orcamento.php',
+        url:'../../helpers/editar_orcamento.php',
         type:"POST",
+        data:{
+            id:idOrcamento,
+        },
         success: function(data){
-            $("#modal_orcamento").html(data)
+            jsonModal = JSON.parse(data)
+            $("#modal_orcamento").css({
+                opacity:"1",
+                visibility:"visible",
+                zIndex:"99"
+            })
+
+            $("#modal_data_orcamento").html(jsonModal.data)
+            $("#modal_nome_cliente").html(jsonModal.pessoa_fisica.nome)
+            $("#")
+
+
+
+
+
         }
     })
 }

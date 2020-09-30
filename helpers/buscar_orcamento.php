@@ -13,9 +13,11 @@ if(isset($tipoBusca)){
     if($tipoBusca == 1){
         // Busca por nome do cliente
         $dadosOrcamento = $orcamentoDao->findByClientName($infomacaoBuscada);
-        print_r($dadosOrcamento);
+        echo(json_encode($dadosOrcamento));
     }else{
         // Busca por data de orçamento
+        $dadosOrcamento = $orcamentoDao->findByDate($infomacaoBuscada);
+        echo(json_encode($dadosOrcamento));
     }
 }
 

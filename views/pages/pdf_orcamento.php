@@ -78,7 +78,7 @@
             </div>
         </div>
 
-        <div id="itens_wrapper">
+        <div id="itens_wrapper" class="mb-3">
             <div class="container">
                 <div class="itens_orcamento overflow-hidden">
                     <div class="row border-bottom">
@@ -108,6 +108,94 @@
                             </table>
                         </div>
                     </div>    
+                </div>
+            </div>
+        </div>
+
+        <div id="exb_total" class="mb-3">
+            <div class="container">
+                <div class="valor_total pr-1 pl-1">
+                    <div class="row ">
+                        <div class="col d-flex justify-content-end"> 
+                            Valor total: R$
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col d-flex justify-content-end">
+                            Desconto á vista: R$
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col d-flex justify-content-end font-weight-bold">
+                            Valor final: R$
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="exb_condicoes_pagamento" class="mb-3 ">
+            <div class="container">
+                <div class="condicoes_pagamento p-1">
+                    <div class="row">
+                        <div class="col d-flex justify-content-start"> 
+                            <span class="font-weight-bold">Condições de pagamento</span> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="exb_observacoes" class="mb-3 ">
+            <div class="container">
+                <div class="observacoes p-1">
+                    <div class="row">
+                        <div class="col d-flex justify-content-start"> 
+                            <span class="font-weight-bold">Observações:</span> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="exb_footer">
+            <div class="container">
+                <div class="info_footer_exb pl-2">
+                    <div class="row">
+                        <div class="col d-flex justify-content-start">
+                            Nome fansatia: EXB Móveis e Serviços
+                        </div>
+                        <div class="col d-flex justify-content-center">
+                            Endereço: R. Tietê, 20 - Jandira/SP
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col d-flex justify-content-start">
+                            Razão social: Vitor Luan Pereira de Oliveira
+                        </div>
+                        <div class="col d-flex justify-content-center">
+                            Bairro: Jd. das Margaridas
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col d-flex justify-content-start">
+                            CNPJ: 28.194.290/0001-70
+                        </div>
+                        <div class="col d-flex justify-content-center">
+                            CEP: 06622-130
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col d-flex justify-content-start">
+                            Telefone: (11) 97702-4222
+                        </div>
+                        <div class="col d-flex justify-content-center">
+                            
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

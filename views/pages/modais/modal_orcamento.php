@@ -7,7 +7,7 @@
 
     <div class="row">
         <div class="col">
-            <p>Data: 14/02/2020</p>
+            <p >Data: </p>
         </div>  
     </div>
 
