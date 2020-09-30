@@ -97,8 +97,6 @@
                                         <input type="text" class="form-control" id="cnpj" name="cnpj" >
                                     </div>
                                 </div>
-                                
-                                
                             </div>
                             <div class="row mb-2">
                                 <div class="col">
@@ -114,7 +112,6 @@
                                     <input type="text" class="form-control" name="bairro" id="bairro">
                                 </div>
                             </div>
-
                             <div class="row mb-2">
                                 <div class="col-2">
                                     <label for="">Número</label>

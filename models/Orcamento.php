@@ -8,11 +8,14 @@ class Orcamento
      private $observacoes;
      private $valorDesconto;
      private $valorTotal;
+     private $condicaoPagamento;
      private $cnpj;
+     private $vendedor;
      private $situacao;
      private $idPessoaFisica;
      private $idPessoaJuridica;
-
+     
+     
      public function getId()
      {
           return $this->id;
@@ -74,6 +77,16 @@ class Orcamento
           $this->valorTotal = $valorTotal;
      }
 
+     public function getCondicaoPagamento()
+     {
+          return $this->condicaoPagamento;
+     }
+
+     public function setCondicaoPagamento($condicaoPagamento)
+     {
+          $this->condicaoPagamento = $condicaoPagamento;
+     }
+
      public function getCnpj()
      {
           return $this->cnpj;
@@ -82,6 +95,16 @@ class Orcamento
      public function setCnpj($cnpj)
      {
           $this->cnpj = $cnpj;
+     }
+
+     public function getVendedor()
+     {
+          return $this->vendedor;
+     }
+
+     public function setVendedor($vendedor)
+     {
+          $this->vendedor = $vendedor;
      }
     
      public function getSituacao()
