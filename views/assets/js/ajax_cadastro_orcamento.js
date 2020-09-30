@@ -8,6 +8,7 @@ function cadastroOrcamento(modo) {
     var tipoCadastro = $("input[name='tipo-cliente']:checked").val();
 
     //Valores vindos dos campos do formulario
+    var vendedor = $("#vendedor").val();
     var nomeCompleto = $("#nome_completo").val();
     var razaoSocial = $("#razao_social").val();
     var nomeFantasia = $("#nome_fantasia").val();
@@ -25,6 +26,7 @@ function cadastroOrcamento(modo) {
     var email = $("#email").val();
     var valor_total = $("#valor_total").val();
     var valor_desconto = $("#valor_desconto").val();
+    var condicao_pagamento = $("#condicao_pagamento").val();
     var observacoes = $("#observacoes").val();
     let itens = arr;
     var botao = $("#btn-cadastrar").text();
@@ -36,6 +38,7 @@ function cadastroOrcamento(modo) {
             url: '../../validacoes/validaForm.php',
             type: 'POST',
             data: {
+                vendedor:vendedor,
                 //Valores vindos do localStorage
                 id:json.id,
                 id_pessoa_fisica:json.pessoa_fisica.id ?? "",
@@ -62,6 +65,7 @@ function cadastroOrcamento(modo) {
                 email: email,
                 valor_desconto:valor_desconto,
                 valor_total:valor_total,
+                condicao_pagamento:condicao_pagamento,
                 observacoes:observacoes,
                 botao: botao,
                 tipo_cadastro:modo
@@ -81,6 +85,7 @@ function cadastroOrcamento(modo) {
             type: 'POST',
             data: {
                 //valores vindos dos inputs
+                vendedor:vendedor,
                 itens: JSON.stringify(itens),
                 tipo_cliente: tipoCadastro,
                 nome_completo: nomeCompleto,
@@ -100,6 +105,7 @@ function cadastroOrcamento(modo) {
                 email: email,
                 valor_desconto:valor_desconto,
                 valor_total:valor_total,
+                condicao_pagamento:condicao_pagamento,
                 observacoes:observacoes,
                 botao: botao,
                 tipo_cadastro:modo

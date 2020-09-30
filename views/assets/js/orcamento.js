@@ -2,6 +2,8 @@
 const $pessoaFisica = document.getElementById('pessoa-fisica')
 const $pessoaJuridica = document.getElementById('pessoa-juridica')
 //inputs
+const $vendedor = document.getElementById('vendedor')
+const $condicao_pagamento = document.getElementById('condicao_pagamento')
 const $nomeCompleto = document.getElementById('nome_completo')
 const $razaoSocial = document.getElementById('razao_social')
 const $nomeFantasia = document.getElementById('nome_fantasia')
@@ -92,7 +94,7 @@ if(localStorage.getItem('orcamento') != null){
             $email.value = orcamento.pessoa_fisica.email
             $telefone.value = orcamento.pessoa_fisica.telefone
         }
-
+        $vendedor.value = orcamento.vendedor
         $cepEdit.value = orcamento.cep
         $logradouroEdit.value = orcamento.logradouro
         $bairroEdit.value = orcamento.bairro
@@ -100,6 +102,7 @@ if(localStorage.getItem('orcamento') != null){
         $cidadeEdit.value = orcamento.cidade
         $ufEdit.value = orcamento.uf
         $complementoEdit.value = orcamento.complemento
+        $condicao_pagamento.value = orcamento.condicao_pagamento
         
         $valorDesconto.value = orcamento.valor_desconto
         $valorTotal.value = orcamento.valor_total

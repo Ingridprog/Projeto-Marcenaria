@@ -40,7 +40,7 @@ class OrcamentoDao implements OrcamentoInterface
 
                $sql = $this->pdo->prepare("INSERT INTO tbl_orcamento 
                     (hora, data, observacoes, valor_desconto, valor_total, condicao_pagamento, cnpj,  situacao, 
-                    vendedor, id_pessoa_fisica) 
+                    vendedor, id_pessoa_juridica) 
                     VALUES (:hora, :data, :observacoes, :valor_desconto, :valor_total, :condicao_pagamento, :cnpj, 0, 
                     :vendedor, :id_cliente)");
           }

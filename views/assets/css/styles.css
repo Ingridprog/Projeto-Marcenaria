@@ -104,13 +104,17 @@
 }
 #dados-cliente,
 #observacoes,
-#dados-pedidos{
+#dados-pedidos,
+#condicao_pagamento{
     width: 100%;
     height: auto;
     min-height: 400px;
 }
 #observacoes{
     min-height: 200px;
+}
+#condicao_pagamento{
+    min-height: 80px !important;
 }
 .linha-dados-cliente{
     width: 100%;

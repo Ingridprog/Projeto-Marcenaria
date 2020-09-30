@@ -49,25 +49,35 @@
                 <div class="col s12">
                     <!-- action="../../validacoes/validaForm.php" method="POST" -->
                     <form id="cadastro-orcamento" class="p-3 mb-5" >
-                        <!-- TIPO DE CLIENTE -->
-                        <div class="form-row d-flex justify-content-center mb-3">
-                            <div class="form-check mr-5">
-                                <input onchange="mudarTipoCliente()" class="form-check-input"  type="radio" name="tipo-cliente" id="pessoa-fisica" value="1" >
-                                <label class="form-check-label" for="pessoa-fisica" >
-                                    Pessoa Física
+                        
+                        <div class="row mb-3">
+                            <div class="col mb-3">
+                                <label for="vendedor" >
+                                    Vendedor
                                 </label>
+                                <input class="form-control"  type="text" name="vendedor" id="vendedor" >
                             </div>
-                            <div class="form-check">
-                                <input onchange="mudarTipoCliente()" class="form-check-input" type="radio" name="tipo-cliente" id="pessoa-juridica" value="2" >
-                                <label class="form-check-label" for="pessoa-juridica">
-                                    Pessoa Jurídica
-                                </label>
-                            </div>
+                            <div class="col"></div>
                         </div>
                         <!-- DADOS DO CLIENTE -->
                         <div id="dados-cliente">
                             <div class="linha-dados-cliente mb-3">
                                 Dados do cliente
+                            </div>
+                            <div class="form-row d-flex justify-content-center mb-3">
+                                <!-- TIPO DE CLIENTE -->
+                                <div class="form-check mr-5">
+                                    <input onchange="mudarTipoCliente()" class="form-check-input"  type="radio" name="tipo-cliente" id="pessoa-fisica" value="1" >
+                                    <label class="form-check-label" for="pessoa-fisica" >
+                                        Pessoa Física
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input onchange="mudarTipoCliente()" class="form-check-input" type="radio" name="tipo-cliente" id="pessoa-juridica" value="2" >
+                                    <label class="form-check-label" for="pessoa-juridica">
+                                        Pessoa Jurídica
+                                    </label>
+                                </div>
                             </div>
                             <div class="row mb-2">
                                 <div class="col">
@@ -196,6 +206,16 @@
                                 <div class="col-4 ">
                                     <label for="valor_total">Valor Total</label>
                                     <input class="form-control" type="text" id=valor_total readonly placeholder="Valor total" name="valor_total" value="0">
+                                </div>
+                            </div>
+                            <hr>
+
+                            <div id="condicao_pagamento_wrapper">
+                                <div class="linha-dados-cliente mb-3">
+                                    Condição de pagamento
+                                </div>
+                                <div class="form-group">
+                                    <textarea class="form-control" name="condicao_pagamento" id="condicao_pagamento"></textarea>
                                 </div>
                             </div>
                             

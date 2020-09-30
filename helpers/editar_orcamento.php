@@ -34,6 +34,7 @@ if(isset($id)){
 
         $json = [
             'id' => $dadosOrcamento->getId(),
+            'vendedor' => $dadosOrcamento->getVendedor(),
             'hora' => $dadosOrcamento->getHora(),
             'data' => $dadosOrcamento->getData(),
             'observacoes' => $dadosOrcamento->getObservacoes(),
@@ -47,6 +48,7 @@ if(isset($id)){
                 'celular' => $dadosPessoaFisica->getCelular(),
                 'email' => $dadosPessoaFisica->getEmail()
             ],
+            'condicao_pagamento' => $dadosOrcamento->getCondicaoPagamento(),
             'pessoa_juridica' => false,
             'itens_orcamento' => [],
             'id_endereco' => "",
@@ -64,6 +66,7 @@ if(isset($id)){
 
         $json = [
             'id' => $dadosOrcamento->getId(),
+            'vendedor' => $dadosOrcamento->getVendedor(),
             'hora' => $dadosOrcamento->getHora(),
             'data' => $dadosOrcamento->getData(),
             'observacoes' => $dadosOrcamento->getObservacoes(),
@@ -78,6 +81,7 @@ if(isset($id)){
                 'celular' => $dadosPessoaJuridica->getCelular(),
                 'email' => $dadosPessoaJuridica->getEmail()
             ],
+            'condicao_pagamento' => $dadosOrcamento->getCondicaoPagamento(),
             'pessoa_fisica' => false,
             'itens_orcamento' => [],
             'id_endereco' => "",

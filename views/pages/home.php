@@ -34,30 +34,33 @@ $pessoaJuridicaDao = new PessoaJuridicaDao($pdo);
 
                 <div class="row">
                     <div class="col">
-                        <p>Data: <span id="modal_data_orcamento">14/02/2020</span></p>
+                        <p>Vendedor: <span id="modal_vendedor"></span></p>
+                    </div>
+                    <div class="col">
+                        <p>Data: <span id="modal_data_orcamento"></span></p>
                     </div>  
                 </div>
 
                 <div id="tipo_cliente_wrapper">
                     <div class="row">
                         <div class="col">
-                            <p>Nome completo: <span id="modal_nome_cliente"> Pedro Medeiros </span></p>
+                            <p>Nome: <span id="modal_nome_cliente"></span></p>
                         </div>  
                         <div class="col">
-                            <p>CPF: <span id="modal_cpf">456.057.368-95</span></p>
+                            <p id="modal_cpf"></p>
                         </div>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col">
-                        <p>Celular:<span id="modal_celular"></span></p>
+                        <p>Celular: <span id="modal_celular"></span></p>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col">
-                        <p>Telefone:<span id="modal_telefone"></span></p>
+                        <p>Telefone: <span id="modal_telefone"></span></p>
                     </div>
                 </div>
 
@@ -87,48 +90,6 @@ $pessoaJuridicaDao = new PessoaJuridicaDao($pdo);
                             </tr>
                         </thead>
                         <tbody id="tbody-modal">
-                            <tr>
-                                <td>Descrição do item</td>
-                                <td>Qtd</td>
-                                <td>Valor unitário</td>
-                                <td>Valor</td>
-                            </tr>
-                            <tr>
-                                <td>Descrição do item</td>
-                                <td>Qtd</td>
-                                <td>Valor unitário</td>
-                                <td>Valor</td>
-                            </tr>
-                            <tr>
-                                <td>Descrição do item</td>
-                                <td>Qtd</td>
-                                <td>Valor unitário</td>
-                                <td>Valor</td>
-                            </tr>
-                            <tr>
-                                <td>Descrição do item</td>
-                                <td>Qtd</td>
-                                <td>Valor unitário</td>
-                                <td>Valor</td>
-                            </tr>
-                            <tr>
-                                <td>Descrição do item</td>
-                                <td>Qtd</td>
-                                <td>Valor unitário</td>
-                                <td>Valor</td>
-                            </tr>
-                            <tr>
-                                <td>Descrição do item</td>
-                                <td>Qtd</td>
-                                <td>Valor unitário</td>
-                                <td>Valor</td>
-                            </tr>
-                            <tr>
-                                <td>Descrição do item</td>
-                                <td>Qtd</td>
-                                <td>Valor unitário</td>
-                                <td>Valor</td>
-                            </tr>
                             <!-- Linhas sendo cadastradas com JS -->
                         </tbody>
                     </table>
