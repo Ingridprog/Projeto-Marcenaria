@@ -56,7 +56,10 @@
      // Orçamento
      $valorDesconto = filter_input(INPUT_POST, "valor_desconto", FILTER_VALIDATE_FLOAT)? : 0.00;
      $valorTotal = filter_input(INPUT_POST, "valor_total", FILTER_VALIDATE_FLOAT)? : 0.00;
+     $condicaoPagamento = filter_input(INPUT_POST, "condicao_pagamento")? : "";
      $observacoes = filter_input(INPUT_POST, "observacoes", FILTER_SANITIZE_SPECIAL_CHARS);
+     $vendedor = filter_input(INPUT_POST, "vendedor")? : "";
+
 
      // clientes
      if($tipoCliente == 1){
@@ -126,6 +129,9 @@
      $orcamento->setObservacoes($observacoes);
      $orcamento->setValorDesconto($valorDesconto);
      $orcamento->setValorTotal($valorTotal);
+     $orcamento->setCondicaoPagamento($condicaoPagamento);
+     $orcamento->setVendedor($vendedor);
+
      $itens = new ItensOrcamentoDao($pdo);
 
      if(strtoupper($tipoCadasto) == "ADD")

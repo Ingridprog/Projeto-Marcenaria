@@ -4,7 +4,7 @@ require_once(dirname(__FILE__)."/../config.php");
 require_once("$base/interfaces/OrcamentoInterface.php");
 require_once("$base/models/Orcamento.php");
 
-class OrcamentoDao //implements OrcamentoInterface
+class OrcamentoDao implements OrcamentoInterface
 {
      private $pdo;
      private $tipo;
@@ -27,10 +27,10 @@ class OrcamentoDao //implements OrcamentoInterface
                $idCliente = $dados['id_pessoa_fisica'];
 
                $sql = $this->pdo->prepare("INSERT INTO tbl_orcamento 
-                    (hora, data, observacoes, valor_desconto, valor_total, cnpj,  situacao, 
-                    id_pessoa_fisica) 
-                    VALUES (:hora, :data, :observacoes, :valor_desconto, :valor_total, :cnpj, 0, 
-                    :id_cliente)");
+                    (hora, data, observacoes, valor_desconto, valor_total, condicao_pagamento, cnpj,  situacao, 
+                    vendedor, id_pessoa_fisica) 
+                    VALUES (:hora, :data, :observacoes, :valor_desconto, :valor_total, :condicao_pagamento, :cnpj, 0, 
+                    :vendedor, :id_cliente)");
 
           }elseif($this->tipo==2){
                // refatorar
@@ -39,10 +39,10 @@ class OrcamentoDao //implements OrcamentoInterface
                $idCliente = $dados['id_pessoa_juridica'];
 
                $sql = $this->pdo->prepare("INSERT INTO tbl_orcamento 
-                    (hora, data, observacoes, valor_desconto, valor_total, cnpj, situacao, 
-                    id_pessoa_juridica) 
-                    VALUES (:hora, :data, :observacoes, :valor_desconto, :valor_total, :cnpj, 0, 
-                    :id_cliente)");
+                    (hora, data, observacoes, valor_desconto, valor_total, condicao_pagamento, cnpj,  situacao, 
+                    vendedor, id_pessoa_fisica) 
+                    VALUES (:hora, :data, :observacoes, :valor_desconto, :valor_total, :condicao_pagamento, :cnpj, 0, 
+                    :vendedor, :id_cliente)");
           }
 
           $sql->bindValue(":hora", $orcamento->getHora());
@@ -50,7 +50,9 @@ class OrcamentoDao //implements OrcamentoInterface
           $sql->bindValue(":observacoes", $orcamento->getObservacoes());
           $sql->bindValue(":valor_desconto", $orcamento->getValorDesconto());
           $sql->bindValue(":valor_total", $orcamento->getValorTotal());
+          $sql->bindValue(":condicao_pagamento", $orcamento->getCondicaoPagamento());
           $sql->bindValue(":cnpj", $orcamento->getCnpj());
+          $sql->bindValue(":vendedor", $orcamento->getVendedor());
           $sql->bindValue(":id_cliente", $idCliente);
           $sql->execute();
 
@@ -78,8 +80,10 @@ class OrcamentoDao //implements OrcamentoInterface
                $orcamento->setObservacoes($dados['observacoes']);
                $orcamento->setValorDesconto($dados['valor_desconto']);
                $orcamento->setValorTotal($dados['valor_total']);
+               $orcamento->setCondicaoPagamento($dados['condicao_pagamento']);
                $orcamento->setCnpj($dados['cnpj']);
                $orcamento->setSituacao($dados['situacao']);
+               $orcamento->setVendedor($dados['vendedor']);
                $orcamento->setIdPessoaFisica($dados['id_pessoa_fisica']);
                $orcamento->setIdPessoaJuridica($dados['id_pessoa_juridica']);
 
@@ -107,8 +111,10 @@ class OrcamentoDao //implements OrcamentoInterface
                     $orcamento->setObservacoes($dados['observacoes']);
                     $orcamento->setValorDesconto($dados['valor_desconto']);
                     $orcamento->setValorTotal($dados['valor_total']);
+                    $orcamento->setCondicaoPagamento($dados['condicao_pagamento']);
                     $orcamento->setCnpj($dados['cnpj']);
                     $orcamento->setSituacao($dados['situacao']);
+                    $orcamento->setVendedor($dados['vendedor']);
                     $orcamento->setIdPessoaFisica($dados['id_pessoa_fisica']);
                     $orcamento->setIdPessoaJuridica($dados['id_pessoa_juridica']);
      
@@ -154,16 +160,18 @@ class OrcamentoDao //implements OrcamentoInterface
      {
           $sql = $this->pdo->prepare("UPDATE tbl_orcamento 
                SET hora=:hora, data=:data, observacoes=:observacoes,
-               valor_desconto=:valor_desconto, valor_total=:valor_total, cnpj=:cnpj
+               valor_desconto=:valor_desconto, valor_total=:valor_total, condicao_pagamento=:condicao_pagamento,
+               cnpj=:cnpj, vendedor=:vendedor WHERE id=:id");
 
-               WHERE id=:id");
           $sql->bindValue(":id", $orcamento->getId());
           $sql->bindValue(":hora", $orcamento->getHora());
           $sql->bindValue(":data", $orcamento->getData());
           $sql->bindValue(":observacoes", $orcamento->getObservacoes());
           $sql->bindValue(":valor_desconto", $orcamento->getValorDesconto());
           $sql->bindValue(":valor_total", $orcamento->getValorTotal());
+          $sql->bindValue(":condicao_pagamento", $orcamento->getCondicaoPagamento());
           $sql->bindValue(":cnpj", $orcamento->getCnpj());
+          $sql->bindValue(":vendedor", $orcamento->getVendedor());
           $sql->execute();
 
           if($sql->rowCount() > 0){
