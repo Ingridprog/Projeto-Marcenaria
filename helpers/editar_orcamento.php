@@ -119,7 +119,7 @@ if(isset($id)){
         $json['itens_orcamento'] = FALSE;
 
     $json['valor_total'] = array_sum($valorTotal) - $json['valor_desconto'];
-    
+
     echo(json_encode($json));
     // print_r($valorTotal);
 }

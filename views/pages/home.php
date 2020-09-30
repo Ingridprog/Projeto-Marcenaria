@@ -44,35 +44,35 @@ $pessoaJuridicaDao = new PessoaJuridicaDao($pdo);
                             <p>Nome completo: <span id="modal_nome_cliente"> Pedro Medeiros </span></p>
                         </div>  
                         <div class="col">
-                            <p id="modal_cpf">CPF: 456.057.368-95</p>
+                            <p>CPF: <span id="modal_cpf">456.057.368-95</span></p>
                         </div>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col">
-                        <p>Celular:</p>
+                        <p>Celular:<span id="modal_celular"></span></p>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col">
-                        <p>Telefone:</p>
+                        <p>Telefone:<span id="modal_telefone"></span></p>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col">
-                        <p>Email:</p>
+                        <p>Email: <span id="modal_email"></span></p> 
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col">
-                        <h6>Itens do orçamento</h6>
+                        <h6>Itens do orçamento</h6> 
                     </div>  
                     <div class="col">
-                        <h6>Total:</h6>
+                        <h6>Total: <span id="modal_valor_total"></span></h6> 
                     </div>
                 </div>
                 
@@ -81,13 +81,13 @@ $pessoaJuridicaDao = new PessoaJuridicaDao($pdo);
                         <thead class="thead-dark">
                             <tr>
                                 <th scope="col">Descrição do item</th>
-                                <th scope="col">Qth</th>
+                                <th scope="col">Qtd</th>
                                 <th scope="col">Valor unitário</th>
                                 <th scope="col">Valor</th>
                             </tr>
                         </thead>
-                        <tbody id="tbody-modal" >
-                        <tr>
+                        <tbody id="tbody-modal">
+                            <tr>
                                 <td>Descrição do item</td>
                                 <td>Qtd</td>
                                 <td>Valor unitário</td>
