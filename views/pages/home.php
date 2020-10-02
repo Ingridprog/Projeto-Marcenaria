@@ -97,10 +97,10 @@ $pessoaJuridicaDao = new PessoaJuridicaDao($pdo);
 
                 <div class="row">
                     <div class="col d-flex justify-content-center">
-                        <button class="btn btn-success" >
+                        <a href="pdf_orcamento.php" class="btn btn-success" >
                             Gerar PDF
                             <img src="../assets/img/pdf-file.png" class="button-icon" alt="pdf">
-                        </button>
+                        </a>
                         
                     </div>
                     <div class="col d-flex justify-content-center">

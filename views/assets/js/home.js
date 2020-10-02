@@ -20,7 +20,7 @@ const listarResultados = (array) =>{
                 <td>${elemento.nome_pessoa_fisica ?? elemento.nome_fantasia}</td>
                 <td>R$ ${elemento.valor_total.replace(".", ",")}</td>
                 <td>
-                    <button class="btn btn-info btn-sm" onclick="abrirModalOramento()">Resumo</button>
+                    <button class="btn btn-info btn-sm" onclick="abrirModalOramento(${elemento.id})">Resumo</button>
                     <button onclick="editOrcamento(${elemento.id})" class="btn btn-warning btn-sm">Editar</button>
                     <a href="../../validacoes/delete.php?id=${elemento.id}" class="btn btn-danger btn-sm" onclick="return confirm('Deseja realmente excluir?')">Excluir</a> 
                 </td>
