@@ -84,7 +84,6 @@ const listarItens = (array) =>{
                 <td>${elemento[3]}</td>
                 <td>${elemento[2] * elemento[3]}</td>
                 <td class="small-column">
-                    <button type="button" class="btn btn-sm btn-warning" onclick="abrirModalEditarItem(${elemento[0]})">Editar</button>
                     <button type="button" class="btn btn-sm btn-danger" onclick="removerItem(${i})">Excluir</button>
                 </td>
             </tr>
