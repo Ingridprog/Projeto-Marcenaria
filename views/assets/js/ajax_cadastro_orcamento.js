@@ -34,7 +34,7 @@ function cadastroOrcamento(modo) {
 
     var json = JSON.parse(localStorage.getItem('orcamento'))
 
-    if (nomeCompleto != "" || razaoSocial != "" || nomeFantasia != "" || cep != "" || telefone != "" || celular != "" || email != "") {
+    if ((nomeCompleto != "" || razaoSocial != "" || nomeFantasia != "") && cep != "" && (telefone != "" || celular != "" || email != "")) {
         if (modo != "add") {
             $.ajax({
                 url: '../../validacoes/validaForm.php',
