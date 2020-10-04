@@ -1,5 +1,12 @@
 <?php
 require_once('../../config.php');
+
+if(empty($_SESSION['token'])){
+   
+    header('Location: login.php');
+ 
+}
+
 require_once("$base/DAO/OrcamentoDao.php");
 require_once("$base/DAO/PessoaFisicaDao.php");
 require_once("$base/DAO/PessoaJuridicaDao.php");

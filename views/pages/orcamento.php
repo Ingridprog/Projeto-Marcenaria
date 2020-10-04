@@ -1,4 +1,13 @@
 <?php
+
+session_start();
+ 
+    if(empty($_SESSION['token'])){
+    
+        header('Location: login.php');
+    
+    }
+
     $modo = filter_input(INPUT_GET, 'modo');
     $tipoDeCadastro = 'add';
     $txtButton = "Gerar orçamento";
