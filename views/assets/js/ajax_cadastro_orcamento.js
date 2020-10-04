@@ -34,7 +34,7 @@ function cadastroOrcamento(modo) {
 
     var json = JSON.parse(localStorage.getItem('orcamento'))
 
-    if(nomeCompleto != "" || razaoSocial != "" || nomeFantasia != "" || cep != "" || telefone != "" || celular != "" || email != ""){
+    if (nomeCompleto != "" || razaoSocial != "" || nomeFantasia != "" || cep != "" || telefone != "" || celular != "" || email != "") {
         if (modo != "add") {
             $.ajax({
                 url: '../../validacoes/validaForm.php',
@@ -65,10 +65,10 @@ function cadastroOrcamento(modo) {
                     telefone: telefone,
                     celular: celular,
                     email: email,
-                    valor_desconto:valor_desconto_format,
-                    valor_total:valor_total,
-                    condicao_pagamento:condicao_pagamento,
-                    observacoes:observacoes,
+                    valor_desconto: valor_desconto_format,
+                    valor_total: valor_total,
+                    condicao_pagamento: condicao_pagamento,
+                    observacoes: observacoes,
                     botao: botao,
                     tipo_cadastro: modo
                 },
@@ -105,10 +105,10 @@ function cadastroOrcamento(modo) {
                     telefone: telefone,
                     celular: celular,
                     email: email,
-                    valor_desconto:valor_desconto_format,
-                    valor_total:valor_total,
-                    condicao_pagamento:condicao_pagamento,
-                    observacoes:observacoes,
+                    valor_desconto: valor_desconto_format,
+                    valor_total: valor_total,
+                    condicao_pagamento: condicao_pagamento,
+                    observacoes: observacoes,
                     botao: botao,
                     tipo_cadastro: modo
                 },
@@ -121,7 +121,7 @@ function cadastroOrcamento(modo) {
                 }
             })
         }
-    }else{
+    } else {
         alert("Preencha todos os campos obrigatórios!")
     }
 }
