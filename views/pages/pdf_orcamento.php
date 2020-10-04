@@ -152,9 +152,10 @@ if(isset($id)){
                                                         </thead>
                                                         <tbody>
                                                             <?php
-                                                            $totalSemDesconto = 0;
-                                                                foreach($itens as $item):
-                                                                    $totalSemDesconto += ($item['preco'] * $item['quantidade']);
+                                                                $totalSemDesconto = 0;
+                                                                if($itens){
+                                                                    foreach($itens as $item):
+                                                                        $totalSemDesconto += ($item['preco'] * $item['quantidade']);
                                                             ?>
                                                             <tr>
                                                                 <td><?=$item['descricao_item']?></td>
@@ -162,7 +163,12 @@ if(isset($id)){
                                                                 <td>R$ <?=number_format($item['preco'], 2, ",", "")?></td>
                                                                 <td>R$ <?=number_format($item['preco'] * $item['quantidade'], 2, ",","")?></td>
                                                             </tr>
-                                                            <?php endforeach;?>
+                                                            <?php 
+                                                                endforeach;
+                                                                }else{
+                                                                    echo "";
+                                                                }
+                                                            ?>
                                                         </tbody>
                                                     </table>
                                                 </div>
