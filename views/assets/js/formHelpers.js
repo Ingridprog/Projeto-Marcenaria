@@ -142,7 +142,7 @@ function adicionarItens(){
     arr.push(item);
     totalArr.push(precoItem * qtdItem);
 
-    $valor_total.value = totalArr.reduce(reducer);
+    $valor_total.value = totalArr.reduce(reducer).toFixed(2);
     $lista.innerHTML = listarItens(arr).reduce(reducer)
     resetarCampos()
 }
@@ -152,7 +152,7 @@ function aplicarDesconto(){
     var valorDesconto = $valor_desconto.value;
 
     if(valorDesconto != ""){
-        $valor_total.value = totalArr.reduce(reducer) - parseFloat(valorDesconto)
+        $valor_total.value = totalArr.reduce(reducer) - parseFloat(valorDesconto).toFixed(2)
     }else{
         $valor_total.value = totalArr.reduce(reducer);
     }

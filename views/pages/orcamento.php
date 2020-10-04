@@ -21,6 +21,7 @@
         <title>EXB</title>
         <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
         <link rel="stylesheet" href="../assets/css/styles.css">
+        <script src="../assets/js/input_field_validators.js"></script>
     </head>
     <body>
         <div id="modal_itens">
@@ -55,7 +56,7 @@
                                 <label for="vendedor" >
                                     Vendedor
                                 </label>
-                                <input class="form-control"  type="text" name="vendedor" id="vendedor" >
+                                <input class="form-control"  type="text" name="vendedor" id="vendedor" onkeypress="return validarEntrada(event, 'numeric')">
                             </div>
                             <div class="col"></div>
                         </div>
@@ -83,7 +84,7 @@
                                 <div class="col">
                                     <div id="nome-completo">
                                         <label for="">Nome completo</label>
-                                        <input type="text" class="form-control" id="nome_completo" name="nome_completo" >
+                                        <input type="text" class="form-control" id="nome_completo" name="nome_completo" onkeypress="return validarEntrada(event, 'numeric')">
                                     </div>
 
                                     <div id="razao-social" class="d-none">
@@ -99,23 +100,23 @@
                                 <div class="col">
                                     <div id="cpf-input">
                                         <label for="">CPF</label>
-                                        <input type="text" class="form-control" id="cpf" name="cpf" >
+                                        <input type="text" class="form-control" id="cpf" name="cpf" onkeypress="return mascaraCPF(this,event)">
                                     </div>
 
                                     <div id="cnpj-input" class="d-none">
                                         <label for="">CNPJ</label>
-                                        <input type="text" class="form-control" id="cnpj" name="cnpj" >
+                                        <input type="text" class="form-control" id="cnpj" name="cnpj" onkeypress="return mascaraCNPJ(this, event)">
                                     </div>
                                 </div>
                             </div>
                             <div class="row mb-2">
                                 <div class="col">
                                     <label for="">CEP</label>
-                                    <input type="text" class="form-control" name="cep" id="cep" onblur="pesquisarCep(this.value)" maxlength="8">
+                                    <input type="text" class="form-control" name="cep" id="cep" onblur="pesquisarCep(this.value)" maxlength="8" onkeypress="return mascaraCep(this, event)">
                                 </div>
                                 <div class="col">
                                     <label for="">Logradouro</label>
-                                    <input type="text" class="form-control" name="logradouro" id="logradouro">
+                                    <input type="text" class="form-control" name="logradouro" id="logradouro" >
                                 </div>
                                 <div class="col">
                                     <label for="">Bairro</label>
@@ -125,7 +126,7 @@
                             <div class="row mb-2">
                                 <div class="col-2">
                                     <label for="">Número</label>
-                                    <input type="text" class="form-control" name="numero" id="numero">
+                                    <input type="text" class="form-control" name="numero" id="numero" onkeypress="return validarEntrada(event, 'string')">
                                 </div>
                                 <div class="col-3">
                                     <label for="">Cidade</label>
@@ -134,7 +135,7 @@
                                 <div class="col-2">
                                     <div class="form-group">
                                         <label for="">UF</label>
-                                        <input type="text" class="form-control" name="estado" id="uf" maxlength="2">
+                                        <input type="text" class="form-control" name="estado" id="uf" maxlength="2" onkeypress="return mascaraUf(this, event)">
                                     </div>
                                 </div>
                                 <div class="col-5">
@@ -146,11 +147,11 @@
                             <div class="row">
                                 <div class="col-4">
                                     <label for="">Telefone</label>
-                                    <input type="text" class="form-control" name="telefone" id="telefone">
+                                    <input type="text" class="form-control" name="telefone" id="telefone" onkeypress="return mascaraFone(this, event)">
                                 </div>
                                 <div class="col-4">
                                     <label for="">Celular</label>
-                                    <input type="text" class="form-control" name="celular" id="celular">
+                                    <input type="text" class="form-control" name="celular" id="celular" onkeypress="return mascaraFone(this, event)">
                                 </div>
                                 <div class="col">
                                     <label for="">Email</label>
@@ -171,11 +172,11 @@
                                 </div>
                                 <div class="col-2">
                                     <label for="">Quantidade</label>
-                                    <input type="text" class="form-control" name="quantidade" id="quantidade_item">
+                                    <input type="text" class="form-control" name="quantidade" id="quantidade_item" onkeypress="return validarEntrada(event, 'string')">
                                 </div>
                                 <div class="col-2">
                                     <label for="">Preço</label>
-                                    <input type="text" class="form-control" name="preco" id="preco_item">
+                                    <input type="text" class="form-control" name="preco" id="preco_item"  onkeypress="return validarEntradaComVirgula(event)">
                                 </div>
                                 <div class="col-2 d-flex align-items-end">
                                     <input value="adicionar" type="button" onclick="adicionarItens()" class="form-control btn btn-info">
@@ -252,6 +253,7 @@
         <script src="../assets/js/ajax_editar_orcamento.js"></script>
         <script src="../assets/js/orcamento.js"></script>
         <script src="../assets/js/modalHelpers.js"></script>
+        
         
     </body>
 </html>
