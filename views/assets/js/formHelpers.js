@@ -136,11 +136,13 @@ if(localStorage.getItem('orcamento') != null){
 function adicionarItens(){
     var descItem = $descricaoItem.value;
     var qtdItem = parseInt($quantidadeItem.value);
-    var precoItem = parseFloat($precoItem.value);
-    var item = [0, descItem, parseInt(qtdItem),precoItem, 0];
+    var precoItem = $precoItem.value;
+    var precoItemFormatado = precoItem.replace(",",".")
+    var item = [0, descItem, parseInt(qtdItem),parseFloat(precoItemFormatado), 0];
 
     arr.push(item);
-    totalArr.push(precoItem * qtdItem);
+    totalArr.push(precoItemFormatado * qtdItem);
+    console.log(arr, totalArr)
 
     $valor_total.value = totalArr.reduce(reducer).toFixed(2);
     $lista.innerHTML = listarItens(arr).reduce(reducer)
@@ -151,10 +153,14 @@ function aplicarDesconto(){
     var valorAntigo = $valor_total.value;
     var valorDesconto = $valor_desconto.value;
 
+    var valorDescontoFormatado = valorDesconto.replace(",", ".")
+
     if(valorDesconto != ""){
-        $valor_total.value = totalArr.reduce(reducer) - parseFloat(valorDesconto).toFixed(2)
+        let calculoDesconto = totalArr.reduce(reducer) - parseFloat(valorDescontoFormatado)
+        $valor_total.value = calculoDesconto.toFixed(2)
+
     }else{
-        $valor_total.value = totalArr.reduce(reducer);
+        $valor_total.value = totalArr.reduce(reducer).toFixed(2);
     }
 }
 

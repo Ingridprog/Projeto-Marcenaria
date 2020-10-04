@@ -26,6 +26,7 @@ function cadastroOrcamento(modo) {
     var email = $("#email").val();
     var valor_total = $("#valor_total").val();
     var valor_desconto = $("#valor_desconto").val();
+    var valor_desconto_format = valor_desconto.replace(",", ".")
     var condicao_pagamento = $("#condicao_pagamento").val();
     var observacoes = $("#observacoes").val();
     let itens = arr;
@@ -63,7 +64,7 @@ function cadastroOrcamento(modo) {
                 telefone: telefone,
                 celular: celular,
                 email: email,
-                valor_desconto:valor_desconto,
+                valor_desconto:valor_desconto_format,
                 valor_total:valor_total,
                 condicao_pagamento:condicao_pagamento,
                 observacoes:observacoes,
@@ -103,7 +104,7 @@ function cadastroOrcamento(modo) {
                 telefone: telefone,
                 celular: celular,
                 email: email,
-                valor_desconto:valor_desconto,
+                valor_desconto:valor_desconto_format,
                 valor_total:valor_total,
                 condicao_pagamento:condicao_pagamento,
                 observacoes:observacoes,
