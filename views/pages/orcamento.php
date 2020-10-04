@@ -66,6 +66,7 @@ session_start();
                                     Vendedor
                                 </label>
                                 <input class="form-control"  type="text" name="vendedor" id="vendedor" onkeypress="return validarEntrada(event, 'numeric')">
+                                <p class="text-muted">Campos marcados são obrigatórios (<span class="text-danger"> * </span>)</p>
                             </div>
                             <div class="col"></div>
                         </div>
@@ -77,7 +78,7 @@ session_start();
                             <div class="form-row d-flex justify-content-center mb-3">
                                 <!-- TIPO DE CLIENTE -->
                                 <div class="form-check mr-5">
-                                    <input onchange="mudarTipoCliente()" class="form-check-input"  type="radio" name="tipo-cliente" id="pessoa-fisica" value="1" >
+                                    <input onchange="mudarTipoCliente()" class="form-check-input"  type="radio" name="tipo-cliente" id="pessoa-fisica" value="1" checked>
                                     <label class="form-check-label" for="pessoa-fisica" >
                                         Pessoa Física
                                     </label>
@@ -92,18 +93,18 @@ session_start();
                             <div class="row mb-2">
                                 <div class="col">
                                     <div id="nome-completo">
-                                        <label for="">Nome completo</label>
-                                        <input type="text" class="form-control" id="nome_completo" name="nome_completo" onkeypress="return validarEntrada(event, 'numeric')">
+                                        <label for="">Nome completo <span class="text-danger">*</span> </label>
+                                        <input  type="text" class="form-control" id="nome_completo" name="nome_completo" onkeypress="return validarEntrada(event, 'numeric')">
                                     </div>
 
                                     <div id="razao-social" class="d-none">
-                                        <label for="">Razão social</label>
-                                        <input type="text" class="form-control" id="razao_social" name="razao_social" >
+                                        <label for="">Razão social <span id="pj_razao" class="text-danger">*</span> </label>
+                                        <input  type="text" class="form-control" id="razao_social" name="razao_social" >
                                     </div>
                                 </div>
                                 <div id="nome-fantasia" class="col d-none">
-                                    <label for="">Nome fantasia</label>
-                                    <input type="text" class="form-control" id="nome_fantasia" name="nome_fantasia" >
+                                    <label for="">Nome fantasia <span id="pj_nome" class="text-danger">*</span> </label>
+                                    <input  type="text" class="form-control" id="nome_fantasia" name="nome_fantasia" >
                                 </div>
 
                                 <div class="col">
@@ -120,8 +121,8 @@ session_start();
                             </div>
                             <div class="row mb-2">
                                 <div class="col">
-                                    <label for="">CEP</label>
-                                    <input type="text" class="form-control" name="cep" id="cep" onblur="pesquisarCep(this.value)" maxlength="8" onkeypress="return mascaraCep(this, event)">
+                                    <label for="">CEP <span class="text-danger">*</span> </label>
+                                    <input type="text" class="form-control" name="cep" id="cep" onblur="pesquisarCep(this.value)" maxlength="8" onkeypress="return mascaraCep(this, event)" placeholder="06622000">
                                 </div>
                                 <div class="col">
                                     <label for="">Logradouro</label>
@@ -156,11 +157,11 @@ session_start();
                             <div class="row">
                                 <div class="col-4">
                                     <label for="">Telefone</label>
-                                    <input type="text" class="form-control" name="telefone" id="telefone" onkeypress="return mascaraFone(this, event)">
+                                    <input type="text" class="form-control" name="telefone" id="telefone" onkeypress="return mascaraFone(this, event)" placeholder="(11)40043555">
                                 </div>
                                 <div class="col-4">
-                                    <label for="">Celular</label>
-                                    <input type="text" class="form-control" name="celular" id="celular" onkeypress="return mascaraFone(this, event)">
+                                    <label for="">Celular <span class="text-danger">*</span> </label>
+                                    <input type="text" class="form-control" name="celular" id="celular" onkeypress="return mascaraFone(this, event)" placeholder="(11)955559999">
                                 </div>
                                 <div class="col">
                                     <label for="">Email</label>
@@ -262,7 +263,6 @@ session_start();
         <script src="../assets/js/ajax_editar_orcamento.js"></script>
         <script src="../assets/js/orcamento.js"></script>
         <script src="../assets/js/modalHelpers.js"></script>
-        
         
     </body>
 </html>

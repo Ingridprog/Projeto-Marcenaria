@@ -139,13 +139,16 @@ function adicionarItens(){
     var precoItemFormatado = precoItem.replace(",",".")
     var item = [0, descItem, parseInt(qtdItem),parseFloat(precoItemFormatado), 0];
 
-    arr.push(item);
-    totalArr.push(precoItemFormatado * qtdItem);
-    console.log(arr, totalArr)
+    if(descItem != "" && qtdItem != "" && $precoItem != ""){
+        arr.push(item);
+        totalArr.push(precoItemFormatado * qtdItem);
+        console.log(arr, totalArr)
 
-    $valor_total.value = totalArr.reduce(reducer).toFixed(2);
-    $lista.innerHTML = listarItens(arr).reduce(reducer)
-    resetarCampos()
+        $valor_total.value = totalArr.reduce(reducer).toFixed(2);
+        $lista.innerHTML = listarItens(arr).reduce(reducer)
+        resetarCampos()
+    }else
+        alert("Preencha todas as informações do item!")
 }
 
 function aplicarDesconto(){
