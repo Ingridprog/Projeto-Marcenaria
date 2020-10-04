@@ -97,7 +97,7 @@ $pessoaJuridicaDao = new PessoaJuridicaDao($pdo);
 
                 <div class="row">
                     <div class="col d-flex justify-content-center">
-                        <a href="pdf_orcamento.php" class="btn btn-success" >
+                        <a id="botao_pdf" class="btn btn-success" target="_blank">
                             Gerar PDF
                             <img src="../assets/img/pdf-file.png" class="button-icon" alt="pdf">
                         </a>
@@ -176,19 +176,21 @@ $pessoaJuridicaDao = new PessoaJuridicaDao($pdo);
                     </thead>
                     <tbody id="lista_resultados">
                     <?php 
-                        foreach($orcamentos as $orcamento):
-                        if($orcamento->getIdPessoaJuridica() != NULL){
-                            $pessoaJuridica = $pessoaJuridicaDao->findById($orcamento->getIdPessoaJuridica());
-                            $cliente = $pessoaJuridica->getNomeFantasia();
-                        }elseif($orcamento->getIdPessoaFisica() != NULL){
-                            $pessoaFisica = $pessoaFisicaDao->findById($orcamento->getIdPessoaFisica());
-                            $cliente = $pessoaFisica->getNome();
-                        }
                         
-                        $dataFormatada = explode("-", $orcamento->getData());
-                        $dataFormatada = $dataFormatada[2]."/".$dataFormatada[1]."/".$dataFormatada[0];
-                        $valorTotal = explode(".",$orcamento->getValorTotal());
-                        $valorTotal = $valorTotal[0].",".$valorTotal[1];
+                        if($orcamentos){
+                            foreach($orcamentos as $orcamento):
+                            if($orcamento->getIdPessoaJuridica() != NULL){
+                                $pessoaJuridica = $pessoaJuridicaDao->findById($orcamento->getIdPessoaJuridica());
+                                $cliente = $pessoaJuridica->getNomeFantasia();
+                            }elseif($orcamento->getIdPessoaFisica() != NULL){
+                                $pessoaFisica = $pessoaFisicaDao->findById($orcamento->getIdPessoaFisica());
+                                $cliente = $pessoaFisica->getNome();
+                            }
+                            
+                            $dataFormatada = explode("-", $orcamento->getData());
+                            $dataFormatada = $dataFormatada[2]."/".$dataFormatada[1]."/".$dataFormatada[0];
+                            $valorTotal = explode(".",$orcamento->getValorTotal());
+                            $valorTotal = $valorTotal[0].",".$valorTotal[1];
                     ?>
                         
                         <tr>
@@ -201,7 +203,11 @@ $pessoaJuridicaDao = new PessoaJuridicaDao($pdo);
                                 <a href="../../validacoes/delete.php?id=<?=$orcamento->getId()?>" class="btn btn-danger btn-sm" onclick="return confirm('Deseja realmente excluir?')">Excluir</a> 
                             </td>
                         </tr>
-                    <?php endforeach;?>
+                    <?php 
+                            endforeach;
+                        }else
+                            echo "";
+                    ?>
                     </tbody>
                 </table>
            

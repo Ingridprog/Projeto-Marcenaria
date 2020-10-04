@@ -48,8 +48,14 @@ function abrirModalOramento(idOrcamento){
             $("#modal_celular").html(jsonModal.pessoa_fisica.celular ?? jsonModal.pessoa_juridica.celular)
             $("#modal_telefone").html(jsonModal.pessoa_fisica.telefone ?? jsonModal.pessoa_juridica.telefone)
             $("#modal_email").html(jsonModal.pessoa_fisica.email ?? jsonModal.pessoa_juridica.email)
-
-            $("#modal_valor_total").html("R$ "+jsonModal.valor_total.toFixed(2).replace(".", ","))
+            
+            let desconto = ""
+            
+            if(jsonModal.valor_desconto != null || jsonModal.valor_desconto != 0)
+                desconto = `Desconto R$ ${jsonModal.valor_desconto.replace(".", ",")}`
+            
+            $("#botao_pdf").attr('href', `pdf_orcamento.php?id=${jsonModal.id}`)
+            $("#modal_valor_total").html(`R$ ${jsonModal.valor_total.toFixed(2).replace(".", ",")} - ${desconto}`)
             $("#tbody-modal").html(listarItensResumo(jsonModal.itens_orcamento))
             console.log(jsonModal.itens_orcamento)
         }
