@@ -55,16 +55,14 @@
 
      // Orçamento
      $valorDesconto = filter_input(INPUT_POST, "valor_desconto", FILTER_VALIDATE_FLOAT)? : 0.00;
-     echo $valorDesconto;
      $valorTotal = filter_input(INPUT_POST, "valor_total", FILTER_VALIDATE_FLOAT)? : 0.00;
      $condicaoPagamento = filter_input(INPUT_POST, "condicao_pagamento")? : "";
      $observacoes = filter_input(INPUT_POST, "observacoes", FILTER_SANITIZE_SPECIAL_CHARS);
      $vendedor = filter_input(INPUT_POST, "vendedor")? : "";
 
-
      // clientes
      if($tipoCliente == 1){
-          if($nome && $cpf && ($telefone || $celular || $email)){
+          if($nome && ($telefone || $celular || $email)){
                $pessoaFisica = new PessoaFisica();
                $pessoaFisica->setNome($nome);
                $pessoaFisica->setCpf($cpf);
@@ -81,7 +79,7 @@
                     
           }
      }else{
-          if(($nomeFantasia || $razaoSocial) &&($telefone || $celular || $email)){
+          if(($nomeFantasia || $razaoSocial) && ($telefone || $celular || $email)){
                $pessoaJuridica = new PessoaJuridica();
                $pessoaJuridica->setRazaoSocial($razaoSocial);
                $pessoaJuridica->setNomeFantasia($nomeFantasia);

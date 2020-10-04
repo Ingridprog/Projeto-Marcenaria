@@ -3,7 +3,7 @@ function cadastroOrcamento(modo) {
     var tipo = 0;
 
     console.log(modo)
-    
+
     //Radio de tipo de cadastro
     var tipoCadastro = $("input[name='tipo-cliente']:checked").val();
 
@@ -34,26 +34,26 @@ function cadastroOrcamento(modo) {
 
     var json = JSON.parse(localStorage.getItem('orcamento'))
 
-    if(modo != "add"){
+    if (modo != "add") {
         $.ajax({
             url: '../../validacoes/validaForm.php',
             type: 'POST',
             data: {
-                vendedor:vendedor,
+                vendedor: vendedor,
                 //Valores vindos do localStorage
-                id:json.id,
-                id_pessoa_fisica:json.pessoa_fisica.id ?? "",
-                id_pessoa_juridica:json.pessoa_juridica.id ?? "",
-                id_endereco:json.id_endereco,
-            
+                id: json.id,
+                id_pessoa_fisica: json.pessoa_fisica.id ?? "",
+                id_pessoa_juridica: json.pessoa_juridica.id ?? "",
+                id_endereco: json.id_endereco,
+
                 //valores vindos dos inputs
                 itens: JSON.stringify(itens),
                 tipo_cliente: tipoCadastro,
                 nome_completo: nomeCompleto,
                 razao_social: razaoSocial,
                 nome_fantasia: nomeFantasia,
-                cpf:cpf,
-                cnpj:cnpj,
+                cpf: cpf,
+                cnpj: cnpj,
                 cep: cep,
                 logradouro: logradouro,
                 bairro: bairro,
@@ -69,7 +69,7 @@ function cadastroOrcamento(modo) {
                 condicao_pagamento:condicao_pagamento,
                 observacoes:observacoes,
                 botao: botao,
-                tipo_cadastro:modo
+                tipo_cadastro: modo
             },
             success: function (data) {
                 localStorage.removeItem('orcamento')
@@ -80,20 +80,20 @@ function cadastroOrcamento(modo) {
                 console.log('error')
             }
         })
-    }else{
+    } else {
         $.ajax({
             url: '../../validacoes/validaForm.php',
             type: 'POST',
             data: {
                 //valores vindos dos inputs
-                vendedor:vendedor,
+                vendedor: vendedor,
                 itens: JSON.stringify(itens),
                 tipo_cliente: tipoCadastro,
                 nome_completo: nomeCompleto,
                 razao_social: razaoSocial,
                 nome_fantasia: nomeFantasia,
-                cpf:cpf,
-                cnpj:cnpj,
+                cpf: cpf,
+                cnpj: cnpj,
                 cep: cep,
                 logradouro: logradouro,
                 bairro: bairro,
@@ -109,7 +109,7 @@ function cadastroOrcamento(modo) {
                 condicao_pagamento:condicao_pagamento,
                 observacoes:observacoes,
                 botao: botao,
-                tipo_cadastro:modo
+                tipo_cadastro: modo
             },
             success: function (data) {
                 alert("Orçamento gerado com sucesso!");
