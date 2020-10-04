@@ -139,7 +139,10 @@ function adicionarItens(){
     var precoItemFormatado = precoItem.replace(",",".")
     var item = [0, descItem, parseInt(qtdItem),parseFloat(precoItemFormatado), 0];
 
-    if(descItem != "" && qtdItem != "" && $precoItem != ""){
+    console.log(descItem)
+
+
+    if((descItem != "") && (qtdItem != "" || qtdItem != 0) && (precoItem != "" || precoItem != 0)){
         arr.push(item);
         totalArr.push(precoItemFormatado * qtdItem);
         console.log(arr, totalArr)
