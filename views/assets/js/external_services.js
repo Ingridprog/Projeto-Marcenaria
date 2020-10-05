@@ -42,10 +42,10 @@ const pesquisarCep = (valor) => {
         var validarCep = /^[0-9]{8}$/;
 
         if(validarCep.test(cep)){
-            $logradouro.value = "...";
-            $bairro.value = "...";
-            $cidade.value = "...";
-            $uf.value = "..."
+            $logradouro.value = "";
+            $bairro.value = "";
+            $cidade.value = "";
+            $uf.value = ""
 
             var script = document.createElement('script');
 

@@ -81,8 +81,8 @@ const listarItens = (array) =>{
             <tr id="item${i}" name="itens[]">
                 <td>${elemento[1]}</td>
                 <td>${elemento[2]}</td>
-                <td>${elemento[3]}</td>
-                <td>${elemento[2] * elemento[3]}</td>
+                <td>R$ ${elemento[3]}</td>
+                <td>R$ ${elemento[2] * elemento[3]}</td>
                 <td class="small-column">
                     <button type="button" class="btn btn-sm btn-danger" onclick="removerItem(${i})">Excluir</button>
                 </td>

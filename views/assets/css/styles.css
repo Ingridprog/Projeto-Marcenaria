@@ -15,6 +15,9 @@
     box-sizing: border-box;
     padding: 10px;
 }
+.degrade_top2{
+    background-image: linear-gradient(to right, #ffffff,#1290CB) !important;
+}
 .no-margin{
     margin: 0px !important;
 }
@@ -44,14 +47,28 @@
 .nav-item{
     width: 150px;
     height: 50px;
-    background-color: #007bff;
+    background-color: #196f9700;
+}
+.logo_main{
+    width: 140px;
+    border-radius: 7px;
+}
+.logo_main img{
+    width: 150px;
+    height: 100px;
+    position: absolute;
+    top: 15px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 6px;
+    box-shadow: 3px 3px 4px rgba(97, 97, 97, 0.185);
+    border: 1px solid rgba(134, 134, 134, 0.288);
 }
 .nav-item:hover{
-    background-color: #01A4E7 !important;
+    background-color: #1290CB !important;
     cursor: pointer;
 }
 .ativar-nav-item{
-    background-color: #01A4E7 !important;
+    background-color: #1290CB !important;
 }
 .pd-zero{
     padding: 0px !important;

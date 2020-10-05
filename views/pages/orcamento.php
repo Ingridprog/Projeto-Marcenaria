@@ -36,14 +36,21 @@ session_start();
         <div id="modal_itens">
             
         </div>
-        <nav class="width-100p mb-3 navbar pd-zero navbar-expand-lg navbar-dark bg-primary">
-            <div class="container d-flex justify-content-end">
-                <div class="nav-item text-white d-flex justify-content-center align-items-center">
-                    <a href="home.php" class="text-white font-weight-bold">Home</a>
+        <nav class="width-100p mb-5 navbar pd-zero navbar-expand-lg navbar-dark degrade_top2">
+            <div class="container">
+                <div class="logo_main">
+                    <img src="../assets/img/logo_exb.PNG" alt="logo_principal" >
                 </div>
+                <div class="pages_select">
+                    <div class="container d-flex justify-content-end">
+                        <div class="nav-item text-white d-flex justify-content-center align-items-center">
+                            <a href="home.php" class="text-white font-weight-bold">Home</a>
+                        </div>
 
-                <div class="ativar-nav-item nav-item text-white d-flex justify-content-center align-items-center">
-                    <span class="font-weight-bold">Orçamento</span>
+                        <div class="ativar-nav-item nav-item text-white d-flex justify-content-center align-items-center">
+                            <a href="orcamento.php" class="text-white font-weight-bold">Orçamento</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </nav>
